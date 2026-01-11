@@ -78,10 +78,28 @@
             <!-- Main Navigation -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
-                    <!-- Mục "Danh mục" với dropdown phân cấp - giữ nguyên -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#intro">Intro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#customize">Customize</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="listproduct">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="posts">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cartcontact">Contact</a>
+                    </li>
+                    <!-- Mục "Tất cả" với dropdown phân cấp -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button">
-                            Danh mục
+                            Tất cả
                         </a>
                         <ul class="dropdown-menu">
                             <c:forEach items="${level1Categories}" var="level1">
@@ -121,19 +139,13 @@
                             </c:forEach>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="listproduct">Danh sách sản phẩm</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="posts">Danh sách bài đăng</a>
-                    </li>
                 </ul>
 
                 <!-- Right Side Items -->
                 <div class="d-flex align-items-center justify-content-end">
                     <!-- Search Form -->
                     <form class="search-form" action="listproduct" method="GET">
-                        <input type="text" name="keyword" placeholder="Nhập tên sản phẩm...">
+                        <input type="text" name="keyword" placeholder="Tìm kiếm:">
                         <button type="submit">
                             <i class="fas fa-search"></i>
                         </button>
@@ -199,11 +211,9 @@
                             </c:choose>
                         </div>
                         <!-- Cart -->
-                        <!-- Cart -->
                         <c:if test="${sessionScope.acc.role == 'customer' || sessionScope.acc.role == null}">
                             <a href="${pageContext.request.contextPath}/cartdetail" class="cart-icon">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="cart-count">${cartCount}</span>
+                                <span class="cart-count">${cartCount != null ? cartCount : 0}</span>
                             </a>
                         </c:if>
                     </div>
