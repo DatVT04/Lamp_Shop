@@ -127,6 +127,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="posts">Danh sách bài đăng</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="customize.jsp">Customize</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Items -->
