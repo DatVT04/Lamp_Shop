@@ -18,36 +18,6 @@
             line-height: 1.6;
         }
 
-        /* Hoa rơi container */
-        #flowers-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            overflow: hidden;
-        }
-
-        .flower {
-            position: absolute;
-            font-size: 24px;
-            animation: fall linear infinite;
-            opacity: 0.8;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0.3;
-            }
-        }
-
         /* Header Styles */
         header {
             background: #fff;
@@ -94,134 +64,134 @@
         }
 
         /* Hero Section */
-.hero-section {
-    height: 100vh;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    text-align: left;
-    color: white;
-    position: relative;
-    padding: 0 80px 80px 80px;
-    overflow: hidden;
-}
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            text-align: left;
+            color: white;
+            position: relative;
+            padding: 0 80px 80px 80px;
+            overflow: hidden;
+        }
 
-/* Background image với animation */
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://www.yankodesign.com/images/design_news/2023/05/illuminate-any-modern-space-with-some-tradition/WoodooLamp_productdesign_lamp_5.jpg') center/cover;
-    animation: zoomIn 20s ease-out infinite alternate;
-    z-index: -2;
-}
+        /* Background image với animation */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.yankodesign.com/images/design_news/2023/05/illuminate-any-modern-space-with-some-tradition/WoodooLamp_productdesign_lamp_5.jpg') center/cover;
+            animation: zoomIn 20s ease-out infinite alternate;
+            z-index: -2;
+        }
 
-/* Overlay tối */
-.hero-section::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5));
-    z-index: -1;
-}
+        /* Overlay tối */
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+            z-index: -1;
+        }
 
-/* Animation zoom in */
-@keyframes zoomIn {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.1);
-    }
-}
+        /* Animation zoom in */
+        @keyframes zoomIn {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
 
-.hero-content {
-    max-width: 900px;
-    position: relative;
-    z-index: 1;
-    animation: fadeInUp 1.5s ease-out;
-}
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1.5s ease-out;
+        }
 
-/* Animation cho nội dung */
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        /* Animation cho nội dung */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-.hero-content h1 {
-    font-size: 56px;
-    margin-bottom: 25px;
-    letter-spacing: 3px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
+        .hero-content h1 {
+            font-size: 56px;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
 
-.hero-content p {
-    font-size: 16px;
-    max-width: 800px;
-    margin: 0 0 30px 0;
-    line-height: 1.8;
-    font-weight: 300;
-}
+        .hero-content p {
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 0 30px 0;
+            line-height: 1.8;
+            font-weight: 300;
+        }
 
-/* Hero Dots */
-.hero-dots {
-    display: flex;
-    gap: 12px;
-    margin-top: 25px;
-}
+        /* Hero Dots */
+        .hero-dots {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
 
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.4);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-.dot.active {
-    background-color: white;
-}
+        .dot.active {
+            background-color: white;
+        }
 
-.dot:hover {
-    background-color: rgba(255, 255, 255, 0.7);
-}
+        .dot:hover {
+            background-color: rgba(255, 255, 255, 0.7);
+        }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .hero-section {
-        height: 70vh;
-        padding: 0 30px 40px 30px;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-    
-    .hero-content h1 {
-        font-size: 32px;
-    }
-    
-    .hero-content p {
-        font-size: 14px;
-    }
-    
-    .hero-dots {
-        justify-content: center;
-    }
-}
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 70vh;
+                padding: 0 30px 40px 30px;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            
+            .hero-content p {
+                font-size: 14px;
+            }
+            
+            .hero-dots {
+                justify-content: center;
+            }
+        }
 
         .cta-button {
             display: inline-block;
@@ -443,23 +413,20 @@
     </style>
 </head>
 <body>
-    <!-- Hoa rơi -->
-    <div id="flowers-container"></div>
-
     <jsp:include page="header.jsp" />
 
     <!-- Hero Section -->
-<section class="hero-section">
-    <div class="hero-background"></div>
-    <div class="hero-content">
-        <h1>CUSTOM DESIGN LAMP</h1>
-        <p>Chúng tôi là một nhà sản xuất đèn với nhiều năm kinh nghiệm về đèn trang trí. Bạn chỉ cần cung cấp cho chúng tôi những bản phát thảo, những ký sự của chúng tôi sẽ giúp bạn biến những phát thảo đó thành những tác phẩm tuyệt vời.</p>
-        <div class="hero-dots">
-            <span class="dot active" data-slide="0"></span>
-            <span class="dot" data-slide="1"></span>
+    <section class="hero-section">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1>CUSTOM DESIGN LAMP</h1>
+            <p>Chúng tôi là một nhà sản xuất đèn với nhiều năm kinh nghiệm về đèn trang trí. Bạn chỉ cần cung cấp cho chúng tôi những bản phát thảo, những ký sự của chúng tôi sẽ giúp bạn biến những phát thảo đó thành những tác phẩm tuyệt vời.</p>
+            <div class="hero-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Room Categories Section -->
     <section class="room-categories">
@@ -631,34 +598,6 @@
     <jsp:include page="footer.jsp" />
 
     <script>
-        // Tạo hoa đào và hoa mai rơi
-        const flowersContainer = document.getElementById('flowers-container');
-        const flowerTypes = ['🌸', '🌺', '🌼'];
-        
-        function createFlower() {
-            const flower = document.createElement('div');
-            flower.className = 'flower';
-            flower.textContent = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
-            flower.style.left = Math.random() * 100 + '%';
-            flower.style.animationDuration = (Math.random() * 5 + 8) + 's';
-            flower.style.fontSize = (Math.random() * 15 + 20) + 'px';
-            flower.style.animationDelay = Math.random() * 2 + 's';
-            
-            flowersContainer.appendChild(flower);
-            
-            setTimeout(() => {
-                flower.remove();
-            }, 15000);
-        }
-
-        // Tạo hoa rơi liên tục
-        setInterval(createFlower, 300);
-        
-        // Tạo một số hoa ban đầu
-        for (let i = 0; i < 20; i++) {
-            setTimeout(createFlower, i * 200);
-        }
-
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
