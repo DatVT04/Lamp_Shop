@@ -517,12 +517,14 @@
             }
 
             .product-showcase-card .product-description {
-                color: #555;
-                font-size: 0.95rem;
-                line-height: 1.7;
+                color: #666;
+                font-size: 1rem;
+                line-height: 1.8;
                 margin: 0 25px 25px;
                 flex-grow: 1;
                 min-height: 80px;
+                font-weight: 400;
+                letter-spacing: 0.2px;
             }
 
             .product-showcase-card .btn-detail {
@@ -1186,7 +1188,8 @@
                                 slidesPerView: 3,
                                 spaceBetween: 80,
                                 centeredSlides: true,
-                                loop: featuredSlides.length > 3,
+                                loop: true, // chạy vòng lặp vô hạn
+                                loopAdditionalSlides: 5,
                                 autoplay: {
                                     delay: 2000, // 2 giây tự động chuyển
                                     disableOnInteraction: false,
@@ -1196,7 +1199,7 @@
                                 speed: 1200, // Tăng thời gian transition để mượt hơn
                                 effect: 'slide',
                                 grabCursor: false, // Tắt grab cursor để tránh can thiệp
-                                watchOverflow: true,
+                                watchOverflow: false,
                                 observer: true,
                                 observeParents: true,
                                 updateOnWindowResize: true,

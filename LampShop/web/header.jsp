@@ -96,6 +96,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="cartcontact">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="listproduct">Trang mẫu đèn</a>
+                    </li>
                     <!-- Mục "Tất cả" với dropdown phân cấp -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button">
