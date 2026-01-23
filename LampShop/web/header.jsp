@@ -81,9 +81,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#intro">Intro</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#customize">Customize</a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="listproduct">Shop</a>
                     </li>
@@ -139,12 +137,8 @@
                             </c:forEach>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="listproduct">Danh sách sản phẩm</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="posts">Danh sách bài đăng</a>
-                    </li>
+            
+                
                     <li class="nav-item">
                         <a class="nav-link" href="customize.jsp">Customize</a>
                     </li>
