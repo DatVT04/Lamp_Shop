@@ -10,9 +10,10 @@ package login;
  */
 public class ClientSecret {
 
-    public static final String GOOGLE_CLIENT_ID = "371802530617-nupp3tq4lnrphcd50jnj3r4e2j31suea.apps.googleusercontent.com";
+    //https://console.cloud.google.com/apis/credentials
+    public static final String GOOGLE_CLIENT_ID = "634017246561-nm8fa8tdkoiq87jp0qubtuce77mnv2n5.apps.googleusercontent.com";
 
-    public static final String GOOGLE_CLIENT_SECRET = "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";
+    public static final String GOOGLE_CLIENT_SECRET = "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";
 
     public static final String GOOGLE_REDIRECT_URI = "http://localhost:9999/lampshop/login";
 
