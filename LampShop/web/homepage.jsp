@@ -1145,17 +1145,7 @@
                 </div>
             </div>
         </section>
-
-        <!-- Contact Section -->
-        <section class="contact-section" style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1920');">
-            <div class="container">
-                <h2>Đặt Câu Hỏi Cho Chúng Tôi !</h2>
-                <a href="cartcontact" class="btn-contact">
-                    <i class="fas fa-phone"></i> LIÊN HỆ
-                </a>
-            </div>
-        </section>
-
+       
         <!-- Chat Widget -->
         <jsp:include page="chat.jsp" />
         

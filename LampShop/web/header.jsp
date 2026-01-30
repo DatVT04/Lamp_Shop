@@ -78,22 +78,14 @@
             <!-- Main Navigation -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#intro">Intro</a>
-                    </li>
+                    
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="listproduct">Shop</a>
+                        <a class="nav-link" href="listproduct">Cửa hàng</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="posts">Blogs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cartcontact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="listproduct">Trang mẫu đèn</a>
-                    </li>
+
+                    
+                    
                     <!-- Mục "Tất cả" với dropdown phân cấp -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button">
@@ -143,6 +135,10 @@
                         <a class="nav-link" href="customize.jsp">Customize</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="posts">Blogs</a>
+                    </li>
+                    
                 </ul>
 
                 <!-- Right Side Items -->
