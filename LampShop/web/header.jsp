@@ -7,6 +7,8 @@
             <meta charset="UTF-8">
             <title>Header</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+                rel="stylesheet">
             <link href="${pageContext.request.contextPath}/assests/css/Header.css" rel="stylesheet" type="text/css" />
             <style>
                 /* ============================================
@@ -16,15 +18,15 @@
                 .navbar {
                     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                     padding: 25px 0;
-                    font-family: 'Inter', sans-serif;
+                    font-family: 'Poppins', sans-serif;
                 }
 
                 /* 1. Transparent & Sticky States */
                 .navbar-transparent {
-                    background: linear-gradient(180deg, 
-                        rgba(0, 0, 0, 0.7) 0%, 
-                        rgba(0, 0, 0, 0.4) 50%,
-                        rgba(0, 0, 0, 0.2) 100%) !important;
+                    background: linear-gradient(180deg,
+                            rgba(0, 0, 0, 0.7) 0%,
+                            rgba(0, 0, 0, 0.4) 50%,
+                            rgba(0, 0, 0, 0.2) 100%) !important;
                     backdrop-filter: blur(10px);
                     -webkit-backdrop-filter: blur(10px);
                     box-shadow: none !important;
@@ -80,7 +82,7 @@
                 .navbar-transparent .dropbtn-guest i,
                 .navbar-transparent .user-info-header span {
                     color: #ffffff !important;
-                    text-shadow: 
+                    text-shadow:
                         0 2px 8px rgba(0, 0, 0, 0.9),
                         0 0 20px rgba(0, 0, 0, 0.6),
                         0 1px 3px rgba(0, 0, 0, 1);
@@ -99,8 +101,9 @@
                 .navbar-scrolled .fas,
                 .navbar-scrolled .cart-icon,
                 .navbar-scrolled .dropbtn,
+                .navbar-scrolled .navbar-toggler-icon,
                 .navbar-scrolled .user-info-header span {
-                    color: #1a1a1a !important;
+                    color: #2c3e50 !important;
                     text-shadow: none;
                     font-weight: 500;
                 }
@@ -110,6 +113,51 @@
                 }
 
                 /* Search Form Styling */
+                .search-form {
+                    position: relative;
+                    margin-right: 20px;
+                }
+
+                .search-form input {
+                    width: 0;
+                    padding: 10px 40px 10px 35px;
+                    border: none;
+                    border-radius: 25px;
+                    font-size: 0.9rem;
+                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    outline: none;
+                }
+
+                .search-form input:focus,
+                .search-form input:not(:placeholder-shown) {
+                    width: 250px;
+                }
+
+                .search-form button {
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 40px;
+                    height: 40px;
+                    border: none;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .search-form button:hover {
+                    transform: translateY(-50%) scale(1.1);
+                }
+
+                .search-form button i {
+                    font-size: 1rem;
+                }
+
+                /* Transparent State */
                 .navbar-transparent .search-form input {
                     background: rgba(255, 255, 255, 0.15);
                     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -118,7 +166,13 @@
                 }
 
                 .navbar-transparent .search-form input::placeholder {
-                    color: rgba(255, 255, 255, 0.8);
+                    color: rgba(255, 255, 255, 0.7);
+                }
+
+                .navbar-transparent .search-form input:focus,
+                .navbar-transparent .search-form input:not(:placeholder-shown) {
+                    background: rgba(255, 255, 255, 0.25);
+                    border-color: rgba(255, 255, 255, 0.5);
                 }
 
                 .navbar-transparent .search-form button {
@@ -127,22 +181,57 @@
                 }
 
                 .navbar-transparent .search-form button:hover {
-                    background: rgba(255, 255, 255, 0.3);
+                    background: rgba(255, 255, 255, 0.35);
                 }
 
+                /* Scrolled State */
                 .navbar-scrolled .search-form input {
-                    background: rgba(0, 0, 0, 0.05);
-                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    background: #f5f5f5;
+                    border: 1px solid #e0e0e0;
                     color: #1a1a1a;
                 }
 
                 .navbar-scrolled .search-form input::placeholder {
-                    color: rgba(0, 0, 0, 0.5);
+                    color: #999;
+                }
+
+                .navbar-scrolled .search-form input:focus,
+                .navbar-scrolled .search-form input:not(:placeholder-shown) {
+                    background: #ffffff;
+                    border-color: #333;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
                 }
 
                 .navbar-scrolled .search-form button {
-                    background: rgba(0, 0, 0, 0.08);
-                    color: #1a1a1a;
+                    background: #333;
+                    color: #ffffff;
+                }
+
+                .navbar-scrolled .search-form button:hover {
+                    background: #000;
+                }
+
+                /* Mobile Responsive */
+                @media (max-width: 991px) {
+                    .search-form {
+                        margin: 15px 0;
+                    }
+
+                    .search-form input {
+                        width: 100%;
+                        background: #f5f5f5 !important;
+                        border: 1px solid #e0e0e0 !important;
+                        color: #1a1a1a !important;
+                    }
+
+                    .search-form input::placeholder {
+                        color: #999 !important;
+                    }
+
+                    .search-form button {
+                        background: #333 !important;
+                        color: #ffffff !important;
+                    }
                 }
 
                 /* Cart Count Badge */
@@ -194,6 +283,7 @@
                         opacity: 0;
                         transform: translateY(-10px);
                     }
+
                     to {
                         opacity: 1;
                         transform: translateY(0);
@@ -285,6 +375,7 @@
 
                 /* Mobile Responsive */
                 @media (max-width: 991px) {
+
                     .navbar-transparent,
                     .navbar-scrolled {
                         background: rgba(255, 255, 255, 0.98) !important;

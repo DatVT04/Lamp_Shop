@@ -9,7 +9,7 @@
                     <head>
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Lamp Shop</title>
+                        <title>Lamp Shop - Nghệ Thuật Ánh Sáng</title>
 
                         <!-- External CSS -->
                         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -18,9 +18,9 @@
                             rel="stylesheet">
                         <link rel="stylesheet"
                             href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.3.2/swiper-bundle.min.css">
-                        <!-- Google Fonts: Playfair Display (Serif) & Inter (Sans) -->
+                        <!-- Google Fonts: Playfair Display & Poppins -->
                         <link
-                            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+                            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
                             rel="stylesheet">
 
                         <!-- Custom CSS -->
@@ -29,14 +29,21 @@
                GLOBAL VARIABLES & BASE STYLES
                ============================================ */
                             :root {
-                                --primary-color: #2c3e50;
-                                --secondary-color: #34495e;
-                                --accent-color: #c5a059;
-                                /* Artisan Gold */
+                                --primary-color: #1a1a1a;
+                                --secondary-color: #2d2d2d;
+                                --accent-color: #d4a373;
+                                --accent-hover: #c08d5c;
                                 --text-color: #333;
-                                --light-background: #f9f9f9;
+                                --text-light: #666;
+                                --text-lighter: #999;
+                                --light-background: #f8f8f8;
+                                --white: #ffffff;
                                 --font-serif: 'Playfair Display', serif;
-                                --font-sans: 'Inter', sans-serif;
+                                --font-sans: 'Poppins', sans-serif;
+                                --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                                --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+                                --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+                                --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
                             }
 
                             * {
@@ -47,9 +54,10 @@
 
                             body {
                                 font-family: var(--font-sans);
-                                background-color: #fff;
+                                background-color: var(--white);
                                 color: var(--text-color);
-                                line-height: 1.6;
+                                line-height: 1.7;
+                                overflow-x: hidden;
                             }
 
                             html {
@@ -68,10 +76,7 @@
                             }
 
                             /* ============================================
-               HERO PROJECT SECTION
-               ============================================ */
-                            /* ============================================
-               HERO SWIPER SECTION
+               HERO SWIPER SECTION - ENHANCED
                ============================================ */
                             .hero-project {
                                 padding: 0;
@@ -83,9 +88,8 @@
 
                             .heroSwiper {
                                 width: 100%;
-                                height: 85vh;
-                                /* Chiều cao ấn tượng hơn */
-                                min-height: 600px;
+                                height: 90vh;
+                                min-height: 650px;
                             }
 
                             .heroSwiper .swiper-slide {
@@ -102,37 +106,41 @@
                                 object-fit: cover;
                                 object-position: center;
                                 display: block;
-                                opacity: 0.9;
+                                opacity: 0.85;
+                                transition: transform 8s ease-out;
                             }
 
-                            /* Overlay tạo độ sâu và dễ đọc chữ */
+                            .heroSwiper .swiper-slide-active img {
+                                transform: scale(1.05);
+                            }
+
                             .hero-overlay {
                                 position: absolute;
                                 top: 0;
                                 left: 0;
                                 width: 100%;
                                 height: 100%;
-                                background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0) 100%);
+                                background: linear-gradient(135deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.25) 60%, rgba(0, 0, 0, 0) 100%);
                                 z-index: 1;
                             }
 
                             .hero-content {
                                 position: absolute;
                                 top: 50%;
-                                left: 10%;
+                                left: 8%;
                                 transform: translateY(-50%);
                                 z-index: 10;
-                                max-width: 650px;
-                                padding: 40px;
+                                max-width: 700px;
+                                padding: 50px;
                                 color: white;
                                 opacity: 0;
-                                animation: fadeUp 1s ease-out 0.5s forwards;
+                                animation: fadeUp 1.2s ease-out 0.3s forwards;
                             }
 
                             @keyframes fadeUp {
                                 from {
                                     opacity: 0;
-                                    transform: translateY(-40%);
+                                    transform: translateY(-45%);
                                 }
 
                                 to {
@@ -141,242 +149,111 @@
                                 }
                             }
 
-                            .hero-content h2 {
-                                font-family: 'Playfair Display', serif;
-                                /* Font sang trọng nếu có, hoặc mặc định */
-                                font-size: 3.5rem;
-                                font-weight: 700;
-                                margin-bottom: 25px;
-                                text-transform: uppercase;
-                                letter-spacing: 2px;
-                                line-height: 1.2;
-                                text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                            .hero-content::before {
+                                content: '';
+                                position: absolute;
+                                left: 0;
+                                top: 0;
+                                width: 4px;
+                                height: 80px;
+                                background: var(--accent-color);
+                                border-radius: 2px;
                             }
 
-                            .hero-content p {
-                                font-size: 1.1rem;
-                                line-height: 1.8;
-                                margin-bottom: 40px;
-                                color: rgba(255, 255, 255, 0.9);
-                                border-left: 3px solid var(--accent-color);
+                            .hero-content h2 {
+                                font-family: var(--font-serif);
+                                font-size: 4rem;
+                                font-weight: 700;
+                                margin-bottom: 30px;
+                                text-transform: uppercase;
+                                letter-spacing: 3px;
+                                line-height: 1.1;
+                                text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
                                 padding-left: 20px;
                             }
 
+                            .hero-content p {
+                                font-size: 1.15rem;
+                                line-height: 1.9;
+                                margin-bottom: 45px;
+                                color: rgba(255, 255, 255, 0.95);
+                                padding-left: 20px;
+                                font-weight: 300;
+                            }
+
                             .hero-content .btn-view {
-                                background: white;
-                                color: var(--primary-color);
-                                padding: 15px 40px;
-                                border: none;
-                                border-radius: 0;
+                                background: var(--accent-color);
+                                color: white;
+                                padding: 18px 45px;
+                                border: 2px solid var(--accent-color);
+                                border-radius: 50px;
                                 font-weight: 600;
                                 text-decoration: none;
                                 display: inline-block;
-                                transition: all 0.3s ease;
+                                transition: var(--transition);
                                 text-transform: uppercase;
                                 letter-spacing: 2px;
                                 font-size: 0.9rem;
-                                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                                box-shadow: 0 8px 25px rgba(212, 163, 115, 0.3);
+                                margin-left: 20px;
                             }
 
                             .hero-content .btn-view:hover {
-                                background: var(--accent-color);
+                                background: transparent;
                                 color: white;
+                                border-color: white;
                                 transform: translateY(-3px);
-                                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+                                box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
                             }
 
-                            /* Swiper Navigation Customization */
                             .heroSwiper .swiper-button-next,
                             .heroSwiper .swiper-button-prev {
                                 color: white;
-                                width: 50px;
-                                height: 50px;
-                                background: rgba(255, 255, 255, 0.1);
-                                backdrop-filter: blur(5px);
+                                width: 55px;
+                                height: 55px;
+                                background: rgba(255, 255, 255, 0.12);
+                                backdrop-filter: blur(10px);
                                 border-radius: 50%;
-                                transition: all 0.3s ease;
+                                transition: var(--transition);
+                                border: 1px solid rgba(255, 255, 255, 0.2);
                             }
 
                             .heroSwiper .swiper-button-next:hover,
                             .heroSwiper .swiper-button-prev:hover {
-                                background: white;
-                                color: black;
+                                background: var(--accent-color);
+                                color: white;
+                                border-color: var(--accent-color);
+                                transform: scale(1.1);
                             }
 
                             .heroSwiper .swiper-button-next::after,
                             .heroSwiper .swiper-button-prev::after {
-                                font-size: 1.5rem;
+                                font-size: 1.3rem;
                                 font-weight: bold;
                             }
 
                             .heroSwiper .swiper-pagination-bullet {
-                                width: 12px;
-                                height: 12px;
+                                width: 10px;
+                                height: 10px;
                                 background: white;
-                                opacity: 0.5;
+                                opacity: 0.4;
+                                transition: var(--transition);
                             }
 
                             .heroSwiper .swiper-pagination-bullet-active {
                                 opacity: 1;
                                 background: var(--accent-color);
-                                width: 30px;
-                                border-radius: 6px;
+                                width: 35px;
+                                border-radius: 5px;
                             }
 
                             /* ============================================
-               OUR PROCESS SECTION
-               ============================================ */
-                            .our-process {
-                                padding: 120px 0;
-                                background: #fff;
-                            }
-
-                            .our-process .container {
-                                max-width: 1400px;
-                                margin: 0 auto;
-                                padding: 0 4rem;
-                            }
-
-                            .process-row {
-                                display: flex;
-                                align-items: stretch;
-                                margin-bottom: 120px;
-                                gap: 0;
-                                min-height: 500px;
-                            }
-
-                            .process-row:last-child {
-                                margin-bottom: 0;
-                            }
-
-                            .process-row.reverse {
-                                flex-direction: row-reverse;
-                            }
-
-                            .process-image {
-                                flex: 1;
-                                height: 500px;
-                                overflow: hidden;
-                                position: relative;
-                            }
-
-                            .process-image img {
-                                width: 100%;
-                                height: 100%;
-                                object-fit: cover;
-                                transition: transform 0.4s ease;
-                            }
-
-                            .process-row:hover .process-image img {
-                                transform: scale(1.05);
-                            }
-
-                            .process-content {
-                                flex: 1;
-                                padding: 80px 60px;
-                                background: white;
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: center;
-                            }
-
-                            .process-label {
-                                font-size: 0.75rem;
-                                color: #999;
-                                text-transform: uppercase;
-                                letter-spacing: 3px;
-                                margin-bottom: 20px;
-                                font-weight: 500;
-                            }
-
-                            .process-content h3 {
-                                font-size: 2.2rem;
-                                font-weight: 700;
-                                color: #000;
-                                margin-bottom: 30px;
-                                text-transform: uppercase;
-                                letter-spacing: 1px;
-                                position: relative;
-                                padding-bottom: 20px;
-                                line-height: 1.3;
-                            }
-
-                            .process-content h3::after {
-                                content: '';
-                                position: absolute;
-                                bottom: 0;
-                                left: 0;
-                                width: 100px;
-                                height: 4px;
-                                background-color: #000;
-                            }
-
-                            .process-content p {
-                                color: #555;
-                                line-height: 2;
-                                margin-bottom: 35px;
-                                font-size: 1.05rem;
-                            }
-
-                            .process-content .btn-read-more {
-                                background: #000;
-                                color: white;
-                                padding: 14px 35px;
-                                border: none;
-                                text-decoration: none;
-                                display: inline-block;
-                                transition: all 0.3s ease;
-                                font-weight: 500;
-                                border-radius: 0;
-                                text-transform: uppercase;
-                                letter-spacing: 1px;
-                                font-size: 0.85rem;
-                                align-self: flex-start;
-                            }
-
-                            .process-content .btn-read-more:hover {
-                                background: #333;
-                                color: white;
-                                transform: translateY(-2px);
-                            }
-
-                            /* ============================================
-               SECTION TITLES & DESCRIPTIONS
-               ============================================ */
-                            .section-title-center {
-                                font-size: 3.5rem;
-                                font-weight: 700;
-                                color: #000;
-                                margin-bottom: 25px;
-                                text-align: center;
-                                position: relative;
-                            }
-
-                            .section-description {
-                                color: #666;
-                                font-size: 1.15rem;
-                                font-style: italic;
-                                max-width: 900px;
-                                margin: 0 auto 50px;
-                                text-align: center;
-                                line-height: 1.8;
-                            }
-
-                            .section-divider {
-                                max-width: 100px;
-                                margin: 0 auto 60px;
-                                border: none;
-                                border-top: 3px solid #ddd;
-                                height: 0;
-                            }
-
-                            /* ============================================
-               FEATURED PRODUCTS GRID SECTION
+               FEATURED PRODUCTS SECTION - ENHANCED
                ============================================ */
                             .featured-products-section {
                                 width: 100%;
-                                padding: 80px 0;
-                                background: #f8f9fa;
+                                padding: 100px 0;
+                                background: linear-gradient(to bottom, #fafafa 0%, #ffffff 100%);
                                 position: relative;
                             }
 
@@ -390,77 +267,80 @@
                             .section-title {
                                 text-align: center;
                                 font-family: var(--font-serif);
-                                font-size: 2.8rem;
+                                font-size: 3.2rem;
                                 font-weight: 700;
-                                color: #2c3e50;
-                                margin-bottom: 50px;
-                                text-transform: none;
-                                /* Elegant case */
+                                color: var(--primary-color);
+                                margin-bottom: 20px;
                                 letter-spacing: 1px;
                                 position: relative;
+                            }
+
+                            .section-subtitle {
+                                text-align: center;
+                                font-size: 1.1rem;
+                                color: var(--text-light);
+                                max-width: 700px;
+                                margin: 0 auto 60px;
+                                font-weight: 300;
                             }
 
                             .section-title::after {
                                 content: '';
                                 display: block;
-                                width: 60px;
-                                height: 3px;
+                                width: 80px;
+                                height: 4px;
                                 background: var(--accent-color);
-                                margin: 20px auto 0;
+                                margin: 25px auto 0;
+                                border-radius: 2px;
                             }
 
-                            /* Scroll container wrapper */
                             .featured-products-scroll-wrapper {
                                 position: relative;
                                 width: 100%;
-                                padding: 0 40px;
-                                /* Space for arrows */
+                                padding: 0 50px;
                             }
 
-                            /* Horizontal scroll container */
                             .featured-products-grid {
                                 display: flex;
-                                gap: 30px;
+                                gap: 35px;
                                 overflow-x: auto;
                                 scroll-behavior: smooth;
-                                padding: 20px 5px;
-                                /* Tiny padding for shadow */
-                                /* Hide scrollbar but keep functionality */
+                                padding: 30px 10px;
                                 scrollbar-width: none;
-                                /* Firefox */
                                 -ms-overflow-style: none;
-                                /* IE/Edge */
                             }
 
                             .featured-products-grid::-webkit-scrollbar {
                                 display: none;
-                                /* Chrome/Safari */
                             }
 
                             .featured-product-card {
-                                background: transparent;
-                                /* Clean look */
-                                border-radius: 0;
-                                /* Sharp corners for premium feel */
+                                background: white;
+                                border-radius: 8px;
                                 overflow: hidden;
-                                box-shadow: none;
-                                transition: all 0.5s ease;
+                                box-shadow: var(--shadow-sm);
+                                transition: var(--transition);
                                 display: flex;
                                 flex-direction: column;
                                 cursor: pointer;
                                 flex-shrink: 0;
-                                width: 320px;
+                                width: 340px;
                                 position: relative;
+                                border: 1px solid #f0f0f0;
+                            }
+
+                            .featured-product-card:hover {
+                                box-shadow: var(--shadow-lg);
+                                transform: translateY(-8px);
                             }
 
                             .featured-product-image-wrapper {
                                 width: 100%;
-                                height: 400px;
-                                /* Taller, more portrait */
+                                height: 420px;
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
-                                background: #f4f4f4;
+                                background: #fafafa;
                                 position: relative;
                                 overflow: hidden;
                             }
@@ -471,20 +351,18 @@
                                 width: 100%;
                                 height: 100%;
                                 object-fit: cover;
-                                /* Fill the frame */
-                                transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                                transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                             }
 
-                            /* New Overlay Effect */
                             .featured-product-overlay {
                                 position: absolute;
                                 top: 0;
                                 left: 0;
                                 width: 100%;
                                 height: 100%;
-                                background: rgba(0, 0, 0, 0.2);
+                                background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
                                 opacity: 0;
-                                transition: all 0.4s ease;
+                                transition: var(--transition);
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
@@ -492,23 +370,26 @@
 
                             .btn-quick-view {
                                 background: white;
-                                color: #333;
-                                padding: 12px 28px;
+                                color: var(--primary-color);
+                                padding: 14px 32px;
                                 font-family: var(--font-sans);
                                 font-size: 0.9rem;
                                 font-weight: 600;
                                 text-transform: uppercase;
-                                letter-spacing: 1px;
-                                transform: translateY(20px);
+                                letter-spacing: 1.5px;
+                                transform: translateY(25px);
                                 opacity: 0;
-                                transition: all 0.4s ease;
+                                transition: var(--transition);
                                 border: none;
                                 cursor: pointer;
+                                border-radius: 50px;
+                                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
                             }
 
                             .btn-quick-view:hover {
                                 background: var(--accent-color);
                                 color: white;
+                                transform: translateY(0) scale(1.05);
                             }
 
                             .featured-product-card:hover .featured-product-overlay {
@@ -521,70 +402,246 @@
                             }
 
                             .featured-product-card:hover .featured-product-image {
-                                transform: scale(1.08);
-                                /* Smoother zoom */
+                                transform: scale(1.1);
                             }
 
                             .featured-product-label {
-                                padding: 18px 0;
+                                padding: 22px 20px;
                                 text-align: center;
                                 font-family: var(--font-serif);
-                                font-size: 1.25rem;
+                                font-size: 1.3rem;
                                 font-weight: 600;
-                                color: #222;
+                                color: var(--primary-color);
                                 text-transform: capitalize;
                                 letter-spacing: 0.5px;
-                                background: transparent;
-                                border: none;
-                                transition: color 0.3s ease;
+                                background: white;
+                                transition: var(--transition);
                             }
 
                             .featured-product-card:hover .featured-product-label {
                                 color: var(--accent-color);
                             }
 
-                            /* Refining Navigation arrows to be thin and elegant */
                             .scroll-arrow {
                                 position: absolute;
                                 top: 45%;
-                                /* slightly higher due to image height */
                                 transform: translateY(-50%);
                                 background: white;
-                                color: #333;
-                                border: 1px solid #ddd;
-                                width: 45px;
-                                height: 45px;
+                                color: var(--primary-color);
+                                border: 2px solid #e0e0e0;
+                                width: 50px;
+                                height: 50px;
                                 border-radius: 50%;
                                 cursor: pointer;
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
-                                font-size: 1.2rem;
-                                transition: all 0.3s ease;
+                                font-size: 1.4rem;
+                                transition: var(--transition);
                                 z-index: 10;
-                                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+                                box-shadow: var(--shadow-md);
                             }
 
                             .scroll-arrow:hover {
                                 background: var(--accent-color);
                                 color: white;
                                 border-color: var(--accent-color);
+                                transform: translateY(-50%) scale(1.1);
                             }
 
                             .scroll-arrow.left {
-                                left: -10px;
+                                left: 0;
                             }
 
                             .scroll-arrow.right {
-                                right: -10px;
+                                right: 0;
                             }
 
                             /* ============================================
-               PRODUCTS SECTION
+               OUR PROCESS SECTION - ENHANCED
+               ============================================ */
+                            .our-process {
+                                padding: 130px 0;
+                                background: white;
+                            }
+
+                            .our-process .container {
+                                max-width: 1400px;
+                                margin: 0 auto;
+                                padding: 0 4rem;
+                            }
+
+                            .process-row {
+                                display: flex;
+                                align-items: stretch;
+                                margin-bottom: 100px;
+                                gap: 0;
+                                min-height: 550px;
+                                box-shadow: var(--shadow-md);
+                                border-radius: 12px;
+                                overflow: hidden;
+                                transition: var(--transition);
+                            }
+
+                            .process-row:hover {
+                                box-shadow: var(--shadow-lg);
+                                transform: translateY(-5px);
+                            }
+
+                            .process-row:last-child {
+                                margin-bottom: 0;
+                            }
+
+                            .process-row.reverse {
+                                flex-direction: row-reverse;
+                            }
+
+                            .process-image {
+                                flex: 1;
+                                height: 550px;
+                                overflow: hidden;
+                                position: relative;
+                            }
+
+                            .process-image::after {
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                background: linear-gradient(135deg, rgba(212, 163, 115, 0.1) 0%, transparent 100%);
+                                opacity: 0;
+                                transition: var(--transition);
+                            }
+
+                            .process-row:hover .process-image::after {
+                                opacity: 1;
+                            }
+
+                            .process-image img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                transition: transform 0.6s ease;
+                            }
+
+                            .process-row:hover .process-image img {
+                                transform: scale(1.08);
+                            }
+
+                            .process-content {
+                                flex: 1;
+                                padding: 90px 70px;
+                                background: white;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                            }
+
+                            .process-label {
+                                font-size: 0.8rem;
+                                color: var(--accent-color);
+                                text-transform: uppercase;
+                                letter-spacing: 3px;
+                                margin-bottom: 20px;
+                                font-weight: 600;
+                                display: inline-block;
+                            }
+
+                            .process-content h3 {
+                                font-family: var(--font-serif);
+                                font-size: 2.5rem;
+                                font-weight: 700;
+                                color: var(--primary-color);
+                                margin-bottom: 30px;
+                                text-transform: uppercase;
+                                letter-spacing: 1px;
+                                position: relative;
+                                padding-bottom: 25px;
+                                line-height: 1.2;
+                            }
+
+                            .process-content h3::after {
+                                content: '';
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                width: 80px;
+                                height: 4px;
+                                background: var(--accent-color);
+                                border-radius: 2px;
+                            }
+
+                            .process-content p {
+                                color: var(--text-light);
+                                line-height: 2;
+                                margin-bottom: 40px;
+                                font-size: 1.05rem;
+                                font-weight: 300;
+                            }
+
+                            .process-content .btn-read-more {
+                                background: var(--primary-color);
+                                color: white;
+                                padding: 16px 40px;
+                                border: 2px solid var(--primary-color);
+                                text-decoration: none;
+                                display: inline-block;
+                                transition: var(--transition);
+                                font-weight: 500;
+                                border-radius: 50px;
+                                text-transform: uppercase;
+                                letter-spacing: 1.5px;
+                                font-size: 0.85rem;
+                                align-self: flex-start;
+                            }
+
+                            .process-content .btn-read-more:hover {
+                                background: transparent;
+                                color: var(--primary-color);
+                                transform: translateX(5px);
+                            }
+
+                            /* ============================================
+               SECTION TITLES & DESCRIPTIONS - ENHANCED
+               ============================================ */
+                            .section-title-center {
+                                font-family: var(--font-serif);
+                                font-size: 3.5rem;
+                                font-weight: 700;
+                                color: var(--primary-color);
+                                margin-bottom: 20px;
+                                text-align: center;
+                                position: relative;
+                            }
+
+                            .section-description {
+                                color: var(--text-light);
+                                font-size: 1.15rem;
+                                font-weight: 300;
+                                max-width: 850px;
+                                margin: 0 auto 50px;
+                                text-align: center;
+                                line-height: 2;
+                                padding: 0 20px;
+                            }
+
+                            .section-divider {
+                                max-width: 80px;
+                                margin: 0 auto 70px;
+                                border: none;
+                                border-top: 4px solid var(--accent-color);
+                                height: 0;
+                                border-radius: 2px;
+                            }
+
+                            /* ============================================
+               PRODUCTS SECTION - ENHANCED
                ============================================ */
                             .products-main-section {
-                                padding: 120px 0;
-                                background: #fff;
+                                padding: 130px 0;
+                                background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
                                 width: 100%;
                                 overflow: hidden;
                             }
@@ -597,265 +654,218 @@
 
                             .products-grid-container {
                                 width: 100%;
-                                padding: 40px 0;
+                                padding: 50px 0;
                             }
 
                             .products-grid {
                                 display: grid;
                                 grid-template-columns: repeat(3, 1fr);
-                                gap: 40px;
+                                gap: 45px;
                                 width: 100%;
                             }
 
                             .product-showcase-card {
                                 background: white;
-                                border-radius: 0;
+                                border-radius: 12px;
                                 overflow: hidden;
-                                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-                                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                                box-shadow: var(--shadow-sm);
+                                transition: var(--transition);
                                 display: flex;
                                 flex-direction: column;
-                                border: 1px solid #f0f0f0;
+                                border: 1px solid #f5f5f5;
                                 height: 100%;
                             }
 
                             .product-showcase-card:hover {
-                                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-                                transform: translateY(-8px);
+                                box-shadow: var(--shadow-lg);
+                                transform: translateY(-10px);
                             }
 
                             .product-showcase-card .product-image {
                                 width: 100%;
-                                height: 450px;
+                                height: 480px;
                                 object-fit: cover;
-                                transition: transform 0.4s ease;
+                                transition: transform 0.6s ease;
                                 display: block;
                             }
 
                             .product-showcase-card:hover .product-image {
-                                transform: scale(1.05);
+                                transform: scale(1.08);
                             }
 
                             .product-image-placeholder {
                                 width: 100%;
-                                height: 450px;
-                                background: #f5f5f5;
+                                height: 480px;
+                                background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
                             }
 
                             .product-title-wrapper {
-                                padding: 25px 25px 15px;
+                                padding: 30px 30px 20px;
                                 margin: 0;
+                                text-align: center;
                             }
 
                             .product-title-main {
-                                font-size: 1.1rem;
+                                font-size: 0.75rem;
                                 font-weight: 600;
-                                color: #000;
-                                margin: 0 0 8px 0;
+                                color: var(--accent-color);
+                                margin: 0 0 12px 0;
                                 line-height: 1.3;
                                 text-transform: uppercase;
-                                letter-spacing: 1px;
+                                letter-spacing: 2.5px;
                             }
 
                             .product-title-sub {
-                                font-size: 1rem;
-                                font-weight: 400;
-                                color: #333;
+                                font-family: var(--font-serif);
+                                font-size: 1.6rem;
+                                font-weight: 600;
+                                color: var(--primary-color);
                                 margin: 0;
-                                line-height: 1.4;
-                                text-transform: none;
+                                line-height: 1.3;
+                                text-transform: capitalize;
+                                letter-spacing: 0.5px;
                             }
 
-                            .product-showcase-card .product-description {
-                                color: #666;
-                                font-size: 1rem;
-                                line-height: 1.8;
-                                margin: 0 25px 25px;
-                                flex-grow: 1;
-                                min-height: 80px;
-                                font-weight: 400;
-                                letter-spacing: 0.2px;
-                            }
+
 
                             .product-showcase-card .btn-detail {
                                 background: transparent;
-                                color: #000;
+                                color: var(--primary-color);
                                 border: none;
                                 padding: 0;
-                                margin: 0 25px 30px;
+                                margin: auto auto 35px;
                                 text-decoration: none;
-                                font-weight: 500;
-                                display: inline-block;
-                                transition: all 0.3s ease;
-                                font-size: 0.9rem;
+                                font-weight: 600;
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 8px;
+                                transition: var(--transition);
+                                font-size: 0.85rem;
                                 width: auto;
+                                text-transform: uppercase;
+                                letter-spacing: 1.5px;
+                                align-self: center;
                             }
 
                             .product-showcase-card .btn-detail:hover {
-                                color: #666;
-                                text-decoration: underline;
+                                color: var(--accent-color);
+                                gap: 12px;
+                            }
+
+                            .product-showcase-card .btn-detail::after {
+                                content: '→';
+                                font-size: 1.2rem;
+                                transition: var(--transition);
                             }
 
                             /* ============================================
-               NEWS SECTION
+               NEWS SECTION - ENHANCED
                ============================================ */
                             .news-section {
-                                background: #fff;
-                                padding: 100px 0;
+                                background: white;
+                                padding: 120px 0;
                             }
 
                             .news-section .section-title-center {
-                                font-size: 2.8rem;
-                                margin-bottom: 60px;
+                                font-size: 3.2rem;
+                                margin-bottom: 70px;
                             }
 
                             .post-card {
                                 border: none;
-                                border-radius: 0;
+                                border-radius: 12px;
                                 overflow: hidden;
-                                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-                                transition: all 0.4s ease;
+                                box-shadow: var(--shadow-sm);
+                                transition: var(--transition);
                                 display: flex;
                                 flex-direction: column;
                                 background: white;
                                 height: 100%;
+                                border: 1px solid #f5f5f5;
                             }
 
                             .post-card:hover {
-                                transform: translateY(-5px);
-                                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+                                transform: translateY(-8px);
+                                box-shadow: var(--shadow-lg);
                             }
 
                             .post-card .thumbnail-img {
-                                height: 300px;
+                                height: 320px;
                                 object-fit: cover;
                                 width: 100%;
+                                transition: transform 0.6s ease;
+                            }
+
+                            .post-card:hover .thumbnail-img {
+                                transform: scale(1.05);
                             }
 
                             .post-card .card-body {
-                                padding: 30px;
+                                padding: 35px;
                                 flex-grow: 1;
                                 display: flex;
                                 flex-direction: column;
                             }
 
                             .card-title {
-                                font-size: 1.4rem;
+                                font-family: var(--font-serif);
+                                font-size: 1.5rem;
                                 font-weight: 600;
-                                color: #000;
-                                margin-bottom: 18px;
+                                color: var(--primary-color);
+                                margin-bottom: 20px;
                                 line-height: 1.4;
+                                transition: var(--transition);
+                            }
+
+                            .post-card:hover .card-title {
+                                color: var(--accent-color);
                             }
 
                             .post-summary {
-                                color: #555;
+                                color: var(--text-light);
                                 font-size: 1rem;
-                                line-height: 1.8;
-                                margin-bottom: 25px;
+                                line-height: 1.9;
+                                margin-bottom: 30px;
                                 flex-grow: 1;
+                                font-weight: 300;
                             }
 
                             .post-card .btn-read-more {
-                                background: #000;
+                                background: var(--primary-color);
                                 color: white;
-                                padding: 14px 35px;
-                                border: none;
+                                padding: 16px 40px;
+                                border: 2px solid var(--primary-color);
                                 text-decoration: none;
                                 display: inline-block;
-                                transition: all 0.3s ease;
+                                transition: var(--transition);
                                 font-weight: 500;
                                 text-transform: uppercase;
-                                letter-spacing: 1px;
+                                letter-spacing: 1.5px;
                                 font-size: 0.85rem;
                                 align-self: flex-start;
-                                border-radius: 0;
+                                border-radius: 50px;
                             }
 
                             .post-card .btn-read-more:hover {
-                                background: #333;
-                                color: white;
-                                transform: translateY(-2px);
-                            }
-
-                            /* ============================================
-               CONTACT SECTION
-               ============================================ */
-                            .contact-section {
-                                position: relative;
-                                padding: 150px 0;
-                                background-size: cover;
-                                background-position: center;
-                                background-attachment: fixed;
-                                text-align: center;
-                                color: white;
-                                overflow: hidden;
-                            }
-
-                            .contact-section::before {
-                                content: '';
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                right: 0;
-                                bottom: 0;
-                                background: rgba(0, 0, 0, 0.5);
-                                z-index: 1;
-                            }
-
-                            .contact-section .container {
-                                position: relative;
-                                z-index: 2;
-                            }
-
-                            .contact-section h2 {
-                                font-size: 3.5rem;
-                                font-weight: 700;
-                                margin-bottom: 40px;
-                                color: white;
-                                text-transform: uppercase;
-                                letter-spacing: 3px;
-                            }
-
-                            .contact-section .btn-contact {
-                                background: white;
-                                color: #000;
-                                padding: 20px 60px;
-                                border-radius: 0;
-                                font-weight: 600;
-                                text-decoration: none;
-                                display: inline-flex;
-                                align-items: center;
-                                gap: 12px;
-                                transition: all 0.3s ease;
-                                font-size: 1.1rem;
-                                text-transform: uppercase;
-                                letter-spacing: 2px;
-                                margin-top: 30px;
-                                border: 2px solid white;
-                            }
-
-                            .contact-section .btn-contact:hover {
                                 background: transparent;
-                                color: white;
-                                border-color: white;
-                                transform: translateY(-3px);
-                                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                                color: var(--primary-color);
+                                transform: translateX(5px);
                             }
 
                             /* ============================================
-               BACK TO TOP BUTTON
+               BACK TO TOP BUTTON - ENHANCED
                ============================================ */
                             .back-to-top {
                                 position: fixed;
-                                bottom: 20px;
-                                right: 90px;
-                                background-color: var(--accent-color);
+                                bottom: 30px;
+                                right: 30px;
+                                background: var(--accent-color);
                                 color: white;
-                                width: 50px;
-                                height: 50px;
+                                width: 55px;
+                                height: 55px;
                                 border-radius: 50%;
                                 display: flex;
                                 justify-content: center;
@@ -863,9 +873,9 @@
                                 cursor: pointer;
                                 opacity: 0;
                                 visibility: hidden;
-                                transition: all 0.3s ease;
+                                transition: var(--transition);
                                 border: none;
-                                box-shadow: var(--card-shadow);
+                                box-shadow: var(--shadow-lg);
                                 z-index: 999;
                             }
 
@@ -875,167 +885,158 @@
                             }
 
                             .back-to-top:hover {
-                                background-color: #2980b9;
-                                transform: scale(1.1);
+                                background: var(--accent-hover);
+                                transform: translateY(-5px) scale(1.1);
                             }
 
                             .back-to-top .arrow {
                                 border: solid white;
                                 border-width: 0 3px 3px 0;
                                 display: inline-block;
-                                padding: 6px;
+                                padding: 7px;
                                 transform: rotate(-135deg);
                             }
 
                             /* ============================================
-               RESPONSIVE DESIGN
+               RESPONSIVE DESIGN - ENHANCED
                ============================================ */
                             @media (max-width: 1200px) {
                                 .our-process .container {
                                     padding: 0 2rem;
                                 }
+
+                                .products-grid {
+                                    grid-template-columns: repeat(2, 1fr);
+                                }
                             }
 
                             @media (max-width: 768px) {
-                                .hero-project img {
-                                    height: 60vh;
-                                    min-height: 400px;
+                                .heroSwiper {
+                                    height: 70vh;
+                                    min-height: 500px;
                                 }
 
-                                .hero-project-content {
-                                    padding: 30px 20px;
-                                    max-width: 100%;
+                                .hero-content {
+                                    padding: 30px;
+                                    max-width: 90%;
+                                    left: 5%;
                                 }
 
-                                .hero-project h2 {
-                                    font-size: 1.5rem;
+                                .hero-content h2 {
+                                    font-size: 2.5rem;
                                 }
 
-                                .hero-project p {
-                                    font-size: 0.9rem;
+                                .hero-content p {
+                                    font-size: 1rem;
                                 }
 
                                 .our-process {
-                                    padding: 60px 0;
+                                    padding: 80px 0;
                                 }
 
                                 .process-row {
-                                    flex-direction: column;
+                                    flex-direction: column !important;
                                     margin-bottom: 60px;
                                     min-height: auto;
                                 }
 
-                                .process-row.reverse {
-                                    flex-direction: column;
-                                }
-
                                 .process-image {
-                                    height: 300px;
-                                    margin-bottom: 30px;
+                                    height: 350px;
                                 }
 
                                 .process-content {
-                                    padding: 30px 20px;
+                                    padding: 40px 30px;
                                 }
 
                                 .process-content h3 {
-                                    font-size: 1.5rem;
-                                }
-
-                                .product-showcase-card .product-image {
-                                    height: 300px;
-                                }
-
-                                .post-card .thumbnail-img {
-                                    height: 250px;
+                                    font-size: 2rem;
                                 }
 
                                 .section-title-center {
-                                    font-size: 2rem;
+                                    font-size: 2.5rem;
                                 }
 
-                                /* Featured Products Section Responsive */
-                                .featured-products-section {
-                                    min-height: 400px;
-                                    padding: 40px 0;
-                                }
-
-                                .featured-products-container {
-                                    padding: 30px 0;
-                                }
-
-                                .featuredProductsSwiper {
-                                    padding: 40px 0;
-                                }
-
-                                .featured-product-image-wrapper {
-                                    height: 350px;
-                                    margin-bottom: 20px;
-                                }
-
-                                .featured-product-label {
-                                    font-size: 1rem;
-                                }
-
-                                .featuredProductsSwiper .swiper-slide-active .featured-product-label {
-                                    font-size: 1.1rem;
-                                }
-
-                                .featured-product-placeholder {
-                                    width: 250px;
-                                    height: 350px;
-                                }
-
-                                .contact-section {
-                                    padding: 80px 0;
-                                }
-
-                                .contact-section h2 {
-                                    font-size: 2rem;
-                                }
-
-                                .products-main-section {
-                                    padding: 60px 0;
+                                .section-title {
+                                    font-size: 2.5rem;
                                 }
 
                                 .products-grid {
                                     grid-template-columns: 1fr;
-                                    gap: 30px;
+                                    gap: 35px;
                                 }
 
-                                .product-showcase-card .product-image {
-                                    height: 350px;
+                                .featured-products-section {
+                                    padding: 80px 0;
                                 }
 
-                                .products-main-section .container {
-                                    padding: 0 1rem;
+                                .news-section {
+                                    padding: 80px 0;
+                                }
+
+                                .post-card .thumbnail-img {
+                                    height: 280px;
+                                }
+
+                                .section-description {
+                                    font-size: 1rem;
+                                }
+
+                                .product-showcase-card .product-description {
+                                    font-size: 0.95rem;
+                                    margin: 0 auto 20px;
+                                    padding: 0 30px;
+                                    min-height: 90px;
                                 }
                             }
 
                             @media (max-width: 576px) {
-                                .hero-project img {
-                                    height: 300px;
+                                .hero-content h2 {
+                                    font-size: 2rem;
                                 }
 
-                                .hero-project-content {
-                                    padding: 30px 15px 20px;
+                                .section-title-center,
+                                .section-title {
+                                    font-size: 2rem;
                                 }
 
-                                .hero-project h2 {
-                                    font-size: 1.5rem;
+                                .process-content h3 {
+                                    font-size: 1.6rem;
                                 }
 
-                                .section-title-center {
-                                    font-size: 1.8rem;
+                                .section-description {
+                                    font-size: 0.95rem;
                                 }
 
-                                .contact-section h2 {
-                                    font-size: 1.8rem;
+                                .product-title-wrapper {
+                                    padding: 25px 20px 15px;
                                 }
 
-                                .contact-section p {
-                                    font-size: 1rem;
+                                .product-showcase-card .product-description {
+                                    font-size: 0.92rem;
+                                    margin: 0 auto 20px;
+                                    padding: 0 25px;
+                                    min-height: 85px;
+                                    line-height: 1.75;
                                 }
+                            }
+
+                            /* ============================================
+               ANIMATIONS & TRANSITIONS
+               ============================================ */
+                            @keyframes fadeInUp {
+                                from {
+                                    opacity: 0;
+                                    transform: translateY(30px);
+                                }
+
+                                to {
+                                    opacity: 1;
+                                    transform: translateY(0);
+                                }
+                            }
+
+                            .animate-on-scroll {
+                                animation: fadeInUp 0.8s ease-out;
                             }
                         </style>
                     </head>
@@ -1045,7 +1046,6 @@
                         <jsp:include page="header.jsp" />
 
                         <!-- Hero Project Section -->
-                        <!-- Hero Project Section (Swiper Upgrade) -->
                         <div class="hero-project">
                             <div class="swiper heroSwiper">
                                 <div class="swiper-wrapper">
@@ -1073,7 +1073,7 @@
                                                     alt="Luxury Hotel Lighting">
                                                 <div class="hero-overlay"></div>
                                                 <div class="hero-content">
-                                                    <h2>TINH HOA ÁNH SÁNG VIỆT</h2>
+                                                    <h2>Tinh Hoa Ánh Sáng Việt</h2>
                                                     <p>Khách sạn Sunbay Park - Kiệt tác 5 sao bên bờ biển. Chúng tôi tự
                                                         hào mang đến giải pháp chiếu sáng nghệ thuật, kết hợp giữa
                                                         truyền thống và hiện đại, tôn vinh vẻ đẹp sang trọng của không
@@ -1087,7 +1087,7 @@
                                                     alt="Modern Interior">
                                                 <div class="hero-overlay"></div>
                                                 <div class="hero-content">
-                                                    <h2>THIẾT KẾ ĐỘC BẢN</h2>
+                                                    <h2>Thiết Kế Độc Bản</h2>
                                                     <p>Mỗi sản phẩm là một tác phẩm nghệ thuật thủ công, được chế tác tỉ
                                                         mỉ từ những người thợ lành nghề nhất. Mang đẳng cấp quốc tế vào
                                                         ngôi nhà của bạn.</p>
@@ -1103,14 +1103,15 @@
                             </div>
                         </div>
 
-                        <!-- Featured Products Carousel Section (giống trang mẫu) -->
+                        <!-- Featured Products Carousel Section -->
                         <section class="featured-products-section">
                             <div class="featured-products-container">
+                                <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
+                                <p class="section-subtitle">Khám phá bộ sưu tập đèn trang trí đẳng cấp, được chế tác thủ
+                                    công với sự tỉ mỉ từng chi tiết</p>
                                 <div class="featured-products-scroll-wrapper">
-                                    <button class="scroll-arrow left"
-                                        onclick="scrollFeaturedProducts('left')">‹</button>
-                                    <button class="scroll-arrow right"
-                                        onclick="scrollFeaturedProducts('right')">›</button>
+                                    <button class="scroll-arrow left" id="scrollLeft">‹</button>
+                                    <button class="scroll-arrow right" id="scrollRight">›</button>
                                     <div class="featured-products-grid" id="featuredProductsGrid">
                                         <c:forEach items="${level1Categories}" var="category">
                                             <c:set var="categoryProducts" value="${productsByCategory[category.id]}" />
@@ -1148,7 +1149,6 @@
                                                 </div>
                                             </c:forEach>
                                         </c:if>
-                                        <!-- Thêm placeholders nếu không có sản phẩm -->
                                         <c:if
                                             test="${empty level1Categories or (empty productsByCategory and empty featuredProducts)}">
                                             <div class="featured-product-card">
@@ -1193,58 +1193,58 @@
                         <!-- Our Process Section -->
                         <section class="our-process">
                             <div class="container">
-                                <!-- Process 1: SẢN XUẤT THEO ĐƠN ĐẶT HÀNG -->
+                                <!-- Process 1 -->
                                 <div class="process-row">
                                     <div class="process-image">
                                         <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800"
                                             alt="Sản xuất">
                                     </div>
                                     <div class="process-content">
-                                        <div class="process-label">Our process</div>
-                                        <h3>SẢN XUẤT THEO ĐƠN ĐẶT HÀNG</h3>
+                                        <div class="process-label">Quy Trình</div>
+                                        <h3>Sản Xuất Theo Đơn Đặt Hàng</h3>
                                         <p>Quá trình tạo ra mỗi sản phẩm là một quá trình kỳ công. Từ những bản thiết kế
                                             của bạn, đội ngũ kỹ sư của chúng tôi sẽ phân tích và đánh giá để đưa ra
                                             những phương án gia công và chọn lựa nguyên liệu phù hợp, kiểm tra chất
                                             lượng nghiêm ngặt từng khâu của quá trình sản xuất để mọi sản phẩm đảm bảo
                                             mọi chi tiết hoàn hảo trước khi đến tay của bạn.</p>
-                                        <a href="#" class="btn-read-more">Xem thêm ></a>
+                                        <a href="#" class="btn-read-more">Xem Thêm</a>
                                     </div>
                                 </div>
 
-                                <!-- Process 2: CUSTOM DESIGN -->
+                                <!-- Process 2 -->
                                 <div class="process-row reverse">
                                     <div class="process-image">
                                         <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800"
                                             alt="Custom Design">
                                     </div>
                                     <div class="process-content">
-                                        <div class="process-label">Our process</div>
-                                        <h3>CUSTOM DESIGN</h3>
+                                        <div class="process-label">Thiết Kế</div>
+                                        <h3>Tùy Chỉnh Theo Yêu Cầu</h3>
                                         <p>Không gian của bạn là một tập hợp của những ý tưởng và cá nhân riêng biệt. Đó
                                             là lý do tại sao chúng tôi tự hào khi có khả năng tùy chỉnh sản phẩm theo
                                             mong muốn của bạn. Từ việc chọn màu sắc, kích thước, kiểu dáng đến việc thêm
                                             những chi tiết riêng biệt, chúng tôi luôn đảm bảo sản phẩm hoàn toàn phản
                                             ánh cá tính của bạn.</p>
-                                        <a href="#" class="btn-read-more">Xem thêm ></a>
+                                        <a href="#" class="btn-read-more">Xem Thêm</a>
                                     </div>
                                 </div>
 
-                                <!-- Process 3: BỘ SƯU TẬP THEO MÙA -->
+                                <!-- Process 3 -->
                                 <div class="process-row">
                                     <div class="process-image">
                                         <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=800"
                                             alt="Bộ sưu tập">
                                     </div>
                                     <div class="process-content">
-                                        <div class="process-label">Our process</div>
-                                        <h3>BỘ SƯU TẬP THEO MÙA</h3>
+                                        <div class="process-label">Bộ Sưu Tập</div>
+                                        <h3>Theo Mùa & xu Hướng</h3>
                                         <p>Chúng tôi luôn tiếp tục nắm bắt các xu hướng mới nhất trong lĩnh vực đèn
                                             trang trí. Từ phong cách cổ điển đến hiện đại, từ dáng vẻ tối giản đến táo
                                             bạo,… những sản phẩm mới được chúng tôi cho ra mắt hàng năm với những thiết
                                             kế độc đáo và đẹp mắt, có đầy đủ những nguyên liệu khác nhau từ kim loại,
                                             gốm sứ, vải cho đến những dòng sản phẩm từ mây tre tự nhiên và các loại
                                             nguyên liệu độc đáo khác.</p>
-                                        <a href="listproduct" class="btn-read-more">Xem bộ sưu tập ></a>
+                                        <a href="listproduct" class="btn-read-more">Xem Bộ Sưu Tập</a>
                                     </div>
                                 </div>
                             </div>
@@ -1261,7 +1261,6 @@
                                     <hr class="section-divider">
                                 </div>
 
-                                <!-- Product Grid - 3 cột như trang mẫu -->
                                 <div class="products-grid-container">
                                     <div class="products-grid">
                                         <c:set var="productCount" value="0" />
@@ -1273,9 +1272,8 @@
                                                     <c:forEach items="${categoryProducts}" var="product">
                                                         <c:if test="${productCount < 3}">
                                                             <div class="product-showcase-card featured-product-card">
-                                                                <!-- Reusing artisan style or similar -->
                                                                 <div class="featured-product-image-wrapper"
-                                                                    style="height: 350px;">
+                                                                    style="height: 480px;">
                                                                     <img src="${product.thumbnail}"
                                                                         class="featured-product-image"
                                                                         alt="${product.title}"
@@ -1287,31 +1285,14 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                                <div class="product-info-minimal"
-                                                                    style="padding: 20px 20px 30px; text-align: center;">
-                                                                    <h4 class="product-title-sub"
-                                                                        style="font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 8px; color: #222; font-weight: 600;">
-                                                                        ${product.title}</h4>
-                                                                    <h3 class="product-title-main"
-                                                                        style="font-size: 0.75rem; color: #999; font-weight: 500; letter-spacing: 2px; margin-bottom: 15px;">
+                                                                <div class="product-title-wrapper">
+                                                                    <h3 class="product-title-main">
                                                                         ${fn:toUpperCase(category.name)}</h3>
-                                                                    <p class="product-description-refined"
-                                                                        style="font-family: var(--font-sans); font-size: 0.9rem; color: #666; line-height: 1.6; margin: 0 auto; max-width: 90%;">
-                                                                        <c:choose>
-                                                                            <c:when
-                                                                                test="${not empty product.description}">
-                                                                                ${fn:length(product.description) > 200 ?
-                                                                                fn:substring(product.description, 0,
-                                                                                200)
-                                                                                :
-                                                                                product.description}${fn:length(product.description)
-                                                                                > 200 ? '...' : ''}
-                                                                            </c:when>
-                                                                            <c:otherwise>Thiết kế tinh xảo, mang đậm bản
-                                                                                sắc văn hóa Việt.</c:otherwise>
-                                                                        </c:choose>
-                                                                    </p>
+                                                                    <h4 class="product-title-sub">${product.title}</h4>
                                                                 </div>
+
+                                                                <a href="productdetail?id=${product.id}"
+                                                                    class="btn-detail">Xem Chi Tiết</a>
                                                             </div>
                                                             <c:set var="productCount" value="${productCount + 1}" />
                                                         </c:if>
@@ -1324,7 +1305,7 @@
                                                 <c:if test="${productCount < 3}">
                                                     <div class="product-showcase-card featured-product-card">
                                                         <div class="featured-product-image-wrapper"
-                                                            style="height: 350px;">
+                                                            style="height: 480px;">
                                                             <img src="${product.thumbnail}"
                                                                 class="featured-product-image" alt="${product.title}"
                                                                 onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'">
@@ -1334,35 +1315,18 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <div class="product-info-minimal"
-                                                            style="padding: 20px 20px 30px; text-align: center;">
-                                                            <h4 class="product-title-sub"
-                                                                style="font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 8px; color: #222; font-weight: 600;">
-                                                                ${product.title}</h4>
-                                                            <h3 class="product-title-main"
-                                                                style="font-size: 0.75rem; color: #999; font-weight: 500; letter-spacing: 2px; margin-bottom: 15px;">
-                                                                ĐÈN BÀN</h3>
-                                                            <p class="product-description-refined"
-                                                                style="font-family: var(--font-sans); font-size: 0.9rem; color: #666; line-height: 1.6; margin: 0 auto; max-width: 90%;">
-                                                                <c:choose>
-                                                                    <c:when test="${not empty product.description}">
-                                                                        ${fn:length(product.description) > 200 ?
-                                                                        fn:substring(product.description, 0, 200) :
-                                                                        product.description}${fn:length(product.description)
-                                                                        > 200 ? '...' : ''}
-                                                                    </c:when>
-                                                                    <c:otherwise>Thiết kế tinh xảo, mang đậm bản sắc văn
-                                                                        hóa Việt.</c:otherwise>
-                                                                </c:choose>
-                                                            </p>
+                                                        <div class="product-title-wrapper">
+                                                            <h3 class="product-title-main">ĐÈN BÀN</h3>
+                                                            <h4 class="product-title-sub">${product.title}</h4>
                                                         </div>
+
+                                                        <a href="productdetail?id=${product.id}" class="btn-detail">Xem
+                                                            Chi Tiết</a>
                                                     </div>
                                                     <c:set var="productCount" value="${productCount + 1}" />
                                                 </c:if>
                                             </c:forEach>
                                         </c:if>
-                                        <!-- Placeholder nếu không đủ 6 sản phẩm (cần tối thiểu 6 để loop mượt cho 3 items) -->
-                                        <!-- Placeholder loop removed as per user request -->
                                     </div>
                                 </div>
                             </div>
@@ -1372,7 +1336,9 @@
                         <section class="news-section">
                             <div class="container">
                                 <div class="text-center mb-5">
-                                    <h2 class="section-title-center">TIN TỨC</h2>
+                                    <h2 class="section-title-center">Tin Tức & Cảm Hứng</h2>
+                                    <p class="section-subtitle">Khám phá những xu hướng mới nhất và câu chuyện đằng sau
+                                        mỗi thiết kế</p>
                                 </div>
                                 <div class="row g-4">
                                     <c:forEach var="post" items="${latestPosts}">
@@ -1399,7 +1365,7 @@
                                                         </c:choose>
                                                     </p>
                                                     <a href="${pageContext.request.contextPath}/post?id=${post.getId()}"
-                                                        class="btn-read-more">Đọc thêm</a>
+                                                        class="btn-read-more">Đọc Thêm</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1423,29 +1389,27 @@
 
                         <!-- Custom Scripts -->
                         <script>
-                            // Featured Products Swiper với autoplay 2 giây
+                            // Hero Swiper
                             document.addEventListener('DOMContentLoaded', function () {
-                                // Đợi Swiper library load xong
                                 if (typeof Swiper === 'undefined') {
                                     console.error('Swiper library not loaded');
                                     return;
                                 }
 
                                 try {
-                                    // Hero Swiper only - Featured Products now uses static grid
                                     const heroSwiperElement = document.querySelector(".heroSwiper");
                                     if (heroSwiperElement) {
                                         new Swiper(".heroSwiper", {
                                             spaceBetween: 0,
                                             centeredSlides: true,
                                             loop: true,
-                                            speed: 1000,
-                                            effect: 'fade', // Hiệu ứng fade sang trọng hơn cho slider to
+                                            speed: 1200,
+                                            effect: 'fade',
                                             fadeEffect: {
                                                 crossFade: true
                                             },
                                             autoplay: {
-                                                delay: 5000,
+                                                delay: 6000,
                                                 disableOnInteraction: false,
                                             },
                                             pagination: {
@@ -1458,25 +1422,98 @@
                                             },
                                         });
                                     }
-
-
                                 } catch (error) {
-                                    console.error('Error initializing Featured Products Swiper:', error);
+                                    console.error('Error initializing Swiper:', error);
                                 }
                             });
 
-                            // Featured Products Horizontal Scroll Function
-                            function scrollFeaturedProducts(direction) {
+                            // Featured Products Auto-Scroll với Manual Control
+                            (function () {
                                 const container = document.getElementById('featuredProductsGrid');
-                                if (!container) return;
+                                const leftBtn = document.getElementById('scrollLeft');
+                                const rightBtn = document.getElementById('scrollRight');
 
-                                const scrollAmount = 340; // card width (300px) + gap (40px)
-                                if (direction === 'left') {
-                                    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-                                } else {
-                                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                                if (!container || !leftBtn || !rightBtn) return;
+
+                                const scrollAmount = 375; // card width (340px) + gap (35px)
+                                let autoScrollInterval;
+                                let isAutoScrolling = true;
+
+                                // Manual scroll function
+                                function scrollManual(direction) {
+                                    if (direction === 'left') {
+                                        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                                    } else {
+                                        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                                    }
                                 }
-                            }
+
+                                // Auto scroll function
+                                function autoScroll() {
+                                    const maxScroll = container.scrollWidth - container.clientWidth;
+                                    const currentScroll = container.scrollLeft;
+
+                                    // Nếu đã scroll đến cuối, quay lại đầu
+                                    if (currentScroll >= maxScroll - 10) {
+                                        container.scrollTo({ left: 0, behavior: 'smooth' });
+                                    } else {
+                                        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                                    }
+                                }
+
+                                // Start auto-scroll
+                                function startAutoScroll() {
+                                    if (!isAutoScrolling) return;
+                                    autoScrollInterval = setInterval(autoScroll, 3500); // Auto scroll mỗi 3.5 giây
+                                }
+
+                                // Stop auto-scroll
+                                function stopAutoScroll() {
+                                    clearInterval(autoScrollInterval);
+                                }
+
+                                // Event listeners cho manual control
+                                leftBtn.addEventListener('click', function () {
+                                    stopAutoScroll();
+                                    scrollManual('left');
+                                    isAutoScrolling = false;
+                                    // Resume auto-scroll sau 5 giây không tương tác
+                                    setTimeout(() => {
+                                        isAutoScrolling = true;
+                                        startAutoScroll();
+                                    }, 5000);
+                                });
+
+                                rightBtn.addEventListener('click', function () {
+                                    stopAutoScroll();
+                                    scrollManual('right');
+                                    isAutoScrolling = false;
+                                    // Resume auto-scroll sau 5 giây không tương tác
+                                    setTimeout(() => {
+                                        isAutoScrolling = true;
+                                        startAutoScroll();
+                                    }, 5000);
+                                });
+
+                                // Pause on hover
+                                container.addEventListener('mouseenter', stopAutoScroll);
+                                container.addEventListener('mouseleave', function () {
+                                    if (isAutoScrolling) {
+                                        startAutoScroll();
+                                    }
+                                });
+
+                                // Pause on touch/drag
+                                container.addEventListener('touchstart', stopAutoScroll);
+                                container.addEventListener('touchend', function () {
+                                    if (isAutoScrolling) {
+                                        setTimeout(startAutoScroll, 2000);
+                                    }
+                                });
+
+                                // Start auto-scroll khi page load
+                                startAutoScroll();
+                            })();
 
                             // Back to Top Button
                             document.addEventListener('DOMContentLoaded', function () {
@@ -1496,6 +1533,27 @@
                                         behavior: 'smooth'
                                     });
                                 });
+                            });
+
+                            // Intersection Observer for animations
+                            const observerOptions = {
+                                threshold: 0.1,
+                                rootMargin: '0px 0px -50px 0px'
+                            };
+
+                            const observer = new IntersectionObserver(function (entries) {
+                                entries.forEach(entry => {
+                                    if (entry.isIntersecting) {
+                                        entry.target.classList.add('animate-on-scroll');
+                                        observer.unobserve(entry.target);
+                                    }
+                                });
+                            }, observerOptions);
+
+                            // Observe elements
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const elementsToAnimate = document.querySelectorAll('.process-row, .product-showcase-card, .post-card');
+                                elementsToAnimate.forEach(el => observer.observe(el));
                             });
                         </script>
 
