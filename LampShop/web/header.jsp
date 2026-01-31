@@ -89,9 +89,9 @@
                     font-weight: 600;
                 }
 
-                /* Logo Styling - Transparent */
+                /* Logo Styling - Transparent - FIXED */
                 .navbar-transparent .navbar-brand img {
-                    filter: brightness(0) invert(1) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.8));
+                    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 10px rgba(0, 0, 0, 0.6));
                     transition: filter 0.4s ease;
                 }
 
@@ -403,7 +403,7 @@
                 <div class="container-header">
                     <!-- Logo -->
                     <a class="navbar-brand" href="home">
-                        <img src="${pageContext.request.contextPath}\assests\css\logohuy.png" alt="Logo" />
+                        <img src="${pageContext.request.contextPath}\assests\css\mocdanglogo.png" alt="Logo" />
                     </a>
 
                     <!-- Navbar Toggle Button -->
