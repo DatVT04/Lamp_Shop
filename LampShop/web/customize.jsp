@@ -76,17 +76,42 @@
             overflow: hidden;
         }
 
-        /* Background image với animation */
-        .hero-section::before {
+        /* Background slides */
+        .hero-slide {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://www.yankodesign.com/images/design_news/2023/05/illuminate-any-modern-space-with-some-tradition/WoodooLamp_productdesign_lamp_5.jpg') center/cover;
-            animation: zoomIn 20s ease-out infinite alternate;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
             z-index: -2;
+            animation: zoomIn 8s ease-out infinite alternate;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide:nth-child(1) {
+            background-image: url('https://www.yankodesign.com/images/design_news/2023/05/illuminate-any-modern-space-with-some-tradition/WoodooLamp_productdesign_lamp_5.jpg');
+        }
+
+        .hero-slide:nth-child(2) {
+            background-image: url('https://im.whatshot.in/img/2021/Oct/istock-1135216272-cropped-1613729212-1633069911.jpg');
+        }
+
+        /* Animation zoom in */
+        @keyframes zoomIn {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
         }
 
         /* Overlay tối */
@@ -99,16 +124,6 @@
             height: 100%;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5));
             z-index: -1;
-        }
-
-        /* Animation zoom in */
-        @keyframes zoomIn {
-            0% {
-                transform: scale(1);
-            }
-            100% {
-                transform: scale(1.1);
-            }
         }
 
         .hero-content {
@@ -317,7 +332,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 0;
         }
 
         .product-item {
@@ -340,23 +355,34 @@
             margin-bottom: 15px;
         }
 
-        .view-collection {
-            text-align: center;
+        /* Thanh trang trí tối giản và chuyên nghiệp */
+        .elegant-divider {
+            margin-top: 40px;
+            position: relative;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                #e0e0e0 15%, 
+                #c9c9c9 50%, 
+                #e0e0e0 85%, 
+                transparent 100%);
         }
 
-        .view-collection a {
-            display: inline-block;
-            padding: 12px 35px;
-            border: 2px solid #333;
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .view-collection a:hover {
-            background: #333;
-            color: white;
+        .elegant-divider::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            background: #d4a574;
+            border-radius: 50%;
+            box-shadow: 
+                -30px 0 0 #e8d4c1,
+                30px 0 0 #e8d4c1,
+                -60px 0 0 #f0e5d8,
+                60px 0 0 #f0e5d8;
         }
 
         .lamp-image-large {
@@ -409,6 +435,12 @@
             .categories-grid {
                 grid-template-columns: 1fr;
             }
+
+            .elegant-divider::before {
+                box-shadow: 
+                    -20px 0 0 #e8d4c1,
+                    20px 0 0 #e8d4c1;
+            }
         }
     </style>
 </head>
@@ -417,7 +449,8 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="hero-background"></div>
+        <div class="hero-slide active"></div>
+        <div class="hero-slide"></div>
         <div class="hero-content">
             <h1>CUSTOM DESIGN LAMP</h1>
             <p>Chúng tôi là một nhà sản xuất đèn với nhiều năm kinh nghiệm về đèn trang trí. Bạn chỉ cần cung cấp cho chúng tôi những bản phát thảo, những ký sự của chúng tôi sẽ giúp bạn biến những phát thảo đó thành những tác phẩm tuyệt vời.</p>
@@ -433,7 +466,7 @@
         <div class="container">
             <h2 class="section-title">DESIGN YOUR ROOM</h2>
             <p class="section-subtitle">
-                Ánh sáng và vật liệu trong thiết kế nội thất rất quan trọng, hãy để hợp chúng thật thông minh để làm không gian của bạn trở nên nổi bật hơn. Liên hệ chúng tôi để được tư vấn!
+                Ánh sáng và vật liệu trong thiết kế nội thất rất quan trọng, hãy để hợp chúng thật thông minh để làm không gian của bạn trở nên nổi bật hơn
             </p>
             
             <div class="categories-grid">
@@ -493,9 +526,7 @@
                                 <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=300" alt="Table Lamp 3">
                             </div>
                         </div>
-                        <div class="view-collection">
-                            <a href="shop.jsp?category=table-lamp">XEM BỘ SƯU TẬP ›</a>
-                        </div>
+                        <div class="elegant-divider"></div>
                     </div>
                     <div>
                         <img src="https://m.media-amazon.com/images/I/717UgUn9FZL.jpg" alt="Table Lamp Showcase" class="lamp-image-large">
@@ -523,9 +554,7 @@
                                 <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300" alt="Floor Lamp 3">
                             </div>
                         </div>
-                        <div class="view-collection">
-                            <a href="shop.jsp?category=floor-lamp">XEM BỘ SƯU TẬP ›</a>
-                        </div>
+                        <div class="elegant-divider"></div>
                     </div>
                     <div>
                         <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?w=800" alt="Floor Lamp Showcase" class="lamp-image-large">
@@ -553,9 +582,7 @@
                                 <img src="https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=300" alt="Pendant Lamp 3">
                             </div>
                         </div>
-                        <div class="view-collection">
-                            <a href="shop.jsp?category=pendant-lamp">XEM BỘ SƯU TẬP ›</a>
-                        </div>
+                        <div class="elegant-divider"></div>
                     </div>
                     <div>
                         <img src="https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=800" alt="Pendant Lamp Showcase" class="lamp-image-large">
@@ -583,9 +610,7 @@
                                 <img src="https://images.unsplash.com/photo-1550985616-10810253b84d?w=300" alt="Wall Lamp 3">
                             </div>
                         </div>
-                        <div class="view-collection">
-                            <a href="shop.jsp?category=wall-lamp">XEM BỘ SƯU TẬP ›</a>
-                        </div>
+                        <div class="elegant-divider"></div>
                     </div>
                     <div>
                         <img src="https://rangdong.com.vn/uploads/product/LED/LED_Gan_tuong/LN18.V2/LN18.V2-anh-san-pham.jpg" alt="Wall Lamp Showcase" class="lamp-image-large">
@@ -598,6 +623,50 @@
     <jsp:include page="footer.jsp" />
 
     <script>
+        // Hero slideshow functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+
+        function showSlide(index) {
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Add active class to current slide and dot
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let next = (currentSlide + 1) % totalSlides;
+            showSlide(next);
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        // Dot click functionality
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopAutoSlide();
+                showSlide(index);
+                startAutoSlide();
+            });
+        });
+
+        // Start auto slide on page load
+        startAutoSlide();
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {

@@ -397,19 +397,19 @@ GO
 
 SET IDENTITY_INSERT [dbo].[customer_contact_history] ON 
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (1, 4, N'vip', N'user123@gmail.com', N'Nguyễn Văn A', N'male', N'0866046581', 2, CAST(1552000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T16:49:21.6900000' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (1, 4, N'vip', N'user123@gmail.com', N'Giao - HN', N'male', N'0866046581', 1, CAST(7500000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T16:49:21.6900000' AS DateTime2))
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (2, 4, N'normal', N'user123@gmail.com', N'Nguyễn Thi B', N'male', N'0866046585', 1, CAST(510000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T16:51:17.9633333' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (2, 4, N'vip', N'user123@gmail.com', N'Hà Phương Minh', N'female', N'0866046585', 5, CAST(6000000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T16:51:17.9633333' AS DateTime2))
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (3, 4, N'vip', N'user123@gmail.com', N'Nguyễn Văn C', N'male', N'0961004959', 2, CAST(1067000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T20:06:27.8700000' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (3, 4, N'vip', N'user123@gmail.com', N'Đức Minh', N'male', N'0961004959', 3, CAST(6000000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T20:06:27.8700000' AS DateTime2))
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (4, 6, N'vip', N'user321@gmail.com', N'Nguyen Hanh Nhan', N'male', N'0866046598', 3, CAST(2278000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:52:50.5100000' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (4, 6, N'vip', N'user321@gmail.com', N'Lại Phương Anh', N'female', N'0866046598', 2, CAST(10500000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:52:50.5100000' AS DateTime2))
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (5, 8, N'vip', N'Medusa@gmail.com', N'Nguyen Van Anh', N'female', N'0866046585', 1, CAST(1380000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:04:09.5000000' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (5, 8, N'vip', N'Medusa@gmail.com', N'Mai', N'female', N'0866046585', 3, CAST(7200000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:04:09.5000000' AS DateTime2))
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (6, 12, N'vip', N'GuYuan@gmail.com', N'Nguyen Hong Hanh', N'male', N'0961004935', 2, CAST(4130000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:10:40.6700000' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (6, 12, N'vip', N'GuYuan@gmail.com', N'Linh Đặng', N'female', N'0961004935', 7, CAST(21500000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:10:40.6700000' AS DateTime2))
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (7, 7, N'vip', N'XiaoDing@gmail.com', N'Nguyễn Thi D', N'male', N'0866046543', 2, CAST(2348000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:48:29.0766667' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (7, 7, N'vip', N'XiaoDing@gmail.com', N'Anh Tiến - Bắc Giang', N'male', N'0866046543', 5, CAST(12500000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:48:29.0766667' AS DateTime2))
 GO
 SET IDENTITY_INSERT [dbo].[customer_contact_history] OFF
 GO
