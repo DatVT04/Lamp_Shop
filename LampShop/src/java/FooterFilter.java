@@ -51,30 +51,16 @@ public class FooterFilter implements Filter {
                 .orElse("");
             try {
                 String encodedAddress = URLEncoder.encode(address, StandardCharsets.UTF_8.toString());
-                String url = "https://nominatim.openstreetmap.org/search?q=" + encodedAddress + "&format=json&limit=1";
-                URL apiUrl = new URL(url);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(apiUrl.openStream()));
-                StringBuilder jsonResponse = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    jsonResponse.append(line);
-                }
-                reader.close();
-
-                String json = jsonResponse.toString();
-                if (json.length() < 10 || !json.contains("\"lat\"")) {
+                context.setAttribute("shopAddressEncoded", encodedAddress);
+                
+                // Keep lat/lon attributes to avoid breaking other potential usages, default to 0
+                if (context.getAttribute("shopLat") == null) {
                     context.setAttribute("shopLat", "0");
                     context.setAttribute("shopLon", "0");
-                } else {
-                    String lat = json.split("\"lat\":\"")[1].split("\"")[0];
-                    String lon = json.split("\"lon\":\"")[1].split("\"")[0];
-                    context.setAttribute("shopLat", lat);
-                    context.setAttribute("shopLon", lon);
                 }
             } catch (Exception e) {
-                context.setAttribute("shopLat", "0");
-                context.setAttribute("shopLon", "0");
-                System.out.println("Error fetching coordinates: " + e.getMessage());
+                context.setAttribute("shopAddressEncoded", "");
+                System.out.println("Error encoding address: " + e.getMessage());
             }
         }
 

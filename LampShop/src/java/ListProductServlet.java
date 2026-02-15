@@ -186,7 +186,7 @@ public class ListProductServlet extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/error.jsp");
+            response.sendRedirect(request.getContextPath() + "/error/error.jsp");
         }
     }
 

@@ -8,15 +8,15 @@ INSERT [dbo].[users] ([id], [username], [email], [password_hash], [full_name], [
 GO
 INSERT [dbo].[users] ([id], [username], [email], [password_hash], [full_name], [gender], [mobile], [avatar], [role], [status], [created_at], [updated_at]) VALUES (3, N'marketing123', N'huy412004@gmail.com', N'$2a$10$sYcqeKA5lzaWHHEHojLoxe378EtZni5873xBA8YfljCthxCADhmoy', N'Marketing', N'male', N'0987654321', N'https://img.freepik.com/premium-photo/customer-service-representative-digital-avatar-generative-ai_934475-9273.jpg?w=360', N'marketing', N'active', CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2), CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2))
 GO
-INSERT [dbo].[users] ([id], [username], [email], [password_hash], [full_name], [gender], [mobile], [avatar], [role], [status], [created_at], [updated_at]) VALUES (4, N'user123', N'user123@gmail.com', N'$2a$10$XFl8Zk5zSXQo/PjN4df.k.twXuumSIvYM7jLRqVcvx2heTFVyW0Ca', N'Khách 1', N'male', N'0912345678', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEONEP1EegBp0dESaBFaDbw8G9fJY_k7oY5A&s', N'customer', N'active', CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2), CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2))
+INSERT [dbo].[users] ([id], [username], [email], [password_hash], [full_name], [gender], [mobile], [avatar], [role], [status], [created_at], [updated_at]) VALUES (4, N'ngovan123', N'van123@gmail.com', N'$2a$10$XFl8Zk5zSXQo/PjN4df.k.twXuumSIvYM7jLRqVcvx2heTFVyW0Ca', N'Khách 1', N'male', N'0912345678', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEONEP1EegBp0dESaBFaDbw8G9fJY_k7oY5A&s', N'customer', N'active', CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2), CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2))
 GO
 INSERT [dbo].[users] ([id], [username], [email], [password_hash], [full_name], [gender], [mobile], [avatar], [role], [status], [created_at], [updated_at]) VALUES (5, N'sale123', N'sale123@gmail.com', N'$2a$10$ojVPuuE5ZVLPE/wWOSRFIeNKLkBZh/CZeHE57ij4F.cfKYsdmIxAO', N'Sale', N'male', N'0978123456', N'https://img.freepik.com/premium-photo/customer-service-representative-digital-avatar-generative-ai_934475-9075.jpg', N'sale', N'active', CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2), CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2))
 GO
-INSERT [dbo].[users] ([id], [username], [email], [password_hash], [full_name], [gender], [mobile], [avatar], [role], [status], [created_at], [updated_at]) VALUES (6, N'user321', N'user321@gmail.com', N'$2a$10$7d0sV4kA8mSbQoJhGmROJumQnBeqtpzzMxz7yslGGf5Z1lhx85M7O', N'Khách 2', N'male', N'0934567890', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl5nDZUl0qC61tJ7SVbzLmlO_jKALvNrV0iw&s', N'customer', N'active', CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2), CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2))
+INSERT [dbo].[users] ([id], [username], [email], [password_hash], [full_name], [gender], [mobile], [avatar], [role], [status], [created_at], [updated_at]) VALUES (6, N'linhdang321', N'linh321@gmail.com', N'$2a$10$7d0sV4kA8mSbQoJhGmROJumQnBeqtpzzMxz7yslGGf5Z1lhx85M7O', N'Khách 2', N'male', N'0934567890', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl5nDZUl0qC61tJ7SVbzLmlO_jKALvNrV0iw&s', N'customer', N'active', CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2), CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2))
 GO
-INSERT [dbo].[users] ([id], [username], [email], [password_hash], [full_name], [gender], [mobile], [avatar], [role], [status], [created_at], [updated_at]) VALUES (7, N'user1234', N'XiaoDing@gmail.com', N'$2a$10$Yw.YHLgW3IAdZAvicADymOZ4CqopkkbD90.DW7m.0Nz3PxuF/pvsK', N'Khách 3', N'male', N'0956781234', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd8RTFkScmVoIQoLsbDscznUGlMz4BMT7oGWYqr8-TJ2FuN55cES6KfCmAxSe1aBM6qYs&usqp=CAU', N'customer', N'active', CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2), CAST(N'2025-03-29T17:43:12.3400000' AS DateTime2))
+INSERT [dbo].[users] ([id], [username], [email], [password_hash], [full_name], [gender], [mobile], [avatar], [role], [status], [created_at], [updated_at]) VALUES (7, N'ducminh1234', N'minh123@gmail.com', N'$2a$10$Yw.YHLgW3IAdZAvicADymOZ4CqopkkbD90.DW7m.0Nz3PxuF/pvsK', N'Khách 3', N'male', N'0956781234', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd8RTFkScmVoIQoLsbDscznUGlMz4BMT7oGWYqr8-TJ2FuN55cES6KfCmAxSe1aBM6qYs&usqp=CAU', N'customer', N'active', CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2), CAST(N'2025-03-29T17:43:12.3400000' AS DateTime2))
 GO
-INSERT [dbo].[users] ([id], [username], [email], [password_hash], [full_name], [gender], [mobile], [avatar], [role], [status], [created_at], [updated_at]) VALUES (8, N'user12345', N'Medusa@gmail.com', N'$2a$10$7Wjzn5r0OX2pcdowGvA39OBnpNP9.b4MvoaXH4terFmIpSN/htzqa', N'Khách 4', N'female', N'0923456789', N'https://png.pngtree.com/png-vector/20231019/ourlarge/pngtree-avatar-of-a-brunette-man-png-image_10214156.png', N'customer', N'active', CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2), CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2))
+INSERT [dbo].[users] ([id], [username], [email], [password_hash], [full_name], [gender], [mobile], [avatar], [role], [status], [created_at], [updated_at]) VALUES (8, N'phuongminh12345', N'pminh123@gmail.com', N'$2a$10$7Wjzn5r0OX2pcdowGvA39OBnpNP9.b4MvoaXH4terFmIpSN/htzqa', N'Khách 4', N'female', N'0923456789', N'https://png.pngtree.com/png-vector/20231019/ourlarge/pngtree-avatar-of-a-brunette-man-png-image_10214156.png', N'customer', N'active', CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2), CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2))
 GO
 INSERT [dbo].[users] ([id], [username], [email], [password_hash], [full_name], [gender], [mobile], [avatar], [role], [status], [created_at], [updated_at]) VALUES (9, N'user12346', N'CaiLin@gmail.com', N'$2a$10$de4mBMbt0qfpuKCs0jF1I.wHr5/dfWMYQikSJ8aJqbHyZ8qH2IxXu', N'Khách 5', N'female', N'0965432109', N'https://png.pngtree.com/png-clipart/20231020/original/pngtree-avatar-of-a-brunette-man-png-image_13379740.png', N'customer', N'pending', CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2), CAST(N'2025-02-10T03:04:56.3300000' AS DateTime2))
 GO
@@ -116,32 +116,32 @@ GO
 
 -- Sản phẩm Tranh vẽ
 INSERT INTO products (id, title, category_id, description, original_price, sale_price, thumbnail, status, is_combo, combo_group_id, created_at, updated_at) VALUES
-(1, N'Đèn ba chân rồng', 4, N'<p><strong>Đèn Ba Chân – Hội Tụ Tinh Hoa Văn Hóa Việt</strong></p><p>Đèn ba chân với họa tiết rồng mang đậm bản sắc dân tộc, tạo điểm nhấn độc đáo cho không gian sống. Chất liệu khung gỗ bền chắc kết hợp vải canvas in sắc nét, ánh sáng vàng ấm dịu nhẹ. Phù hợp cho phòng khách, phòng làm việc hoặc quán cafe phong cách cổ điển.</p>', 350000, 450000, 'https://i.postimg.cc/K8KPdhCS/denbachan.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
+(1, N'Đèn ba chân', 4, N'<p><strong>Đèn Ba Chân – Hội Tụ Tinh Hoa Văn Hóa Việt</strong></p><p>Đèn ba chân được lấy cảm hứng từ chiếc kiềng xưa - biểu tượng của sự bền vững và sum vầy trong đời sống Việt. Dáng đèn mộc mạc hòa quyện cùng họa tiết tranh Tết truyền thống do nghệ nhân Đông Hồ thể hiện, để ánh sáng vàng ấm nhẹ nhàng lan tỏa qua từng nét vẽ, gợi nên cảm giác hoài niệm, ấm cúng và đậm đà bản sắc văn hóa Việt.</p>', 1650000, 1650000, 'https://i.postimg.cc/K8KPdhCS/denbachan.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
 
-(2, N'Đèn Tết vàng', 5, N'<p><strong>Đèn Tết – Rực Rỡ Sắc Xuân</strong></p><p>Đèn Tết truyền thống với họa tiết chữ Phúc, Lộc, Thọ mang ý nghĩa tốt đẹp. Chất liệu giấy cao cấp kết hợp khung tre, dễ dàng treo hoặc đặt bàn. Tạo không khí ấm áp cho dịp Tết Nguyên Đán.</p>', 150000, 200000, 'https://i.postimg.cc/Fzpt5LdQ/dentet.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
+(2, N'Đèn Tết', 5, N'<p><strong>Đèn Tết – Rực Rỡ Sắc Xuân</strong></p><p>Đèn Tết được chế tác từ khung tre tự nhiên, mang dáng vẻ mộc mạc và gần gũi. Trên bề mặt đèn là họa tiết tranh chơi hội truyền thống, tái hiện không khí rộn ràng, vui tươi của ngày Tết xưa. Khi thắp sáng, ánh đèn vàng ấm nhẹ nhàng lan tỏa qua từng nan tre và nét vẽ, gợi cảm giác sum vầy, ấm cúng và đậm đà bản sắc văn hóa Việt trong không gian sống.</p>', 2100000, 2100000, 'https://i.postimg.cc/Fzpt5LdQ/dentet.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
 
-(3, N'Đèn Đông Hồ rự rỡ', 6, N'<p><strong>Đèn Đông Hồ – Nghệ Thuật Dân Gian</strong></p><p>Họa tiết tranh Đông Hồ truyền thống với hình gà trống báo hiệu bình minh mới. Đèn tròn, màu sắc rực rỡ, mang đến sự vui tươi và năng lượng tích cực cho không gian sống.</p>', 280000, 350000, 'https://i.postimg.cc/RFGGvQRX/dendongho.jpg', 'active', 0, NULL, GETDATE(), GETDATE());
+(3, N'Đèn Đông Hồ', 6, N'<p><strong>Đèn Đông Hồ – Nghệ Thuật Dân Gian</strong></p><p>Đèn Đông Hồ được chế tác với khung sắt chắc chắn, kết hợp họa tiết tranh Đông Hồ truyền thống mang đậm tinh thần dân gian Việt. Những nét vẽ mộc mạc, giàu biểu tượng được ánh sáng vàng ấm nâng đỡ, tạo nên chiều sâu thị giác và cảm giác hoài niệm. Khi thắp sáng, chiếc đèn không chỉ chiếu sáng không gian mà còn kể lại câu chuyện văn hóa, gìn giữ vẻ đẹp thủ công và hồn cốt Tết Việt xưa.</p>', 1550000, 1550000, 'https://i.postimg.cc/RFGGvQRX/dendongho.jpg', 'active', 0, NULL, GETDATE(), GETDATE());
 
 -- Sản phẩm Vải
 INSERT INTO products (id, title, category_id, description, original_price, sale_price, thumbnail, status, is_combo, combo_group_id, created_at, updated_at) VALUES
 
-(4, N'Đèn vải Linen', 7, N'<p><strong>Đèn Linen tự nhiên</strong></p><p>Màu xám xanh nhẹ nhàng, mang hơi thở Nordic thanh lịch. Chất liệu vải Linen cao cấp, bền màu theo thời gian. Thiết kế đơn giản nhưng tinh tế, dễ dàng kết hợp với nhiều không gian.</p>', 480000, 580000, 'https://i.postimg.cc/bNhgZ93d/denvalinen.jpg', 'active', 0, NULL, GETDATE(), GETDATE());
+(4, N'Đèn vải Linen tự nhiên', 7, N'<p><strong>Đèn Linen tự nhiên</strong></p><p>Đèn vải linen tự nhiên được thiết kế với khung thép lá thanh mảnh, bao bọc bởi áo vải linen mộc giàu tính tự nhiên. Chất vải thô nhẹ giúp ánh sáng tỏa ra dịu êm, mềm mại, tạo cảm giác ấm áp và thư thái cho không gian. Với phom dáng tối giản và gam màu trung tính, sản phẩm dễ dàng hòa hợp cùng nhiều phong cách nội thất, từ mộc mạc đến hiện đại tinh tế.</p>', 1050000, 1050000, 'https://i.postimg.cc/bNhgZ93d/denvalinen.jpg', 'active', 0, NULL, GETDATE(), GETDATE());
 
 -- Sản phẩm Giấy dó
 INSERT INTO products (id, title, category_id, description, original_price, sale_price, thumbnail, status, is_combo, combo_group_id, created_at, updated_at) VALUES
-(5, N'Đèn phô mai', 8, N'<p><strong>Đèn Phô Mai Giấy Dó – Độc Đáo & Thú Vị</strong></p><p>Hình dáng khối phô mai độc đáo, thu hút mọi ánh nhìn. Giấy dó thủ công truyền thống, màu vàng ấm áp. Phù hợp làm quà tặng hoặc trang trí quán cafe, nhà hàng.</p>', 320000, 400000, 'https://i.postimg.cc/pVqrj2BZ/denphomai.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
+(5, N'Đèn phô mai', 8, N'<p><strong>Đèn Phô Mai Giấy Dó – Độc Đáo & Thú Vị</strong></p><p>Đèn Phô Mai được tạo nên từ khung sắt vững chắc kết hợp giấy dó thủ công, mang vẻ đẹp mộc mạc và giàu chiều sâu chất liệu. Lớp giấy dó với bề mặt tự nhiên giúp ánh sáng tỏa ra ấm áp, dịu nhẹ, tạo hiệu ứng ánh sáng mềm và đầy cảm xúc. Thiết kế giản dị nhưng tinh tế khiến chiếc đèn trở thành điểm nhấn trang trí, phù hợp với những không gian yêu nét thủ công, hoài niệm và tinh thần truyền thống Việt.</p>', 1550000, 1550000, 'https://i.postimg.cc/pVqrj2BZ/denphomai.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
 
-(6, N'Đèn bí', 9, N'<p><strong>Đèn Bí Giấy Dó – Ấm Áp Mùa Thu</strong></p><p>Hình quả bí với màu cam rực rỡ, mang hơi hướng mùa thu Tây Âu. Giấy dó mềm mại, ánh sáng vàng ấm dịu dàng. Có thể dùng trang trí Halloween hoặc thường xuyên.</p>', 250000, 320000, 'https://i.postimg.cc/MTzZc4fq/denbi.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
+(6, N'Đèn bí', 9, N'<p><strong>Đèn Bí Giấy Dó – Ấm Áp Mùa Thu</strong></p><p>Đèn Bí được chế tác từ khung sắt kết hợp giấy dó thủ công, mang phom dáng nhỏ gọn và mềm mại. Lớp giấy dó cho ánh sáng vàng ấm lan tỏa dịu nhẹ, tạo cảm giác ấm cúng và gần gũi. Thiết kế tối giản nhưng giàu chất liệu thủ công giúp đèn dễ dàng hòa vào nhiều không gian, trở thành điểm nhấn tinh tế cho góc nghỉ ngơi hay khu vực sinh hoạt thân mật.</p>', 1550000, 1550000, 'https://i.postimg.cc/MTzZc4fq/denbi.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
 
-(7, N'Đèn bí dẹt', 10, N'<p><strong>Đèn Bí Dẹt – Phong Cách Nhật Bản</strong></p><p>Thiết kế bí dẹt thanh mảnh, mang phong cách Á Đông. Màu xanh nhạt dịu mắt, tạo không gian thư giãn. Giấy dó chất lượng cao, bền đẹp.</p>', 280000, 350000, 'https://i.postimg.cc/XYFns398/denbidet.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
+(7, N'Đèn bí dẹt', 10, N'<p><strong>Đèn Bí Dẹt – Phong Cách Nhật Bản</strong></p><p>Đèn Bí Dẹt được chế tác từ khung sắt kết hợp giấy dó thủ công, với phom dáng dẹt độc đáo tạo cảm giác mềm mại và gần gũi. Lớp giấy dó giúp ánh sáng vàng ấm lan tỏa đều, mang lại bầu không khí ấm cúng và thư thái. Khi được sắp đặt theo cụm, đèn tạo nên nhịp điệu ánh sáng nhẹ nhàng, trở thành điểm nhấn tinh tế cho những không gian ẩm thực, nghỉ ngơi hay sinh hoạt mang tinh thần thủ công và hoài niệm.</p>', 3100000, 3100000, 'https://i.postimg.cc/XYFns398/denbidet.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
 
-(8, N'Đèn chuông', 11, N'<p><strong>Đèn Chuông Giấy Dó – Treo Trang Trí</strong></p><p>Hình chuông treo duyên dáng, màu trắng tinh khôi. Giấy dó mịn màng, ánh sáng nhẹ nhàng tạo bầu không khí lãng mạn. Thích hợp treo hành lang, ban công.</p>', 200000, 280000, 'https://i.postimg.cc/v8NMMDhw/denchuong.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
+(8, N'Đèn chuông', 11, N'<p><strong>Đèn Chuông Giấy Dó – Treo Trang Trí</strong></p><p>Đèn Chuông được chế tác từ khung sắt kết hợp giấy dó thủ công, với phom dáng thon gọn gợi hình chiếc chuông treo mộc mạc. Lớp giấy dó cho ánh sáng vàng ấm dịu nhẹ, lan tỏa vừa đủ, tạo nên bầu không khí yên tĩnh và thư thái. Thiết kế giản dị nhưng tinh tế giúp chiếc đèn trở thành điểm nhấn nhẹ nhàng, phù hợp với những không gian mang tinh thần tối giản, thủ công và giàu chiều sâu cảm xúc.</p>', 1450000, 1450000, 'https://i.postimg.cc/v8NMMDhw/denchuong.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
 
-(9, N'Đèn mai dó', 12, N'<p><strong>Đèn Mai Dó – Sắc Xuân Rạng Rỡ</strong></p><p>Họa tiết hoa đào nở rộ trên nền giấy dó vàng. Mang không khí xuân về nhà, thích hợp trang trí Tết Nguyên Đán. Ánh sáng vàng ấm cúng.</p>', 260000, 330000, 'https://i.postimg.cc/dtCMY6DD/denmaido.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
+(9, N'Đèn mai dó', 12, N'<p><strong>Đèn Mai Dó – Sắc Xuân Rạng Rỡ</strong></p><p>Đèn Mai Dó được chế tác từ khung sắt kết hợp giấy dó thủ công, với phom dáng cong mềm gợi hình cánh mai nở. Lớp giấy dó tự nhiên giúp ánh sáng vàng ấm lan tỏa đều và dịu, tạo cảm giác ấm cúng, thanh nhã cho không gian. Thiết kế hài hòa giữa đường nét truyền thống và tinh thần tối giản khiến chiếc đèn trở thành điểm nhấn trang trí tinh tế, phù hợp với những không gian sống mang hơi thở mộc và hoài niệm.</p>', 3000000, 3000000, 'https://i.postimg.cc/dtCMY6DD/denmaido.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
 
-(10, N'Đèn đa giác', 13, N'<p><strong>Đèn Đa Giác – Hiện Đại & Cá Tính</strong></p><p>Thiết kế đa giác độc đáo, mang phong cách công nghiệp. Giấy dó màu đen mạnh mẽ, tạo điểm nhấn nổi bật. Phù hợp không gian trẻ trung, năng động.</p>', 380000, 480000, 'https://i.postimg.cc/Bt9VbWtQ/dendagiac.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
+(10, N'Đèn đa giác', 13, N'<p><strong>Đèn Đa Giác – Hiện Đại & Cá Tính</strong></p><p>Đèn Đa Giác được chế tác từ khung sắt kết hợp giấy dó thủ công, với phom dáng đa diện tạo nên cấu trúc chắc chắn nhưng vẫn mềm mại trong ánh sáng. Lớp giấy dó giúp ánh đèn vàng ấm lan tỏa đều qua từng mặt, tạo hiệu ứng ánh sáng sinh động và có chiều sâu. Thiết kế hài hòa giữa hình khối hiện đại và chất liệu truyền thống khiến chiếc đèn trở thành điểm nhấn tinh tế cho những không gian mang tinh thần thủ công, ấm cúng và đương đại.</p>', 2800000, 2800000, 'https://i.postimg.cc/Bt9VbWtQ/dendagiac.jpg', 'active', 0, NULL, GETDATE(), GETDATE()),
 
-(11, N'Đèn phao', 14, N'<p><strong>Đèn Phao Đỏ – Rực Rỡ & Nổi Bật</strong></p><p>Màu đỏ tươi sáng, tạo điểm nhấn ấn tượng. Giấy dó bền đẹp, ánh sáng vàng ấm. Thích hợp trang trí tiệc tùng hoặc không gian vui tươi.</p>', 230000, 300000, 'https://i.postimg.cc/PfwhXTRf/denphao.jpg', 'active', 0, NULL, GETDATE(), GETDATE());
+(11, N'Đèn phao', 14, N'<p><strong>Đèn Phao Đỏ – Rực Rỡ & Nổi Bật</strong></p><p>Đèn Phao được chế tác từ khung sắt kết hợp giấy dó thủ công, với phom dáng tròn dẹt gợi hình chiếc phao nổi mộc mạc. Lớp giấy dó cho ánh sáng vàng ấm lan tỏa đều, tạo hiệu ứng ánh sáng nhẹ nhàng và êm dịu. Thiết kế tối giản nhưng giàu chất liệu giúp chiếc đèn trở thành điểm nhấn tinh tế, phù hợp với những không gian cần cảm giác thư thái, ấm cúng và gần gũi với tinh thần thủ công.</p>', 4150000, 4150000, 'https://i.postimg.cc/PfwhXTRf/denphao.jpg', 'active', 0, NULL, GETDATE(), GETDATE());
 
 SET IDENTITY_INSERT [dbo].[products] OFF;
 GO
@@ -152,25 +152,37 @@ GO
 -- Sizes chung cho đèn
 INSERT INTO product_sizes (id, product_id, size) VALUES
 -- Đèn ba chân
-(1, 1, N'30cm'), (2, 1, N'40cm'), (3, 1, N'50cm'),
-(4, 2, N'30cm'), (5, 2, N'40cm'), (6, 2, N'50cm'),
+(1, 1, N'Bản vẽ'),
 
 -- Đèn Tết
-(7, 3, N'20cm'), (8, 3, N'30cm'),
-(9, 4, N'25cm'), (10, 4, N'35cm'),
+(2, 2, N'Bản vẽ'), 
 
 -- Đèn Đông Hồ
-(11, 5, N'40cm'), (12, 5, N'50cm'),
+(3, 3, N'Bản vẽ'),
 
 -- Đèn vải Linen
-(13, 6, N'35cm'), (14, 6, N'45cm'),
-(15, 7, N'35cm'), (16, 7, N'45cm'),
+(4, 4, N'Bản vẽ'), 
 
--- Đèn giấy dó
-(17, 8, N'25cm'), (18, 8, N'35cm'),
-(19, 9, N'30cm'), (20, 9, N'40cm'),
-(21, 10, N'30cm'), (22, 10, N'40cm'),
-(23, 11, N'25cm'), (24, 11, N'35cm');
+-- Đèn phô mai
+(5, 5, N'Bản vẽ'), 
+
+-- Đèn bí
+(6, 6, N'Bản vẽ'), 
+
+-- Đèn bí dẹt
+(7, 7, N'Bản vẽ'), 
+
+-- Đèn chuông
+(8, 8, N'Bản vẽ'), 
+
+-- Đèn mai dó
+(9, 9, N'Bản vẽ'), 
+
+-- Đèn đa giác
+(10, 10, N'Bản vẽ'),
+
+-- Đèn phao
+(11, 11, N'Bản vẽ');
 
 SET IDENTITY_INSERT [dbo].[product_sizes] OFF;
 GO
@@ -181,25 +193,37 @@ GO
 -- Colors
 INSERT INTO product_colors (id, product_id, color) VALUES
 -- Đèn ba chân
-(1, 1, N'Vàng đồng'), (2, 1, N'Nâu cổ điển'),
-(3, 2, N'Trắng kem'), (4, 2, N'Xanh nhạt'),
+(1, 1, N'Vàng truyền thống'), 
 
 -- Đèn Tết
-(5, 3, N'Đỏ truyền thống'),
-(6, 4, N'Đỏ cam'),
+(2, 2, N'Vàng truyền thống'),
 
 -- Đèn Đông Hồ
-(7, 5, N'Đa sắc'),
+(3, 3, N'Trắng'),
 
--- Đèn vải
-(8, 6, N'Trắng'), (9, 6, N'Kem'),
-(10, 7, N'Xám xanh'), (11, 7, N'Xám nhạt'),
+--Đèn vải linen
+(4, 4, N'Trắng'),
 
--- Đèn giấy dó
-(12, 8, N'Vàng kem'),
-(13, 9, N'Cam'), (14, 9, N'Vàng'),
-(15, 10, N'Xanh mint'), (16, 10, N'Xanh ngọc'),
-(17, 11, N'Trắng');
+-- Đèn phô mai
+(5, 5, N'Vàng'),
+
+-- Đèn bí
+(6, 6, N'Vàng cam'), 
+
+--Đèn bí dẹt
+(7, 7, N'Cam nâu'), 
+
+-- Đèn chuông
+(8, 8, N'Trắng'),
+
+-- Đèn mai dó
+(9, 9, N'Trắng'),
+
+-- Đèn đa giác
+(10, 10, N'Vàng'),
+
+-- Đèn phao
+(11, 11, N'Vàng');
 
 SET IDENTITY_INSERT [dbo].[product_colors] OFF;
 GO
@@ -207,114 +231,111 @@ GO
 SET IDENTITY_INSERT [dbo].[product_variants] ON;
 GO
 
-INSERT INTO product_variants (id, product_id, size_id, color_id, stock_quantity, last_restock_date) VALUES
--- Đèn ba chân tranh Trống Đồng
-(1, 1, 1, 1, 20, GETDATE()), (2, 1, 2, 1, 25, GETDATE()), (3, 1, 3, 1, 15, GETDATE()),
-(4, 1, 1, 2, 18, GETDATE()), (5, 1, 2, 2, 22, GETDATE()), (6, 1, 3, 2, 12, GETDATE()),
+INSERT INTO product_variants 
+    (id, product_id, size_id, color_id, stock_quantity, last_restock_date)
+VALUES
+    -- 1. Đèn ba chân          size_id=1   color_id=1
+    (1, 1, 1, 1, 10, GETDATE()),
 
--- Đèn ba chân sen
-(7, 2, 4, 3, 25, GETDATE()), (8, 2, 5, 3, 30, GETDATE()), (9, 2, 6, 3, 20, GETDATE()),
-(10, 2, 4, 4, 20, GETDATE()), (11, 2, 5, 4, 28, GETDATE()), (12, 2, 6, 4, 18, GETDATE()),
+    -- 2. Đèn Tết              size_id=2   color_id=2
+    (2, 2, 2, 2, 10, GETDATE()),
 
--- Đèn Tết lồng đỏ
-(13, 3, 7, 5, 50, GETDATE()), (14, 3, 8, 5, 45, GETDATE()),
+    -- 3. Đèn Đông Hồ          size_id=3   color_id=3
+    (3, 3, 3, 3, 10, GETDATE()),
 
--- Đèn Tết cá chép
-(15, 4, 9, 6, 40, GETDATE()), (16, 4, 10, 6, 35, GETDATE()),
+    -- 4. Đèn vải Linen        size_id=4   color_id=4
+    (4, 4, 4, 4, 10, GETDATE()),
 
--- Đèn Đông Hồ gà
-(17, 5, 11, 7, 15, GETDATE()), (18, 5, 12, 7, 12, GETDATE()),
+    -- 5. Đèn phô mai          size_id=5   color_id=5
+    (5, 5, 5, 5, 10, GETDATE()),
 
--- Đèn vải Linen trắng
-(19, 6, 13, 8, 30, GETDATE()), (20, 6, 14, 8, 25, GETDATE()),
-(21, 6, 13, 9, 28, GETDATE()), (22, 6, 14, 9, 22, GETDATE()),
+    -- 6. Đèn bí               size_id=6   color_id=6
+    (6, 6, 6, 6, 10, GETDATE()),
 
--- Đèn vải Linen xám xanh
-(23, 7, 15, 10, 25, GETDATE()), (24, 7, 16, 10, 20, GETDATE()),
-(25, 7, 15, 11, 22, GETDATE()), (26, 7, 16, 11, 18, GETDATE()),
+    -- 7. Đèn bí dẹt           size_id=7   color_id=7
+    (7, 7, 7, 7, 10, GETDATE()),   -- giả sử ít hàng vì "Bản vẽ"
 
--- Đèn phô mai
-(27, 8, 17, 12, 35, GETDATE()), (28, 8, 18, 12, 30, GETDATE()),
+    -- 8. Đèn chuông           size_id=8   color_id=8
+    (8, 8, 8, 8, 10, GETDATE()),
 
--- Đèn bí cam
-(29, 9, 19, 13, 40, GETDATE()), (30, 9, 20, 13, 35, GETDATE()),
-(31, 9, 19, 14, 38, GETDATE()), (32, 9, 20, 14, 32, GETDATE()),
+    -- 9. Đèn mai dó           size_id=9   color_id=9
+    (9, 9, 9, 9, 10, GETDATE()),
 
--- Đèn bí dẹt xanh
-(33, 10, 21, 15, 30, GETDATE()), (34, 10, 22, 15, 25, GETDATE()),
-(35, 10, 21, 16, 28, GETDATE()), (36, 10, 22, 16, 22, GETDATE()),
+    -- 10. Đèn đa giác         size_id=10  color_id=10
+    (10, 10, 10, 10, 10, GETDATE()),
 
--- Đèn chuông
-(37, 11, 23, 17, 45, GETDATE()), (38, 11, 24, 17, 40, GETDATE());
+    -- 11. Đèn phao            size_id=11  color_id=11
+    (11, 11, 11, 11, 10, GETDATE());
 
 SET IDENTITY_INSERT [dbo].[product_variants] OFF;
 GO
 
-SET IDENTITY_INSERT [dbo].[cart_items] ON 
+SET IDENTITY_INSERT [dbo].[cart_items] ON
 GO
-INSERT [dbo].[cart_items] ([id], [cart_id], [product_id], [variant_id], [quantity]) VALUES (1, 1, 1, 1, 2)
-GO
-INSERT [dbo].[cart_items] ([id], [cart_id], [product_id], [variant_id], [quantity]) VALUES (2, 2, 2, 2, 1)
-GO
-INSERT [dbo].[cart_items] ([id], [cart_id], [product_id], [variant_id], [quantity]) VALUES (3, 3, 3, 3, 1)
-GO
-INSERT [dbo].[cart_items] ([id], [cart_id], [product_id], [variant_id], [quantity]) VALUES (6, 5, 11, 37, 1)
-GO
-SET IDENTITY_INSERT [dbo].[cart_items] OFF
+
+INSERT INTO [dbo].[cart_items] 
+    (id, cart_id, product_id, variant_id, quantity)
+VALUES
+    (1, 5, 4,  4,  2),   -- user 4: Đèn vải Linen (variant 4) × 2
+    (2, 5, 11, 11, 1),   -- user 4: Đèn phao (variant 11) × 1
+    (3, 7, 1,  1,  1),   -- user 6: Đèn ba chân (variant 1) × 1
+    (4, 9, 8,  8,  1);   -- user 8: Đèn chuông (variant 8) × 1
+
+SET IDENTITY_INSERT [dbo].[cart_items] OFF;
 GO
 SET IDENTITY_INSERT [dbo].[orders] ON 
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (1, 4, N'pending', CAST(1050000.00 AS Decimal(10, 2)), N'Nguyễn Văn A', N'user123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD1743241428405538', CAST(N'2025-03-29T16:43:48.4100000' AS DateTime2), CAST(N'2025-03-29T16:43:48.4100000' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (1, 4, N'pending', CAST(1050000.00 AS Decimal(10, 2)), N'Ngô Vân', N'van123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD1743241428405538', CAST(N'2025-03-29T16:43:48.4100000' AS DateTime2), CAST(N'2025-03-29T16:43:48.4100000' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (2, 4, N'shipping', CAST(711000.00 AS Decimal(10, 2)), N'Nguyễn Văn A', N'user123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD1743241470259289', CAST(N'2025-03-29T16:44:30.2566667' AS DateTime2), CAST(N'2025-03-29T16:44:48.7100000' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (2, 4, N'shipping', CAST(711000.00 AS Decimal(10, 2)), N'Ngô Vân', N'van123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD1743241470259289', CAST(N'2025-03-29T16:44:30.2566667' AS DateTime2), CAST(N'2025-03-29T16:44:48.7100000' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (3, 4, N'processing', CAST(530000.00 AS Decimal(10, 2)), N'Nguyễn Văn A', N'user123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD1743241514599980', CAST(N'2025-03-29T16:45:14.6000000' AS DateTime2), CAST(N'2025-03-29T16:45:23.3066667' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (3, 4, N'processing', CAST(530000.00 AS Decimal(10, 2)), N'Ngô Vân', N'van123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD1743241514599980', CAST(N'2025-03-29T16:45:14.6000000' AS DateTime2), CAST(N'2025-03-29T16:45:23.3066667' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (4, 4, N'completed', CAST(1300000.00 AS Decimal(10, 2)), N'Nguyễn Văn A', N'user123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD1743241570395435', CAST(N'2025-03-29T16:46:10.3933333' AS DateTime2), CAST(N'2025-03-29T16:46:57.8066667' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (4, 4, N'completed', CAST(1300000.00 AS Decimal(10, 2)), N'Ngô Vân', N'van123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD1743241570395435', CAST(N'2025-03-29T16:46:10.3933333' AS DateTime2), CAST(N'2025-03-29T16:46:57.8066667' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (5, 4, N'returned', CAST(225000.00 AS Decimal(10, 2)), N'Nguyễn Văn A', N'user123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD1743241646245155', CAST(N'2025-03-29T16:47:26.2466667' AS DateTime2), CAST(N'2025-03-29T16:47:58.3800000' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (5, 4, N'returned', CAST(225000.00 AS Decimal(10, 2)), N'Ngô Vân', N'van123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD1743241646245155', CAST(N'2025-03-29T16:47:26.2466667' AS DateTime2), CAST(N'2025-03-29T16:47:58.3800000' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (6, 4, N'completed', CAST(252000.00 AS Decimal(10, 2)), N'Nguyễn Văn A', N'user123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD1743241725948883', CAST(N'2025-03-29T16:48:45.9466667' AS DateTime2), CAST(N'2025-03-29T16:49:21.6766667' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (6, 4, N'completed', CAST(252000.00 AS Decimal(10, 2)), N'Ngô Vân', N'van123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD1743241725948883', CAST(N'2025-03-29T16:48:45.9466667' AS DateTime2), CAST(N'2025-03-29T16:49:21.6766667' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (7, 4, N'completed', CAST(510000.00 AS Decimal(10, 2)), N'Nguyễn Thi B', N'user123@gmail.com', N'0866046585', N'thôn 4, Phường Duyệt Trung, Thành phố Cao Bằng, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743241840947177', CAST(N'2025-03-29T16:50:40.9466667' AS DateTime2), CAST(N'2025-03-29T16:51:17.9600000' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (7, 4, N'completed', CAST(510000.00 AS Decimal(10, 2)), N'Đặng Linh', N'linh123@gmail.com', N'0866046585', N'thôn 4, Phường Duyệt Trung, Thành phố Cao Bằng, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743241840947177', CAST(N'2025-03-29T16:50:40.9466667' AS DateTime2), CAST(N'2025-03-29T16:51:17.9600000' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (8, 4, N'completed', CAST(830000.00 AS Decimal(10, 2)), N'Nguyễn Văn C', N'user123@gmail.com', N'0961004959', N'thôn 5, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743241990370593', CAST(N'2025-03-29T16:53:10.3700000' AS DateTime2), CAST(N'2025-03-29T16:53:57.3333333' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (8, 4, N'completed', CAST(830000.00 AS Decimal(10, 2)), N'Đức Minh', N'minh123@gmail.com', N'0961004959', N'thôn 5, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743241990370593', CAST(N'2025-03-29T16:53:10.3700000' AS DateTime2), CAST(N'2025-03-29T16:53:57.3333333' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (9, 6, N'completed', CAST(1430000.00 AS Decimal(10, 2)), N'Nguyen Hanh Nhan', N'user321@gmail.com', N'0866046598', N'thôn 6, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743242141730751', CAST(N'2025-03-29T16:55:41.7300000' AS DateTime2), CAST(N'2025-03-29T16:56:07.8400000' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (9, 6, N'completed', CAST(1430000.00 AS Decimal(10, 2)), N'Hà Phương Minh', N'minh321@gmail.com', N'0866046598', N'thôn 6, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743242141730751', CAST(N'2025-03-29T16:55:41.7300000' AS DateTime2), CAST(N'2025-03-29T16:56:07.8400000' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (10, 6, N'completed', CAST(580000.00 AS Decimal(10, 2)), N'Nguyen Hanh Nhan', N'user321@gmail.com', N'0866046598', N'thôn 6, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743242411259913', CAST(N'2025-03-29T17:00:11.2600000' AS DateTime2), CAST(N'2025-03-29T17:01:10.2233333' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (10, 6, N'completed', CAST(580000.00 AS Decimal(10, 2)), N'Hòa Ngọc', N'ngoc321@gmail.com', N'0866046598', N'Số 123/45 Nguyễn Trãi, Phường 5, TP. Hồ Chí Minh', NULL, NULL, N'ORD1743242411259913', CAST(N'2025-03-29T17:00:11.2600000' AS DateTime2), CAST(N'2025-03-29T17:01:10.2233333' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (11, 6, N'pending', CAST(180000.00 AS Decimal(10, 2)), N'Nguyen Hanh Nhan', N'user321@gmail.com', N'0866046598', N'thôn 6, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743242501646465', CAST(N'2025-03-29T17:01:41.6466667' AS DateTime2), CAST(N'2025-03-29T17:01:41.6466667' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (11, 6, N'pending', CAST(180000.00 AS Decimal(10, 2)), N'Anh Tiến', N'anhtien321@gmail.com', N'0866046598', N'Vân Trung, Việt Yên, Tỉnh Bắc Giang', NULL, NULL, N'ORD1743242501646465', CAST(N'2025-03-29T17:01:41.6466667' AS DateTime2), CAST(N'2025-03-29T17:01:41.6466667' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (12, 6, N'processing', CAST(260000.00 AS Decimal(10, 2)), N'Nguyen Hanh Nhan', N'user321@gmail.com', N'0866046598', N'thôn 6, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743242522880742', CAST(N'2025-03-29T17:02:02.8800000' AS DateTime2), CAST(N'2025-03-29T17:02:13.7933333' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (12, 6, N'processing', CAST(260000.00 AS Decimal(10, 2)), N'Lại Phương Anh', N'panhhh321@gmail.com', N'0866046598', N'thôn 6, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743242522880742', CAST(N'2025-03-29T17:02:02.8800000' AS DateTime2), CAST(N'2025-03-29T17:02:13.7933333' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (13, 8, N'completed', CAST(1380000.00 AS Decimal(10, 2)), N'Nguyen Van Anh', N'Medusa@gmail.com', N'0866046585', N'thôn 4, Phường Trần Phú, Thành phố Hà Giang, Tỉnh Hà Giang', NULL, NULL, N'ORD1743242625696490', CAST(N'2025-03-29T17:03:45.6933333' AS DateTime2), CAST(N'2025-03-29T17:04:09.4933333' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (13, 8, N'completed', CAST(1380000.00 AS Decimal(10, 2)), N'Linh Kuty', N'linhcuti1234@gmail.com', N'0866046585', N'thôn 4, Phường Trần Phú, Thành phố Hà Giang, Tỉnh Hà Giang', NULL, NULL, N'ORD1743242625696490', CAST(N'2025-03-29T17:03:45.6933333' AS DateTime2), CAST(N'2025-03-29T17:04:09.4933333' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (14, 8, N'shipping', CAST(180000.00 AS Decimal(10, 2)), N'Nguyen Van Anh', N'Medusa@gmail.com', N'0866046585', N'thôn 4, Phường Trần Phú, Thành phố Hà Giang, Tỉnh Hà Giang', NULL, NULL, N'ORD1743242680246480', CAST(N'2025-03-29T17:04:40.2466667' AS DateTime2), CAST(N'2025-03-29T17:04:59.4266667' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (14, 8, N'shipping', CAST(180000.00 AS Decimal(10, 2)), N'Mai', N'mai321@gmail.com', N'0866046585', N'thôn 4, Phường Trần Phú, Thành phố Hà Giang, Tỉnh Hà Giang', NULL, NULL, N'ORD1743242680246480', CAST(N'2025-03-29T17:04:40.2466667' AS DateTime2), CAST(N'2025-03-29T17:04:59.4266667' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (15, 8, N'cancelled', CAST(445000.00 AS Decimal(10, 2)), N'Nguyen Van Anh', N'Medusa@gmail.com', N'0866046585', N'thôn 4, Phường Trần Phú, Thành phố Hà Giang, Tỉnh Hà Giang', NULL, NULL, N'ORD1743242748011878', CAST(N'2025-03-29T17:05:48.0100000' AS DateTime2), CAST(N'2025-03-29T17:06:00.9800000' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (15, 8, N'cancelled', CAST(445000.00 AS Decimal(10, 2)), N'Trang Moon', N'trangxinhgai123@gmail.com', N'0866046585', N'thôn 4, Phường Trần Phú, Thành phố Hà Giang, Tỉnh Hà Giang', NULL, NULL, N'ORD1743242748011878', CAST(N'2025-03-29T17:05:48.0100000' AS DateTime2), CAST(N'2025-03-29T17:06:00.9800000' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (16, 8, N'returned', CAST(295000.00 AS Decimal(10, 2)), N'Nguyen Van Anh', N'Medusa@gmail.com', N'0866046585', N'thôn 4, Phường Trần Phú, Thành phố Hà Giang, Tỉnh Hà Giang', NULL, NULL, N'ORD1743242790299989', CAST(N'2025-03-29T17:06:30.3000000' AS DateTime2), CAST(N'2025-03-29T17:06:52.3733333' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (16, 8, N'returned', CAST(295000.00 AS Decimal(10, 2)), N'Nguyễn Nguyệt', N'nguyetn123@gmail.com', N'0866046585', N'thôn 4, Phường Trần Phú, Thành phố Hà Giang, Tỉnh Hà Giang', NULL, NULL, N'ORD1743242790299989', CAST(N'2025-03-29T17:06:30.3000000' AS DateTime2), CAST(N'2025-03-29T17:06:52.3733333' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (17, 12, N'completed', CAST(900000.00 AS Decimal(10, 2)), N'Nguyen Hong Hanh', N'GuYuan@gmail.com', N'0961004935', N'thôn 5, Xã Quảng Khê, Huyện Ba Bể, Tỉnh Bắc Kạn', NULL, NULL, N'ORD1743242886766576', CAST(N'2025-03-29T17:08:06.7633333' AS DateTime2), CAST(N'2025-03-29T17:08:40.9600000' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (17, 12, N'completed', CAST(900000.00 AS Decimal(10, 2)), N'Jade Dang', N'dang1234@gmail.com', N'0961004935', N'thôn 5, Xã Quảng Khê, Huyện Ba Bể, Tỉnh Bắc Kạn', NULL, NULL, N'ORD1743242886766576', CAST(N'2025-03-29T17:08:06.7633333' AS DateTime2), CAST(N'2025-03-29T17:08:40.9600000' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (18, 12, N'completed', CAST(3230000.00 AS Decimal(10, 2)), N'Nguyen Hong Hanh', N'GuYuan@gmail.com', N'0961004935', N'thôn 5, Xã Quảng Khê, Huyện Ba Bể, Tỉnh Bắc Kạn', NULL, NULL, N'ORD1743243013931542', CAST(N'2025-03-29T17:10:13.9300000' AS DateTime2), CAST(N'2025-03-29T17:10:40.6600000' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (18, 12, N'completed', CAST(3230000.00 AS Decimal(10, 2)), N'Chúc Phương', N'phuong789@gmail.com', N'0961004935', N'thôn 5, Xã Quảng Khê, Huyện Ba Bể, Tỉnh Bắc Kạn', NULL, NULL, N'ORD1743243013931542', CAST(N'2025-03-29T17:10:13.9300000' AS DateTime2), CAST(N'2025-03-29T17:10:40.6600000' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (19, 12, N'cancelled', CAST(550000.00 AS Decimal(10, 2)), N'Nguyen Hong Hanh', N'GuYuan@gmail.com', N'0961004935', N'thôn 5, Xã Quảng Khê, Huyện Ba Bể, Tỉnh Bắc Kạn', NULL, NULL, N'ORD1743243064277146', CAST(N'2025-03-29T17:11:04.2766667' AS DateTime2), CAST(N'2025-03-29T17:11:08.6900000' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (19, 12, N'cancelled', CAST(550000.00 AS Decimal(10, 2)), N'Mỹ Bình', N'binh1234@gmail.com', N'0961004935', N'thôn 5, Xã Quảng Khê, Huyện Ba Bể, Tỉnh Bắc Kạn', NULL, NULL, N'ORD1743243064277146', CAST(N'2025-03-29T17:11:04.2766667' AS DateTime2), CAST(N'2025-03-29T17:11:08.6900000' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (20, 7, N'completed', CAST(578000.00 AS Decimal(10, 2)), N'Nguyễn Thi D', N'XiaoDing@gmail.com', N'0866046543', N'thôn 3, Phường Ngọc Hà, Thành phố Hà Giang, Tỉnh Hà Giang', NULL, NULL, N'ORD1743245078046293', CAST(N'2025-03-29T17:44:38.0466667' AS DateTime2), CAST(N'2025-03-29T17:45:39.6066667' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (20, 7, N'completed', CAST(578000.00 AS Decimal(10, 2)), N'Quách Thanh', N'thanh234@gmail.com', N'0866046543', N'thôn 3, Phường Ngọc Hà, Thành phố Hà Giang, Tỉnh Hà Giang', NULL, NULL, N'ORD1743245078046293', CAST(N'2025-03-29T17:44:38.0466667' AS DateTime2), CAST(N'2025-03-29T17:45:39.6066667' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (21, 7, N'completed', CAST(1770000.00 AS Decimal(10, 2)), N'Nguyễn Thi D', N'XiaoDing@gmail.com', N'0866046543', N'thôn 3, Phường Ngọc Hà, Thành phố Hà Giang, Tỉnh Hà Giang', NULL, NULL, N'ORD1743245281309826', CAST(N'2025-03-29T17:48:01.3066667' AS DateTime2), CAST(N'2025-03-29T17:48:29.0633333' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (21, 7, N'completed', CAST(1770000.00 AS Decimal(10, 2)), N'Mai Lan', N'lann678@gmail.com', N'0866046543', N'thôn 3, Phường Ngọc Hà, Thành phố Hà Giang, Tỉnh Hà Giang', NULL, NULL, N'ORD1743245281309826', CAST(N'2025-03-29T17:48:01.3066667' AS DateTime2), CAST(N'2025-03-29T17:48:29.0633333' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (22, 6, N'completed', CAST(268000.00 AS Decimal(10, 2)), N'Nguyen Hanh Nhan', N'user321@gmail.com', N'0866046598', N'thôn 6, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD174324554941174', CAST(N'2025-03-29T17:52:29.4100000' AS DateTime2), CAST(N'2025-03-29T17:52:50.5066667' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (22, 6, N'completed', CAST(268000.00 AS Decimal(10, 2)), N'Josh Woodh', N'woodh321@gmail.com', N'0866046598', N'thôn 6, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD174324554941174', CAST(N'2025-03-29T17:52:29.4100000' AS DateTime2), CAST(N'2025-03-29T17:52:50.5066667' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (23, 4, N'pending_pay', CAST(480000.00 AS Decimal(10, 2)), N'Nguyễn Văn A', N'user123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD17432534094115', CAST(N'2025-03-29T20:03:29.4166667' AS DateTime2), CAST(N'2025-03-29T20:03:29.4766667' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (23, 4, N'pending_pay', CAST(480000.00 AS Decimal(10, 2)), N'Nguyễn Huyền', N'huyennn123@gmail.com', N'0866046581', N'thôn 1, Xã Ngọc Hồi, Huyện Thanh Trì, Thành phố Hà Nội', NULL, NULL, N'ORD17432534094115', CAST(N'2025-03-29T20:03:29.4166667' AS DateTime2), CAST(N'2025-03-29T20:03:29.4766667' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (24, 4, N'processing', CAST(225000.00 AS Decimal(10, 2)), N'Nguyễn Văn C', N'user123@gmail.com', N'0961004959', N'thôn 5, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743253488997649', CAST(N'2025-03-29T20:04:48.9966667' AS DateTime2), CAST(N'2025-03-29T20:04:49.0233333' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (24, 4, N'processing', CAST(225000.00 AS Decimal(10, 2)), N'Phương Linh', N'linhhh123@gmail.com', N'0961004959', N'thôn 5, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743253488997649', CAST(N'2025-03-29T20:04:48.9966667' AS DateTime2), CAST(N'2025-03-29T20:04:49.0233333' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (25, 4, N'completed', CAST(237000.00 AS Decimal(10, 2)), N'Nguyễn Văn C', N'user123@gmail.com', N'0961004959', N'thôn 5, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743253560350921', CAST(N'2025-03-29T20:06:00.3500000' AS DateTime2), CAST(N'2025-03-29T20:06:27.8500000' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (25, 4, N'completed', CAST(237000.00 AS Decimal(10, 2)), N'Tran Huyen Thanh', N'thanhht123@gmail.com', N'0961004959', N'thôn 5, Xã Mông Ân, Huyện Bảo Lâm, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743253560350921', CAST(N'2025-03-29T20:06:00.3500000' AS DateTime2), CAST(N'2025-03-29T20:06:27.8500000' AS DateTime2))
 GO
-INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (26, 4, N'returned', CAST(180000.00 AS Decimal(10, 2)), N'Nguyễn Thi B', N'user123@gmail.com', N'0866046585', N'thôn 4, Phường Duyệt Trung, Thành phố Cao Bằng, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743253679026823', CAST(N'2025-03-29T20:07:59.0233333' AS DateTime2), CAST(N'2025-03-29T20:08:25.3466667' AS DateTime2))
+INSERT [dbo].[orders] ([id], [user_id], [status], [total_amount], [recipient_name], [recipient_email], [recipient_phone], [recipient_address], [shipping_code], [shiping_name], [notes], [created_at], [updated_at]) VALUES (26, 4, N'returned', CAST(180000.00 AS Decimal(10, 2)), N'Hieu Pham', N'hieup123@gmail.com', N'0866046585', N'thôn 4, Phường Duyệt Trung, Thành phố Cao Bằng, Tỉnh Cao Bằng', NULL, NULL, N'ORD1743253679026823', CAST(N'2025-03-29T20:07:59.0233333' AS DateTime2), CAST(N'2025-03-29T20:08:25.3466667' AS DateTime2))
 GO
 SET IDENTITY_INSERT [dbo].[orders] OFF
 GO
@@ -322,42 +343,39 @@ GO
 SET IDENTITY_INSERT [dbo].[order_items] ON
 GO
 INSERT INTO [dbo].[order_items]
-(id, order_id, product_id, product_name, product_image, variant_name, quantity, unit_price_at_order)
+    (id, order_id, product_id, product_name, product_image, variant_name, quantity, unit_price_at_order)
 VALUES
-(1, 1, 1, N'Đèn ba chân', N'https://i.postimg.cc/K8KPdhCS/denbachan.jpg', N'40cm - Vàng đồng', 2, 450000),
-(2, 1, 5, N'Đèn phô mai', N'https://i.postimg.cc/pVqrj2BZ/denphomai.jpg', N'35cm - Vàng kem', 1, 400000),
+    -- Đơn 1 (user 4)
+    (1, 1, 1,  N'Đèn ba chân', N'https://i.postimg.cc/K8KPdhCS/denbachan.jpg', N'D70-H55 - Vàng truyền thống', 1, 1650000),
 
-(3, 2, 4, N'Đèn vải Linen', N'https://i.postimg.cc/bNhgZ93d/denvalinen.jpg', N'45cm - Trắng', 1, 580000),
-(4, 2, 2, N'Đèn Tết', N'https://i.postimg.cc/Fzpt5LdQ/dentet.jpg', N'30cm - Đỏ', 1, 200000),
+    -- Đơn 2 (user 4)
+    (2, 2, 4,  N'Đèn vải Linen tự nhiên', N'https://i.postimg.cc/bNhgZ93d/denvalinen.jpg', N'D45-H60 - Trắng', 1, 1050000),
+    (3, 2, 6,  N'Đèn bí', N'https://i.postimg.cc/MTzZc4fq/denbi.jpg', N'D40-H55 - Vàng cam', 1, 1550000),
 
-(5, 3, 10, N'Đèn đa giác', N'https://i.postimg.cc/Bt9VbWtQ/dendagiac.jpg', N'40cm - Đen', 1, 480000),
+    -- Đơn 3 (user 6)
+    (4, 9, 8,  N'Đèn chuông', N'https://i.postimg.cc/v8NMMDhw/denchuong.jpg', N'D35-H50 - Trắng', 2, 1450000),
 
-(6, 4, 1, N'Đèn ba chân', N'https://i.postimg.cc/K8KPdhCS/denbachan.jpg', N'50cm - Trắng kem', 2, 450000),
-(7, 4, 3, N'Đèn Đông Hồ', N'https://i.postimg.cc/RFGGvQRX/dendongho.jpg', N'50cm - Đa sắc', 1, 350000),
+    -- Đơn 4 (user 8)
+    (5, 13, 11, N'Đèn phao', N'https://i.postimg.cc/PfwhXTRf/denphao.jpg', N'D100 - Vàng', 1, 4150000),
 
-(8, 5, 11, N'Đèn phao', N'https://i.postimg.cc/PfwhXTRf/denphao.jpg', N'35cm - Đỏ', 1, 300000),
+    -- Đơn 5 (user 12)
+    (6, 17, 5,  N'Đèn phô mai', N'https://i.postimg.cc/pVqrj2BZ/denphomai.jpg', N'D40-H55 - Vàng', 1, 1550000);
 
-(9, 6, 8, N'Đèn chuông', N'https://i.postimg.cc/v8NMMDhw/denchuong.jpg', N'30cm - Trắng', 1, 280000),
-(10, 6, 7, N'Đèn bí dẹt', N'https://i.postimg.cc/XYFns398/denbidet.jpg', N'30cm - Xanh', 2, 350000),
-
-(11, 7, 9, N'Đèn mai dó', N'https://i.postimg.cc/dtCMY6DD/denmaido.jpg', N'45cm - Vàng', 1, 330000),
-
-(12, 8, 6, N'Đèn bí', N'https://i.postimg.cc/MTzZc4fq/denbi.jpg', N'40cm - Cam', 1, 320000);
-
-SET IDENTITY_INSERT [dbo].[order_items] OFF
+SET IDENTITY_INSERT [dbo].[order_items] OFF;
 GO
 
 
 SET IDENTITY_INSERT [dbo].[feedback] ON
 GO
-INSERT [dbo].[feedback] ([id], [order_item_id], [user_id], [rating], [comment], [status], [created_at], [updated_at]) VALUES
-(1, 1, 4, 5, N'Đèn ba chân rất đẹp, họa tiết sắc nét, ánh sáng ấm áp dễ chịu. Đặt phòng khách sang trọng hẳn lên!', N'approved', GETDATE(), GETDATE()),
-(2, 3, 4, 4, N'Đèn vải Linen trắng thiết kế tối giản, ánh sáng dịu nhẹ. Chỉ hơi dễ bám bụi nhưng rất hài lòng.', N'approved', GETDATE(), GETDATE()),
-(3, 5, 6, 5, N'Đèn đa giác giấy dó đen nhìn rất nghệ thuật, treo quán cà phê cực kỳ hợp.', N'approved', GETDATE(), GETDATE()),
-(4, 8, 5, 4, N'Đèn phao đỏ đẹp, ánh sáng ấm, giao hàng nhanh.', N'approved', GETDATE(), GETDATE()),
-(5, 10, 8, 5, N'Đèn lồng tròn giấy dó trắng treo ban công rất chill.', N'approved', GETDATE(), GETDATE()),
-(6, 11, 4, 4, N'Đèn chóp nhọn thiết kế lạ mắt, ánh sáng dịu.', N'approved', GETDATE(), GETDATE());
-SET IDENTITY_INSERT [dbo].[feedback] OFF
+INSERT INTO [dbo].[feedback] 
+    (id, order_item_id, user_id, rating, comment, status, created_at, updated_at)
+VALUES
+    (1, 1, 4, 5, N'Đèn ba chân màu vàng truyền thống rất đẹp, chất lượng cao, ánh sáng ấm áp!', 'approved', GETDATE(), GETDATE()),
+    (2, 2, 4, 5, N'Đèn vải Linen trắng tinh tế, phù hợp phòng khách hiện đại.', 'approved', GETDATE(), GETDATE()),
+    (3, 4, 6, 4, N'Đèn chuông treo ban công rất lãng mạn, giao hàng nhanh.', 'approved', GETDATE(), GETDATE()),
+    (4, 5, 8, 5, N'Đèn phao vàng nổi bật, dùng trang trí tiệc cực đẹp!', 'approved', GETDATE(), GETDATE());
+
+SET IDENTITY_INSERT [dbo].[feedback] OFF;
 GO
 
 SET IDENTITY_INSERT [dbo].[feedback_reply] ON
@@ -366,9 +384,7 @@ INSERT [dbo].[feedback_reply] ([id], [feedback_id], [user_id], [comment], [creat
 (1, 1, 3, N'Cảm ơn anh/chị đã đánh giá! Rất vui khi đèn cá chép làm nhà mình thêm sắc xuân! ✨❤️', GETDATE(), GETDATE()),
 (2, 2, 3, N'Cảm ơn anh/chị! Shop rất vui vì sản phẩm đáp ứng mong đợi 😊', GETDATE(), GETDATE()),
 (3, 3, 3, N'Đèn đa giác là dòng decor được nhiều quán yêu thích ạ!', GETDATE(), GETDATE()),
-(4, 4, 3, N'Rất vui khi anh/chị hài lòng, mong được phục vụ lần sau!', GETDATE(), GETDATE()),
-(5, 5, 3, N'Cảm ơn feedback dễ thương của anh/chị ❤️', GETDATE(), GETDATE()),
-(6, 6, 3, N'Shop sẽ cải thiện hơn nữa, cảm ơn góp ý!', GETDATE(), GETDATE());
+(4, 4, 3, N'Rất vui khi anh/chị hài lòng, mong được phục vụ lần sau!', GETDATE(), GETDATE());
 SET IDENTITY_INSERT [dbo].[feedback_reply] OFF
 GO
 
@@ -397,19 +413,19 @@ GO
 
 SET IDENTITY_INSERT [dbo].[customer_contact_history] ON 
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (1, 4, N'vip', N'user123@gmail.com', N'Giao - HN', N'male', N'0866046581', 1, CAST(7500000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T16:49:21.6900000' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (1, 4, N'vip', N'giao123@gmail.com', N'Giao', N'male', N'0866046581', 1, CAST(7500000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T16:49:21.6900000' AS DateTime2))
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (2, 4, N'vip', N'user123@gmail.com', N'Hà Phương Minh', N'female', N'0866046585', 5, CAST(6000000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T16:51:17.9633333' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (2, 4, N'vip', N'minhph123@gmail.com', N'Hà Phương Minh', N'female', N'0866046585', 5, CAST(6000000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T16:51:17.9633333' AS DateTime2))
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (3, 4, N'vip', N'user123@gmail.com', N'Đức Minh', N'male', N'0961004959', 3, CAST(6000000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T20:06:27.8700000' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (3, 4, N'vip', N'ducminh123@gmail.com', N'Đức Minh', N'male', N'0961004959', 3, CAST(6000000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T20:06:27.8700000' AS DateTime2))
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (4, 6, N'vip', N'user321@gmail.com', N'Lại Phương Anh', N'female', N'0866046598', 2, CAST(10500000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:52:50.5100000' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (4, 6, N'vip', N'panh321@gmail.com', N'Lại Phương Anh', N'female', N'0866046598', 2, CAST(10500000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:52:50.5100000' AS DateTime2))
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (5, 8, N'vip', N'Medusa@gmail.com', N'Mai', N'female', N'0866046585', 3, CAST(7200000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:04:09.5000000' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (5, 8, N'vip', N'Mai1234@gmail.com', N'Mai', N'female', N'0866046585', 3, CAST(7200000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:04:09.5000000' AS DateTime2))
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (6, 12, N'vip', N'GuYuan@gmail.com', N'Linh Đặng', N'female', N'0961004935', 7, CAST(21500000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:10:40.6700000' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (6, 12, N'vip', N'danglinh@gmail.com', N'Linh Đặng', N'female', N'0961004935', 7, CAST(21500000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:10:40.6700000' AS DateTime2))
 GO
-INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (7, 7, N'vip', N'XiaoDing@gmail.com', N'Anh Tiến - Bắc Giang', N'male', N'0866046543', 5, CAST(12500000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:48:29.0766667' AS DateTime2))
+INSERT [dbo].[customer_contact_history] ([id], [user_id], [customer_type], [email], [full_name], [gender], [mobile], [total_purchases], [total_spend], [updated_at]) VALUES (7, 7, N'vip', N'tien68@gmail.com', N'Anh Tiến', N'male', N'0866046543', 5, CAST(12500000.00 AS Decimal(10, 2)), CAST(N'2025-03-29T17:48:29.0766667' AS DateTime2))
 GO
 SET IDENTITY_INSERT [dbo].[customer_contact_history] OFF
 GO
@@ -817,39 +833,33 @@ SET IDENTITY_INSERT [dbo].[order_coupons] OFF
 GO
 SET IDENTITY_INSERT [dbo].[feedback_images] ON 
 GO
-INSERT [dbo].[feedback_images] ([id], [feedback_id], [image_url], [created_at]) VALUES (1, 1, N'uploads/feedbackImages/070ce861-9c8a-4478-8fb6-df993dee99ab_de69784b858a7264233a5e6033892006.jpg', CAST(N'2025-03-29T17:22:11.5400000' AS DateTime2))
+INSERT [dbo].[feedback_images] ([id], [feedback_id], [image_url], [created_at]) VALUES (1, 1, N'https://i.postimg.cc/K8KPdhCS/denbachan.jpg', CAST(N'2025-03-29T17:22:11.5400000' AS DateTime2))
 GO
-INSERT [dbo].[feedback_images] ([id], [feedback_id], [image_url], [created_at]) VALUES (2, 2, N'uploads/feedbackImages/ed390b42-fc2b-449e-8136-38ada3a16fdf_tải xuống (1).jpg', CAST(N'2025-03-29T17:22:11.5466667' AS DateTime2))
+INSERT [dbo].[feedback_images] ([id], [feedback_id], [image_url], [created_at]) VALUES (2, 2, N'https://i.postimg.cc/bNhgZ93d/denvalinen.jpg', CAST(N'2025-03-29T17:22:11.5466667' AS DateTime2))
 GO
-INSERT [dbo].[feedback_images] ([id], [feedback_id], [image_url], [created_at]) VALUES (3, 2, N'uploads/feedbackImages/eb6d60d9-e9c0-436c-9c9b-884341745188_tải xuống.jpg', CAST(N'2025-03-29T17:22:11.5500000' AS DateTime2))
+INSERT [dbo].[feedback_images] ([id], [feedback_id], [image_url], [created_at]) VALUES (3, 2, N'https://i.postimg.cc/bNhgZ93d/denvalinen.jpg', CAST(N'2025-03-29T17:22:11.5500000' AS DateTime2))
 GO
-INSERT [dbo].[feedback_images] ([id], [feedback_id], [image_url], [created_at]) VALUES (4, 3, N'uploads/feedbackImages/0b0b1228-ef80-4ae5-bac3-3304d198fd2a_6c290dbf7934111c4a28b3a34853a34d.jpg', CAST(N'2025-03-29T17:22:11.5533333' AS DateTime2))
+INSERT [dbo].[feedback_images] ([id], [feedback_id], [image_url], [created_at]) VALUES (4, 3, N'https://i.postimg.cc/v8NMMDhw/denchuong.jpg', CAST(N'2025-03-29T17:22:11.5533333' AS DateTime2))
 GO
-INSERT [dbo].[feedback_images] ([id], [feedback_id], [image_url], [created_at]) VALUES (5, 4, N'uploads/feedbackImages/83b34c1c-830f-43a9-9cbf-0c29e652917a_tải xuống (2).jpg', CAST(N'2025-03-29T17:22:11.5600000' AS DateTime2))
-GO
-INSERT [dbo].[feedback_images] ([id], [feedback_id], [image_url], [created_at]) VALUES (6, 5, N'uploads/feedbackImages/2261b7a7-9384-4b7a-bde7-a02119d427f0_tải xuống (3).jpg', CAST(N'2025-03-29T17:22:11.5633333' AS DateTime2))
-GO
-INSERT [dbo].[feedback_images] ([id], [feedback_id], [image_url], [created_at]) VALUES (7, 5, N'uploads/feedbackImages/34b5ef7f-77a2-423c-81d2-cdaa2290a143_tải xuống (4).jpg', CAST(N'2025-03-29T17:22:11.5666667' AS DateTime2))
-GO
-INSERT [dbo].[feedback_images] ([id], [feedback_id], [image_url], [created_at]) VALUES (8, 6, N'uploads/feedbackImages/3c0ea5ae-f270-498a-9d1f-f40811b3c20f_tải xuống (5).jpg', CAST(N'2025-03-29T17:23:29.9733333' AS DateTime2))
+INSERT [dbo].[feedback_images] ([id], [feedback_id], [image_url], [created_at]) VALUES (5, 4, N'https://i.postimg.cc/PfwhXTRf/denphao.jpg', CAST(N'2025-03-29T17:22:11.5600000' AS DateTime2))
 GO
 SET IDENTITY_INSERT [dbo].[feedback_images] OFF
 GO
 SET IDENTITY_INSERT [dbo].[footer_settings] ON 
 GO
-INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (1, N'info', N'Tên cửa hàng', N'Lamp Store', NULL, N'active')
+INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (1, N'info', N'Tên cửa hàng', N'Mộc Đăng', NULL, N'active')
 GO
-INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (2, N'info', N'Giới thiệu', N'Chuyên bán đèn thời thượng', NULL, N'active')
+INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (2, N'info', N'Giới thiệu', N'ĐỂ ÁNH SÁNG ĐỊNH HÌNH BẢN SẮC KHÔNG GIAN', NULL, N'active')
 GO
-INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (3, N'contact', N'Email', N'support@lampstore.com', NULL, N'active')
+INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (3, N'contact', N'Email', N'mocdang@gmail.com', NULL, N'active')
 GO
-INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (4, N'contact', N'Địa chỉ', N'thôn 4, xã Thạch Hòa, huyện Thạch Thất, Hà Nội', NULL, N'active')
+INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (4, N'contact', N'Địa chỉ', N'Bắc Ninh', NULL, N'active')
 GO
-INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (5, N'contact', N'Tổng đài hỗ trợ', N'+84 123 456 789', NULL, N'active')
+INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (5, N'contact', N'Tổng đài hỗ trợ', N'090 628 37 56', NULL, N'active')
 GO
-INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (6, N'social', N'Facebook', N'https://facebook.com/fashion', N'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT83dd8_4WZCT-LsYC477q2WKocjms9OHCg0g&s', N'active')
+INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (6, N'social', N'Facebook', N'https://www.facebook.com/profile.php?id=61555850376007', N'https://www.facebook.com/profile.php?id=61555850376007', N'active')
 GO
-INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (7, N'social', N'Instagram', N'https://instagram.com/fashion', N'https://cdn-icons-png.freepik.com/256/15707/15707869.png?semt=ais_hybrid', N'active')
+INSERT [dbo].[footer_settings] ([id], [type], [field_name], [value], [image], [status]) VALUES (7, N'social', N'Instagram', N'https://www.instagram.com/luylau99/', N'https://www.instagram.com/luylau99/', N'active')
 GO
 SET IDENTITY_INSERT [dbo].[footer_settings] OFF
 GO

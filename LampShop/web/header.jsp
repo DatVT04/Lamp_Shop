@@ -587,7 +587,7 @@
 
                     // Robust check for Homepage (Hero Section existence OR URL check)
                     function isHomepage() {
-                        var hero = document.querySelector('.hero-project') || document.querySelector('.hero-slider');
+                        var hero = document.querySelector('.hero-project') || document.querySelector('.hero-slider') || document.querySelector('.hero-section');
                         if (hero) return true;
 
                         var path = window.location.pathname;
