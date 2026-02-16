@@ -67,7 +67,7 @@
         <div class="loading-container">
             <img src="https://cdn-icons-png.flaticon.com/512/2503/2503508.png" alt="Lamp shop Logo" class="logo">
             <div class="spinner"></div>
-            <h2>Lamp Shop</h2>
+            <h2>Mộc Đăng</h2>
             <p class="redirect-text">Đang chuyển hướng đến trang chủ...</p>
         </div>
 
