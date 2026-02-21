@@ -549,16 +549,16 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-                                                       const API_PROVINCE = 'https://vapi.vnappmob.com/api/province/';
-                                                       const API_DISTRICT = 'https://vapi.vnappmob.com/api/province/district/';
-                                                       const API_WARD = 'https://vapi.vnappmob.com/api/province/ward/';
+// API từ GitHub - ổn định và không bị CORS
+                                                       const PROVINCE_API = 'https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json';
+
+                                                       let provincesData = [];
 
                                                        function updateShippingFee(fee) {
                                                            const subtotal = ${subtotal};
                                                            const discount = ${discount != null ? discount : 0};
                                                            const freeShippingThreshold = 500000;
 
-                                                           // Nếu subtotal > 500k, phí vận chuyển luôn là 0
                                                            const shippingFee = (subtotal > freeShippingThreshold) ? 0 : fee;
 
                                                            const formattedFee = (shippingFee === 0) ? 'Miễn phí' : new Intl.NumberFormat('vi-VN', {
@@ -584,77 +584,97 @@
                                                        const specificAddress = document.getElementById('specific_address');
                                                        const fullAddressInput = document.getElementById('full_address');
 
+// Load toàn bộ dữ liệu 1 lần
                                                        async function loadProvinces() {
                                                            try {
-                                                               const response = await fetch(API_PROVINCE);
-                                                               const data = await response.json();
-                                                               data.forEach(province => {
+                                                               console.log('Loading data from GitHub...');
+                                                               const response = await fetch(PROVINCE_API);
+                                                               provincesData = await response.json();
+
+                                                               console.log('Data loaded successfully:', provincesData.length, 'provinces');
+
+                                                               provinceSelect.innerHTML = '<option value="">Chọn tỉnh/thành phố</option>';
+                                                               provincesData.forEach((province, index) => {
                                                                    const option = document.createElement('option');
-                                                                   option.value = province.code;
-                                                                   option.textContent = province.name;
+                                                                   option.value = index;
+                                                                   option.textContent = province.Name;
                                                                    provinceSelect.appendChild(option);
                                                                });
                                                            } catch (error) {
-                                                               console.error('Error loading provinces:', error);
+                                                               console.error('Error loading data:', error);
+                                                               alert('Không thể tải dữ liệu địa chỉ. Vui lòng kiểm tra kết nối mạng và thử lại.');
                                                            }
                                                        }
 
-                                                       async function loadDistricts(provinceCode) {
+// Load quận/huyện từ data đã tải
+                                                       function loadDistricts(provinceIndex) {
                                                            try {
-                                                               const response = await fetch(API_DISTRICT + provinceCode + '?depth=2');
-                                                               const data = await response.json();
+                                                               const province = provincesData[provinceIndex];
+
                                                                districtSelect.innerHTML = '<option value="">Chọn quận/huyện</option>';
                                                                districtSelect.disabled = false;
                                                                wardSelect.innerHTML = '<option value="">Chọn phường/xã</option>';
                                                                wardSelect.disabled = true;
-                                                               data.districts.forEach(district => {
-                                                                   const option = document.createElement('option');
-                                                                   option.value = district.code;
-                                                                   option.textContent = district.name;
-                                                                   districtSelect.appendChild(option);
-                                                               });
+
+                                                               if (province && province.Districts) {
+                                                                   province.Districts.forEach((district, index) => {
+                                                                       const option = document.createElement('option');
+                                                                       option.value = index;
+                                                                       option.textContent = district.Name;
+                                                                       districtSelect.appendChild(option);
+                                                                   });
+                                                               }
                                                            } catch (error) {
                                                                console.error('Error loading districts:', error);
                                                            }
                                                        }
 
-                                                       async function loadWards(districtCode) {
+// Load phường/xã từ data đã tải
+                                                       function loadWards(provinceIndex, districtIndex) {
                                                            try {
-                                                               const response = await fetch(API_WARD + districtCode + '?depth=2');
-                                                               const data = await response.json();
+                                                               const district = provincesData[provinceIndex].Districts[districtIndex];
+
                                                                wardSelect.innerHTML = '<option value="">Chọn phường/xã</option>';
                                                                wardSelect.disabled = false;
-                                                               data.wards.forEach(ward => {
-                                                                   const option = document.createElement('option');
-                                                                   option.value = ward.code;
-                                                                   option.textContent = ward.name;
-                                                                   wardSelect.appendChild(option);
-                                                               });
+
+                                                               if (district && district.Wards) {
+                                                                   district.Wards.forEach((ward, index) => {
+                                                                       const option = document.createElement('option');
+                                                                       option.value = index;
+                                                                       option.textContent = ward.Name;
+                                                                       wardSelect.appendChild(option);
+                                                                   });
+                                                               }
                                                            } catch (error) {
                                                                console.error('Error loading wards:', error);
                                                            }
                                                        }
 
+// Cập nhật địa chỉ đầy đủ
                                                        function updateFullAddress() {
                                                            const province = provinceSelect.options[provinceSelect.selectedIndex]?.text || '';
                                                            const district = districtSelect.options[districtSelect.selectedIndex]?.text || '';
                                                            const ward = wardSelect.options[wardSelect.selectedIndex]?.text || '';
                                                            const specific = specificAddress.value.trim();
+
                                                            const addressParts = [];
                                                            if (specific)
                                                                addressParts.push(specific);
-                                                           if (ward)
+                                                           if (ward && ward !== 'Chọn phường/xã')
                                                                addressParts.push(ward);
-                                                           if (district)
+                                                           if (district && district !== 'Chọn quận/huyện')
                                                                addressParts.push(district);
-                                                           if (province)
+                                                           if (province && province !== 'Chọn tỉnh/thành phố')
                                                                addressParts.push(province);
+
                                                            fullAddressInput.value = addressParts.join(', ');
                                                        }
 
+// Event listeners
                                                        provinceSelect.addEventListener('change', (e) => {
-                                                           if (e.target.value) {
-                                                               loadDistricts(e.target.value);
+                                                           const provinceIndex = e.target.value;
+                                                           if (provinceIndex !== '') {
+                                                               loadDistricts(provinceIndex);
                                                            } else {
                                                                districtSelect.innerHTML = '<option value="">Chọn quận/huyện</option>';
                                                                districtSelect.disabled = true;
@@ -665,8 +685,11 @@
                                                        });
 
                                                        districtSelect.addEventListener('change', (e) => {
-                                                           if (e.target.value) {
-                                                               loadWards(e.target.value);
+                                                           const provinceIndex = provinceSelect.value;
+                                                           const districtIndex = e.target.value;
+
+                                                           if (districtIndex !== '') {
+                                                               loadWards(provinceIndex, districtIndex);
                                                            } else {
                                                                wardSelect.innerHTML = '<option value="">Chọn phường/xã</option>';
                                                                wardSelect.disabled = true;
@@ -677,7 +700,12 @@
                                                        wardSelect.addEventListener('change', updateFullAddress);
                                                        specificAddress.addEventListener('input', updateFullAddress);
 
-                                                       loadProvinces();
+// Load khi trang sẵn sàng
+                                                       if (document.readyState === 'loading') {
+                                                           document.addEventListener('DOMContentLoaded', loadProvinces);
+                                                       } else {
+                                                           loadProvinces();
+                                                       }
         </script>
     </body>
 </html>

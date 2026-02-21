@@ -1,12 +1,10 @@
 package Cart;
 
 import DAO.CartDAO;
-import DAO.CouponDAO;
 import DAO.InventoryDAO;
 import DAO.ProductDAO;
 import entity.Cart;
 import entity.CartItem;
-import entity.Coupon;
 import entity.Product;
 import entity.User;
 import entity.Variant;
@@ -29,7 +27,6 @@ public class CartDetail extends HttpServlet {
 
     private ProductDAO productDAO = new ProductDAO();
     private CartDAO cartDAO = new CartDAO();
-    private CouponDAO couponDAO = new CouponDAO();
     private InventoryDAO inventoryDAO = new InventoryDAO();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -53,11 +50,6 @@ public class CartDetail extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("acc");
-        String fromPage = request.getParameter("from");
-        if ("contact".equals(fromPage) || request.getParameter("clearCoupon") != null) {
-            session.removeAttribute("appliedCoupon");
-            session.removeAttribute("cartDiscount");
-        }
 
         Cart cart = user != null
                 ? cartDAO.getCart(request, user.getId())
@@ -85,9 +77,6 @@ public class CartDetail extends HttpServlet {
 
         // Truyền thông tin trạng thái sản phẩm tới JSP
         request.setAttribute("productStatusMap", productStatusMap);
-        boolean isVip = user != null && checkUserVipStatus(user);
-        List<Coupon> availableCoupons = couponDAO.getAvailableCoupons(isVip);
-        request.setAttribute("availableCoupons", availableCoupons);
 
         setupCartAttributes(request, cart);
         request.getRequestDispatcher("cartdetail.jsp").forward(request, response);
@@ -95,38 +84,12 @@ public class CartDetail extends HttpServlet {
 
     private void setupCartAttributes(HttpServletRequest request, Cart cart) {
         double totalAmount = cartDAO.calculateTotalAmount(cart);
-        double discount = calculateDiscount(request, totalAmount);
 
         request.setAttribute("cart", cart);
         request.setAttribute("totalAmount", totalAmount);
-        request.setAttribute("discount", discount);
-        request.setAttribute("finalAmount", totalAmount - discount);
-
-        String appliedCoupon = (String) request.getSession().getAttribute("appliedCoupon");
-        if (appliedCoupon != null) {
-            request.setAttribute("appliedCoupon", appliedCoupon);
-            Coupon couponDetails = couponDAO.getCouponByCode(appliedCoupon);
-            if (couponDetails != null) {
-                request.setAttribute("appliedCouponDetails", couponDetails);
-            }
-        }
+        request.setAttribute("finalAmount", totalAmount);
     }
 
-    private double calculateDiscount(HttpServletRequest request, double totalAmount) {
-        HttpSession session = request.getSession();
-        String appliedCoupon = (String) session.getAttribute("appliedCoupon");
-
-        if (appliedCoupon != null) {
-            try {
-                return validateAndCalculateCouponDiscount(appliedCoupon, totalAmount);
-            } catch (Exception e) {
-                session.removeAttribute("appliedCoupon");
-                session.removeAttribute("cartDiscount");
-                request.setAttribute("couponError", e.getMessage());
-            }
-        }
-        return 0.0;
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -140,19 +103,11 @@ public class CartDetail extends HttpServlet {
             handleUpdateQuantity(request, response, user);
         } else if ("delete".equals(action)) {
             handleDeleteItem(request, response);
-        } else if ("applyCoupon".equals(action)) {
-            handleApplyCoupon(request, response);
-            return;
         } else if ("checkout".equals(action)) {
             handleCheckout(request, response);
             return;
         } else if ("checkStock".equals(action)) {
             handleCheckStock(request, response);
-            return;
-        } else if ("clearCoupon".equals(action)) {
-            session.removeAttribute("appliedCoupon");
-            session.removeAttribute("cartDiscount");
-            response.sendRedirect("cartdetail");
             return;
         }
 
@@ -209,60 +164,6 @@ public class CartDetail extends HttpServlet {
 
         session.setAttribute("selectedItemIds", selectedItemIds);
         session.setAttribute("selectedQuantities", selectedQuantities);
-
-        String currentCoupon = request.getParameter("couponCode");
-        if (currentCoupon != null && !currentCoupon.isEmpty()) {
-            synchronized (this) {
-                Coupon coupon = couponDAO.getCouponByCode(currentCoupon);
-                if (coupon != null) {
-                    try {
-                        if (!"active".equals(coupon.getStatus())) {
-                            throw new Exception("Mã giảm giá không còn hiệu lực!");
-                        }
-                        Date expiryDate = coupon.getExpiry_date();
-                        if (expiryDate != null && new Date().after(expiryDate)) {
-                            coupon.setStatus("expired");
-                            couponDAO.updateCoupon(coupon);
-                            throw new Exception("Mã giảm giá đã hết hạn!");
-                        }
-                        int currentUsedCount = coupon.getUsed_count();
-                        Integer usageLimit = coupon.getUsage_limit();
-                        if (usageLimit != null && currentUsedCount >= usageLimit) {
-                            throw new Exception("Mã giảm giá đã hết lượt sử dụng!");
-                        }
-
-                        // Kiểm tra phân quyền sử dụng mã giảm giá
-                        String couponType = coupon.getCouponType();
-                        boolean isUserVip = user != null && checkUserVipStatus(user);
-                        if ("vip".equals(couponType) && !isUserVip) {
-                            throw new Exception("Mã giảm giá này chỉ dành cho khách hàng VIP!");
-                        }
-
-                        double discount = validateAndCalculateCouponDiscount(currentCoupon, totalSelected);
-                        coupon.setUsed_count(currentUsedCount + 1);
-                        couponDAO.updateCoupon(coupon);
-
-                        session.setAttribute("cartDiscount", discount);
-                        session.setAttribute("appliedCoupon", currentCoupon);
-                    } catch (Exception e) {
-                        session.removeAttribute("cartDiscount");
-                        session.removeAttribute("appliedCoupon");
-                        request.setAttribute("couponError", e.getMessage());
-                        doGet(request, response);
-                        return;
-                    }
-                } else {
-                    session.removeAttribute("appliedCoupon");
-                    session.removeAttribute("cartDiscount");
-                    request.setAttribute("couponError", "Mã giảm giá không tồn tại!");
-                    doGet(request, response);
-                    return;
-                }
-            }
-        } else {
-            session.removeAttribute("appliedCoupon");
-            session.removeAttribute("cartDiscount");
-        }
 
         response.sendRedirect("cartcontact");
     }
@@ -340,104 +241,6 @@ public class CartDetail extends HttpServlet {
         } catch (NumberFormatException e) {
             System.out.println("Lỗi khi parse ID sản phẩm: " + e.getMessage());
         }
-    }
-
-    private void handleApplyCoupon(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String couponCode = request.getParameter("couponCode");
-        User user = (User) session.getAttribute("acc");
-        Cart cart = cartDAO.getCart(request, user != null ? user.getId() : null);
-
-        if (couponCode == null || couponCode.trim().isEmpty()) {
-            session.removeAttribute("appliedCoupon");
-            session.removeAttribute("cartDiscount");
-            response.sendRedirect("cartdetail");
-            return;
-        }
-
-        try {
-            double totalAmount = cartDAO.calculateTotalAmount(cart);
-            Coupon coupon = couponDAO.getCouponByCode(couponCode);
-            if (coupon == null) {
-                throw new Exception("Mã giảm giá không tồn tại!");
-            }
-            if (!"active".equals(coupon.getStatus())) {
-                throw new Exception("Mã giảm giá không còn hiệu lực!");
-            }
-            Date expiryDate = coupon.getExpiry_date();
-            if (expiryDate != null && new Date().after(expiryDate)) {
-                coupon.setStatus("expired");
-                couponDAO.updateCoupon(coupon);
-                throw new Exception("Mã giảm giá đã hết hạn!");
-            }
-
-            // Kiểm tra phân quyền sử dụng mã giảm giá
-            String couponType = coupon.getCouponType();
-            boolean isUserVip = user != null && checkUserVipStatus(user);
-            if ("vip".equals(couponType) && !isUserVip) {
-                throw new Exception("Mã giảm giá này chỉ dành cho khách hàng VIP!");
-            }
-            if ("normal".equals(couponType) && isUserVip) {
-                // Có thể thêm logic nếu muốn hạn chế VIP không dùng mã "normal"
-            }
-
-            double discount = validateAndCalculateCouponDiscount(couponCode, totalAmount);
-            session.setAttribute("appliedCoupon", couponCode);
-            session.setAttribute("cartDiscount", discount);
-        } catch (Exception e) {
-            session.removeAttribute("appliedCoupon");
-            session.removeAttribute("cartDiscount");
-            request.setAttribute("couponError", e.getMessage());
-        }
-
-        response.sendRedirect("cartdetail");
-    }
-
-    private double validateAndCalculateCouponDiscount(String couponCode, double totalAmount) throws Exception {
-        Coupon coupon = couponDAO.getCouponByCode(couponCode);
-
-        if (coupon == null) {
-            throw new Exception("Mã giảm giá không tồn tại!");
-        }
-
-        if (!"active".equals(coupon.getStatus())) {
-            throw new Exception("Mã giảm giá không còn hiệu lực!");
-        }
-
-        Date expiryDate = coupon.getExpiry_date();
-        if (expiryDate != null) {
-            Date currentDate = new Date(System.currentTimeMillis());
-            if (currentDate.after(expiryDate)) {
-                coupon.setStatus("expired");
-                couponDAO.updateCoupon(coupon);
-                throw new Exception("Mã giảm giá đã hết hạn!");
-            }
-        }
-
-        if (totalAmount < coupon.getMin_order_amount()) {
-            throw new Exception(String.format("Đơn hàng cần tối thiểu %,.0f₫ để áp dụng mã này!",
-                    coupon.getMin_order_amount()));
-        }
-
-        double discount;
-        if ("percentage".equals(coupon.getDiscount_type())) {
-            discount = totalAmount * (coupon.getDiscount_value() / 100);
-            if (coupon.getMax_discount() > 0 && discount > coupon.getMax_discount()) {
-                discount = coupon.getMax_discount();
-            }
-        } else {
-            discount = coupon.getDiscount_value();
-        }
-
-        return discount;
-    }
-
-    private boolean checkUserVipStatus(User user) {
-        if (user == null) {
-            return false; 
-        }    
-        return "vip".equalsIgnoreCase(user.getRole());
     }
 
     @Override
