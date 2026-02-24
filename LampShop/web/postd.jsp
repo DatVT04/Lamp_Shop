@@ -254,41 +254,43 @@
                                             </div>
                                         </c:forEach>
 
-                                        <c:forEach var="relatedPost" items="${relatedPosts}" begin="0" end="2">
-                                            <div class="slider-item">
-                                                <div class="card post-card h-100">
-                                                    <a href="${pageContext.request.contextPath}/post?id=${relatedPost.getId()}" 
-                                                       class="text-decoration-none">
-                                                        <div class="card-img-wrapper">
-                                                            <img src="${relatedPost.getThumbnail()}" 
-                                                                 class="card-img-top post-image" alt="${relatedPost.getTitle()}">
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <h5 class="card-title text-dark">
-                                                                ${relatedPost.getTitle()}
-                                                                <c:if test="${relatedPost.isIsFeatured()}">
-                                                                    <span class="badge bg-warning ms-2"><i class="fas fa-star me-1"></i>Nổi bật</span>
-                                                                </c:if>
-                                                            </h5>
-                                                            <p class="post-summary">${relatedPost.getSummary()}</p>
-                                                            <div class="post-meta mt-3">
-                                                                <i class="fas fa-user-edit me-2"></i>${relatedPost.getUser().getFullName()}
-                                                                <br>
-                                                                <i class="far fa-clock me-2"></i>
-                                                                <c:choose>
-                                                                    <c:when test="${relatedPost.getUpdatedAt() != null}">
-                                                                        Cập nhật: ${relatedPost.getUpdatedAt()}
-                                                                    </c:when>
-                                                                    <c:otherwise>
-                                                                        Ngày đăng: ${relatedPost.getCreatedAt()}
-                                                                    </c:otherwise>
-                                                                </c:choose>
+                                        <c:if test="${relatedPosts.size() >= 4}">
+                                            <c:forEach var="relatedPost" items="${relatedPosts}" begin="0" end="2">
+                                                <div class="slider-item">
+                                                    <div class="card post-card h-100">
+                                                        <a href="${pageContext.request.contextPath}/post?id=${relatedPost.getId()}" 
+                                                           class="text-decoration-none">
+                                                            <div class="card-img-wrapper">
+                                                                <img src="${relatedPost.getThumbnail()}" 
+                                                                     class="card-img-top post-image" alt="${relatedPost.getTitle()}">
                                                             </div>
-                                                        </div>
-                                                    </a>
+                                                            <div class="card-body">
+                                                                <h5 class="card-title text-dark">
+                                                                    ${relatedPost.getTitle()}
+                                                                    <c:if test="${relatedPost.isIsFeatured()}">
+                                                                        <span class="badge bg-warning ms-2"><i class="fas fa-star me-1"></i>Nổi bật</span>
+                                                                    </c:if>
+                                                                </h5>
+                                                                <p class="post-summary">${relatedPost.getSummary()}</p>
+                                                                <div class="post-meta mt-3">
+                                                                    <i class="fas fa-user-edit me-2"></i>${relatedPost.getUser().getFullName()}
+                                                                    <br>
+                                                                    <i class="far fa-clock me-2"></i>
+                                                                    <c:choose>
+                                                                        <c:when test="${relatedPost.getUpdatedAt() != null}">
+                                                                            Cập nhật: ${relatedPost.getUpdatedAt()}
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            Ngày đăng: ${relatedPost.getCreatedAt()}
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </c:forEach>
+                                            </c:forEach>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>

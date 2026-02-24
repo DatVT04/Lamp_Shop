@@ -67,14 +67,14 @@
             }
 
             .pagination .page-link {
-                color: #0d6efd;
+                color: #8B7355;  
                 border: none;
                 margin: 0 3px;
                 border-radius: 5px;
             }
 
             .pagination .page-item.active .page-link {
-                background-color: #0d6efd;
+                background-color: #8B7355;  
                 color: white;
             }
         </style>
@@ -95,9 +95,9 @@
                                    placeholder="Nhập tiêu đề..." value="${search}">
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary w-100">Tìm kiếm</button>
-                    </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn w-100" style="background-color: #8B7355; color: white; border-color: #8B7355;">Tìm kiếm</button>
+                        </div>
                 </form>
             </div>
 
