@@ -9,7 +9,8 @@
                     <head>
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Lamp Shop - Nghệ Thuật Ánh Sáng</title>
+                        <title>Mộc Đăng - Đèn trang trí, đèn giấy dó, đèn tranh vẽ thủ công Việt Nam</title>
+                        <meta name="description" content="Mộc Đăng – đèn trang trí thủ công: đèn giấy dó, đèn tranh vẽ, đèn vải Linen. Nghệ thuật ánh sáng, bản sắc Việt. Mua đèn trang trí tại Bắc Ninh.">
                         <link rel="icon" href="${pageContext.request.contextPath}/assests/images/favicon.png" type="image/png">
 
                         <!-- External CSS -->
