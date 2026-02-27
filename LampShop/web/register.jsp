@@ -5,6 +5,7 @@
 <html>
     <head>
         <title>Đăng ký tài khoản</title>
+        <link rel="icon" href="${pageContext.request.contextPath}/assests/images/favicon.png" type="image/png">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assests/css/LoginRegister.css">
         <style>
