@@ -7,6 +7,12 @@
             <meta charset="UTF-8">
             <title>Mộc Đăng - Đèn trang trí thủ công</title>
             <link rel="icon" href="${pageContext.request.contextPath}/assests/images/favicon.png" type="image/png">
+            <!-- Open Graph (hiển thị khi share/search) -->
+            <meta property="og:type" content="website">
+            <meta property="og:title" content="Mộc Đăng - Đèn trang trí thủ công Việt Nam">
+            <meta property="og:description" content="Đèn giấy dó, đèn tranh vẽ, đèn vải Linen. Nghệ thuật ánh sáng, bản sắc Việt.">
+            <meta property="og:image" content="https://mocdang.com/assests/images/favicon.png">
+            <meta property="og:locale" content="vi_VN">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
                 rel="stylesheet">

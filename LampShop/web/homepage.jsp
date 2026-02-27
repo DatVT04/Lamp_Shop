@@ -13,6 +13,26 @@
                         <meta name="description" content="Mộc Đăng – đèn trang trí thủ công: đèn giấy dó, đèn tranh vẽ, đèn vải Linen. Nghệ thuật ánh sáng, bản sắc Việt. Mua đèn trang trí tại Bắc Ninh.">
                         <link rel="icon" href="${pageContext.request.contextPath}/assests/images/favicon.png" type="image/png">
 
+                        <!-- Open Graph (Facebook, Google hiển thị khi search/share) -->
+                        <meta property="og:type" content="website">
+                        <meta property="og:url" content="https://mocdang.com/">
+                        <meta property="og:title" content="Mộc Đăng - Quà tặng văn hóa Việt Nam, đèn trang trí thủ công">
+                        <meta property="og:description" content="Mộc Đăng tự hào mang đèn giấy dó, đèn tranh vẽ từ làng nghề Việt Nam. Mỗi sản phẩm là tác phẩm nghệ thuật ánh sáng, đậm bản sắc văn hóa dân tộc.">
+                        <meta property="og:image" content="https://mocdang.com/assests/images/favicon.png">
+                        <meta property="og:locale" content="vi_VN">
+
+                        <!-- Dữ liệu có cấu trúc (Google có thể hiển thị logo, tên) -->
+                        <script type="application/ld+json">
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "Organization",
+                            "name": "Mộc Đăng",
+                            "url": "https://mocdang.com",
+                            "logo": "https://mocdang.com/assests/images/favicon.png",
+                            "description": "Đèn trang trí thủ công Việt Nam: đèn giấy dó, đèn tranh vẽ, đèn vải Linen. Nghệ thuật ánh sáng, bản sắc Việt."
+                        }
+                        </script>
+
                         <!-- External CSS -->
                         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
                             rel="stylesheet">
