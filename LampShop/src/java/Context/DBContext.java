@@ -24,7 +24,10 @@ public class DBContext {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new RuntimeException("Cannot initialize database connection", ex);
+            // Không làm hỏng khởi động ứng dụng nếu DB lỗi,
+            // chỉ log ra để xem log và để connection = null.
+            ex.printStackTrace();
+            connection = null;
         }
     }
 }
