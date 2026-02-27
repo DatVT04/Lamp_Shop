@@ -5,16 +5,24 @@ WORKDIR /app
 # Copy Java web project sources
 COPY LampShop/ /app/
 
-# Cài đặt Ant để build dự án NetBeans (Ant-based)
-RUN apt-get update && \
-    apt-get install -y ant && \
-    rm -rf /var/lib/apt/lists/*
-
-# Build file WAR: dist/LampShop.war
-#
-# NetBeans Ant build yêu cầu classpath của Java EE server.
-# Trong container này đã có Tomcat ở /usr/local/tomcat nên dùng luôn lib/* để compile.
-RUN ant -f build.xml -Dj2ee.platform.classpath=/usr/local/tomcat/lib/* dist
+# Build WAR mà không phụ thuộc NetBeans/Ant tasks (CopyLibs, ...).
+# Tomcat sẽ compile JSP ở runtime; ở đây chỉ cần compile Java sources và đóng gói WAR.
+RUN set -eux; \
+    mkdir -p /app/build/classes; \
+    find /app/src/java -name "*.java" > /app/sources.txt; \
+    javac \
+      -encoding UTF-8 \
+      -source 17 \
+      -target 17 \
+      -d /app/build/classes \
+      -classpath "/usr/local/tomcat/lib/*:/app/web/WEB-INF/lib/*" \
+      @/app/sources.txt; \
+    mkdir -p /app/build/war; \
+    cp -R /app/web/* /app/build/war/; \
+    mkdir -p /app/build/war/WEB-INF/classes; \
+    cp -R /app/build/classes/* /app/build/war/WEB-INF/classes/; \
+    mkdir -p /app/dist; \
+    (cd /app/build/war && jar -cf /app/dist/LampShop.war .)
 
 #
 # Runtime stage: Tomcat
