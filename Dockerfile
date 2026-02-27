@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk-jammy AS build
+FROM tomcat:10.1-jdk17-temurin AS build
 
 WORKDIR /app
 
@@ -11,7 +11,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Build file WAR: dist/LampShop.war
-RUN ant -f build.xml dist
+#
+# NetBeans Ant build yêu cầu classpath của Java EE server.
+# Trong container này đã có Tomcat ở /usr/local/tomcat nên dùng luôn lib/* để compile.
+RUN ant -f build.xml -Dj2ee.platform.classpath=/usr/local/tomcat/lib/* dist
 
 #
 # Runtime stage: Tomcat
