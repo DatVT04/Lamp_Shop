@@ -785,7 +785,7 @@
                 });
                 // --- Chatbot đơn giản gọi tới service Node.js ---
                 (function () {
-                    const BOT_API_URL = 'https://YOUR-CHATBOT-SERVICE.onrender.com/chat'; // TODO: sửa lại sau khi deploy Node
+                    const BOT_API_URL = 'https://chatbot-lampshop.onrender.com/chat'; // TODO: sửa lại sau khi deploy Node
 
                     const toggle = document.getElementById('mdChatbotToggle');
                     const panel = document.getElementById('mdChatbotPanel');
