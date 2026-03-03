@@ -1,10 +1,12 @@
-// Chatbot đơn giản cho Mộc Đăng dùng Node.js + Express (KHÔNG gọi API AI ngoài).
+// Chatbot cho Mộc Đăng dùng Node.js + Express.
 // - Đọc dữ liệu sản phẩm từ Azure SQL (giống DB Java app)
 // - Trả lời rule-based bằng tiếng Việt dựa trên dữ liệu đó.
+// - Nếu cấu hình GEMINI_API_KEY, sẽ gọi thêm Gemini để “đánh bóng” câu trả lời.
 //
 // ENV cần cấu hình trên Render (service Node riêng):
 // - PORT: cổng Express (Render sẽ set tự động, nhưng ta vẫn fallback 4000)
 // - DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD: giống Java app
+// - (tuỳ chọn) GEMINI_API_KEY: khóa Gemini lấy từ Google AI Studio
 
 import 'dotenv/config';
 import express from 'express';
@@ -38,6 +40,7 @@ const dbConfig = {
 };
 
 let poolPromise;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
 
 async function getPool() {
   if (!poolPromise) {
@@ -74,6 +77,78 @@ async function getRelatedProducts(question) {
   } catch (err) {
     console.error('[Chatbot][DB] Lỗi truy vấn sản phẩm:', err);
     return [];
+  }
+}
+
+// Gọi Gemini (nếu có key) để “viết lại” câu trả lời cho tự nhiên hơn
+async function enhanceAnswerWithGemini(question, products, baseAnswer) {
+  if (!GEMINI_API_KEY) {
+    return baseAnswer;
+  }
+
+  try {
+    const productLines =
+      products.length === 0
+        ? 'Không tìm thấy sản phẩm nào từ database.'
+        : products
+            .map(
+              (p) =>
+                `- ${p.title} (danh mục: ${p.category_name || 'N/A'}, giá: ${p.sale_price} VND)`,
+            )
+            .join('\n');
+
+    const prompt = `
+Bạn là trợ lý chăm sóc khách hàng của cửa hàng đèn Mộc Đăng.
+Hãy trả lời NGẮN GỌN, thân thiện, bằng tiếng Việt.
+
+Câu hỏi của khách:
+${question}
+
+Thông tin sản phẩm trích từ database:
+${productLines}
+
+Câu trả lời gốc (thô) của hệ thống:
+${baseAnswer}
+
+Hãy viết lại câu trả lời ở trên sao cho tự nhiên, dễ hiểu, giữ nguyên thông tin số liệu quan trọng (giá, tên sản phẩm).
+`;
+
+    const resp = await fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=' +
+        encodeURIComponent(GEMINI_API_KEY),
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [{ text: prompt }],
+            },
+          ],
+        }),
+      },
+    );
+
+    if (!resp.ok) {
+      console.error('[Chatbot][Gemini] HTTP error', resp.status, await resp.text());
+      return baseAnswer;
+    }
+
+    const data = await resp.json();
+    const text =
+      data.candidates?.[0]?.content?.parts?.[0]?.text ||
+      data.candidates?.[0]?.output_text ||
+      '';
+
+    if (!text.trim()) {
+      return baseAnswer;
+    }
+    return text.trim();
+  } catch (err) {
+    console.error('[Chatbot][Gemini] Lỗi khi gọi Gemini:', err);
+    return baseAnswer;
   }
 }
 
@@ -118,8 +193,10 @@ app.post('/chat', async (req, res) => {
       }
     }
 
+    const finalAnswer = await enhanceAnswerWithGemini(message, products, answer);
+
     return res.json({
-      answer: answer || 'Xin lỗi, hiện tại mình chưa trả lời được câu hỏi này.',
+      answer: finalAnswer || 'Xin lỗi, hiện tại mình chưa trả lời được câu hỏi này.',
       products,
     });
   } catch (err) {
