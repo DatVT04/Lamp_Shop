@@ -19,17 +19,11 @@ import java.io.UnsupportedEncodingException;
 
 public class Email {
 
-    // TRƯỚC ĐÂY (không an toàn)
-// private static final String HOST = "smtp.gmail.com";
-// private static final String PORT = "587";
-// private static final String USERNAME = "adswp391@gmail.com";
-// private static final String PASSWORD = "njaf vowl xdlz rwsk";
-
-// SAU KHI SỬA
-private static final String HOST = System.getenv().getOrDefault("SMTP_HOST", "smtp.gmail.com");
-private static final String PORT = System.getenv().getOrDefault("SMTP_PORT", "587");
-private static final String USERNAME = System.getenv().getOrDefault("SMTP_USER", "adswp391@gmail.com");
-private static final String PASSWORD = System.getenv().getOrDefault("SMTP_PASS", "pzdkxqgswdlccitj");
+    private static final String HOST = System.getenv().getOrDefault("SMTP_HOST", "smtp.gmail.com");
+    private static final String PORT = System.getenv().getOrDefault("SMTP_PORT", "587");
+    private static final String USERNAME = System.getenv().getOrDefault("SMTP_USER", "");
+    private static final String PASSWORD = System.getenv().getOrDefault("SMTP_PASS", "");
+    private static final boolean SMTP_DEBUG = "true".equalsIgnoreCase(System.getenv().getOrDefault("SMTP_DEBUG", "false"));
 
     private final int LIMIT_MINUS = 30;
 
@@ -46,13 +40,24 @@ private static final String PASSWORD = System.getenv().getOrDefault("SMTP_PASS",
     }
 
     public boolean sendEmail(User user, String verificationToken) throws UnsupportedEncodingException {
+        if (USERNAME.isBlank() || PASSWORD.isBlank()) {
+            System.err.println("[SMTP] Missing SMTP_USER/SMTP_PASS env vars; cannot send verification email.");
+            return false;
+        }
+
         Properties props = new Properties();
         props.put("mail.smtp.host", HOST);
         props.put("mail.smtp.port", PORT);
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
         props.put("mail.smtp.ssl.trust", HOST);
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.connectiontimeout", "10000");
+        props.put("mail.smtp.timeout", "15000");
+        props.put("mail.smtp.writetimeout", "15000");
+        if (SMTP_DEBUG) {
+            props.put("mail.debug", "true");
+        }
 
         try {
             Session session = Session.getInstance(props, new Authenticator() {
@@ -63,7 +68,7 @@ private static final String PASSWORD = System.getenv().getOrDefault("SMTP_PASS",
             });
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(USERNAME, "Fasshion Shop"));
+            message.setFrom(new InternetAddress(USERNAME, "Mộc Đăng"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user.getEmail()));
             message.setSubject("Xác Minh Tài Khoản Của Bạn");
 
@@ -98,19 +103,31 @@ private static final String PASSWORD = System.getenv().getOrDefault("SMTP_PASS",
             return true;
 
         } catch (MessagingException e) {
+            System.err.println("[SMTP] Failed to send verification email to: " + user.getEmail());
             e.printStackTrace();
             return false;
         }
     }
 
     public boolean sendEmailReset(User user, String resetToken) throws UnsupportedEncodingException {
+        if (USERNAME.isBlank() || PASSWORD.isBlank()) {
+            System.err.println("[SMTP] Missing SMTP_USER/SMTP_PASS env vars; cannot send reset email.");
+            return false;
+        }
+
         Properties props = new Properties();
         props.put("mail.smtp.host", HOST);
         props.put("mail.smtp.port", PORT);
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
         props.put("mail.smtp.ssl.trust", HOST);
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.connectiontimeout", "10000");
+        props.put("mail.smtp.timeout", "15000");
+        props.put("mail.smtp.writetimeout", "15000");
+        if (SMTP_DEBUG) {
+            props.put("mail.debug", "true");
+        }
 
         try {
             Session session = Session.getInstance(props, new Authenticator() {
@@ -165,6 +182,7 @@ private static final String PASSWORD = System.getenv().getOrDefault("SMTP_PASS",
             return true;
 
         } catch (MessagingException e) {
+            System.err.println("[SMTP] Failed to send reset email to: " + user.getEmail());
             e.printStackTrace();
             return false;
         }
