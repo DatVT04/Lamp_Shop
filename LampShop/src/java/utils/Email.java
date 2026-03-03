@@ -60,7 +60,7 @@ public class Email {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user.getEmail()));
             message.setSubject("Xác Minh Tài Khoản Của Bạn");
 
-            String verificationLink = "http://localhost:9999/lampshop/verify?token=" + verificationToken;
+            String verificationLink = "https://mocdang.com/verify?token=" + verificationToken;
             String htmlContent = String.format(
                     "<html>"
                     + "<head>"
@@ -114,12 +114,12 @@ public class Email {
             });
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(USERNAME, "Fasshion Shop"));
+            message.setFrom(new InternetAddress(USERNAME, "Mộc Đăng"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user.getEmail()));
 //            message.setSubject("Đặt Lại Mật Khẩu");
             message.setSubject(MimeUtility.encodeText("Đặt Lại Mật Khẩu", "UTF-8", "B"));
 
-            String resetLink = "http://localhost:9999/lampshop/resetpassword?token=" + resetToken;
+            String resetLink = "https://mocdang.com/resetpassword?token=" + resetToken;
             String htmlContent = String.format(
                     "<html>"
                     + "<head>"
