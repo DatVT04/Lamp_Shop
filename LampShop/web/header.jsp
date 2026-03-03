@@ -792,6 +792,7 @@
                     const messagesEl = document.getElementById('mdChatbotMessages');
                     const inputEl = document.getElementById('mdChatbotInput');
                     const sendBtn = document.getElementById('mdChatbotSend');
+                    let typingEl = null;
 
                     if (!toggle || !panel || !messagesEl || !inputEl || !sendBtn) return;
 
@@ -811,11 +812,28 @@
                         messagesEl.scrollTop = messagesEl.scrollHeight;
                     }
 
+                    function showTyping() {
+                        if (typingEl) return;
+                        typingEl = document.createElement('div');
+                        typingEl.className = 'md-chatbot-msg md-chatbot-msg-bot';
+                        typingEl.textContent = 'Mộc Đăng đang trả lời...';
+                        messagesEl.appendChild(typingEl);
+                        messagesEl.scrollTop = messagesEl.scrollHeight;
+                    }
+
+                    function hideTyping() {
+                        if (!typingEl) return;
+                        typingEl.remove();
+                        typingEl = null;
+                    }
+
                     async function sendMessage() {
                         const text = inputEl.value.trim();
                         if (!text) return;
                         appendMessage(text, true);
                         inputEl.value = '';
+
+                        showTyping();
 
                         try {
                             const res = await fetch(BOT_API_URL, {
@@ -826,13 +844,16 @@
                                 body: JSON.stringify({ message: text })
                             });
                             if (!res.ok) {
+                                hideTyping();
                                 appendMessage('Xin lỗi, chatbot đang gặp lỗi (' + res.status + ').', false);
                                 return;
                             }
                             const data = await res.json();
+                            hideTyping();
                             appendMessage(data.answer || 'Mộc Đăng xin lỗi, hiện chưa trả lời được câu này.', false);
                         } catch (err) {
                             console.error('Chatbot error', err);
+                            hideTyping();
                             appendMessage('Xin lỗi, không kết nối được tới chatbot.', false);
                         }
                     }
