@@ -19,10 +19,17 @@ import java.io.UnsupportedEncodingException;
 
 public class Email {
 
-    private static final String HOST = "smtp.gmail.com";
-    private static final String PORT = "587";
-    private static final String USERNAME = "adswp391@gmail.com";
-    private static final String PASSWORD = "njaf vowl xdlz rwsk";
+    // TRƯỚC ĐÂY (không an toàn)
+// private static final String HOST = "smtp.gmail.com";
+// private static final String PORT = "587";
+// private static final String USERNAME = "adswp391@gmail.com";
+// private static final String PASSWORD = "njaf vowl xdlz rwsk";
+
+// SAU KHI SỬA
+private static final String HOST = System.getenv().getOrDefault("SMTP_HOST", "smtp.gmail.com");
+private static final String PORT = System.getenv().getOrDefault("SMTP_PORT", "587");
+private static final String USERNAME = System.getenv().getOrDefault("SMTP_USER", "adswp391@gmail.com");
+private static final String PASSWORD = System.getenv().getOrDefault("SMTP_PASS", "pzdkxqgswdlccitj");
 
     private final int LIMIT_MINUS = 30;
 
