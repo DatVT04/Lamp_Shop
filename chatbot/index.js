@@ -1,17 +1,17 @@
 // Simple AI chatbot service for Mộc Đăng using Node.js + Express.
 // - Reads product data from Azure SQL (same DB as Java app)
-// - Calls OpenAI API to generate natural Vietnamese responses
+// - Calls Gemini API (Google) to generate natural Vietnamese responses
 //
 // ENV cần cấu hình trên Render (service Node riêng):
 // - PORT: cổng Express (Render sẽ set tự động, nhưng ta vẫn fallback 4000)
-// - OPENAI_API_KEY: khóa OpenAI của bạn
+// - GEMINI_API_KEY: khóa Gemini của bạn
 // - DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD: giống Java app
 
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import sql from 'mssql';
-import OpenAI from 'openai';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const app = express();
 app.use(express.json());
@@ -52,10 +52,8 @@ async function getPool() {
   return poolPromise;
 }
 
-// ----- OpenAI client -----
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// ----- Gemini client -----
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
 // Lấy một ít dữ liệu sản phẩm liên quan để làm context cho AI
 async function getRelatedProducts(question) {
@@ -92,10 +90,10 @@ app.post('/chat', async (req, res) => {
     return res.status(400).json({ error: 'Thiếu câu hỏi (message).' });
   }
 
-  if (!process.env.OPENAI_API_KEY) {
+  if (!process.env.GEMINI_API_KEY) {
     return res
       .status(500)
-      .json({ error: 'Chưa cấu hình OPENAI_API_KEY cho chatbot.' });
+      .json({ error: 'Chưa cấu hình GEMINI_API_KEY cho chatbot.' });
   }
 
   try {
@@ -134,16 +132,14 @@ ${productsContext}
 userId (nếu có): ${userId || 'không có / chưa đăng nhập'}
 `;
 
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4.1-mini',
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: userPrompt },
-      ],
-      temperature: 0.4,
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-1.5-flash',
     });
 
-    const answer = completion.choices[0]?.message?.content?.trim();
+    const geminiPrompt = `${systemPrompt}\n\n---\n\n${userPrompt}`;
+
+    const result = await model.generateContent(geminiPrompt);
+    const answer = result.response.text().trim();
 
     return res.json({
       answer: answer || 'Xin lỗi, hiện tại mình chưa trả lời được câu hỏi này.',
