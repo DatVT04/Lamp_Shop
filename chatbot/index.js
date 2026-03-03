@@ -133,13 +133,14 @@ userId (nếu có): ${userId || 'không có / chưa đăng nhập'}
 `;
 
     const model = genAI.getGenerativeModel({
-      model: 'gemini-1.5-flash',
+      // dùng phiên bản mới nhất ổn định của Gemini 1.5 Flash
+      model: 'gemini-1.5-flash-latest',
     });
 
     const geminiPrompt = `${systemPrompt}\n\n---\n\n${userPrompt}`;
 
     const result = await model.generateContent(geminiPrompt);
-    const answer = result.response.text().trim();
+    const answer = (result.response.text() || '').trim();
 
     return res.json({
       answer: answer || 'Xin lỗi, hiện tại mình chưa trả lời được câu hỏi này.',
