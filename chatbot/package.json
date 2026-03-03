@@ -1,0 +1,17 @@
+{
+  "name": "mocdang-chatbot",
+  "version": "1.0.0",
+  "description": "Chatbot AI cho cửa hàng đèn Mộc Đăng, dùng Node.js + Express + OpenAI API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mssql": "^10.0.2",
+    "openai": "^4.50.0"
+  }
+}
+

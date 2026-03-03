@@ -403,6 +403,104 @@
                     }
                 }
             </style>
+            <style>
+                /* Chatbot bubble đơn giản ở góc phải dưới */
+                .md-chatbot-toggle {
+                    position: fixed;
+                    right: 20px;
+                    bottom: 20px;
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 50%;
+                    background: #34495e;
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+                    cursor: pointer;
+                    z-index: 1100;
+                }
+
+                .md-chatbot-panel {
+                    position: fixed;
+                    right: 20px;
+                    bottom: 90px;
+                    width: 320px;
+                    max-height: 420px;
+                    background: #ffffff;
+                    border-radius: 18px;
+                    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+                    display: none;
+                    flex-direction: column;
+                    overflow: hidden;
+                    z-index: 1100;
+                }
+
+                .md-chatbot-header {
+                    padding: 10px 14px;
+                    background: #34495e;
+                    color: #fff;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+
+                .md-chatbot-messages {
+                    padding: 10px 12px;
+                    flex: 1;
+                    overflow-y: auto;
+                    font-size: 13px;
+                    background: #f7f8fa;
+                }
+
+                .md-chatbot-msg {
+                    margin-bottom: 8px;
+                    max-width: 90%;
+                    padding: 6px 10px;
+                    border-radius: 12px;
+                    line-height: 1.4;
+                }
+
+                .md-chatbot-msg-user {
+                    margin-left: auto;
+                    background: #34495e;
+                    color: #fff;
+                }
+
+                .md-chatbot-msg-bot {
+                    margin-right: auto;
+                    background: #ffffff;
+                    border: 1px solid #e1e5ea;
+                    color: #2c3e50;
+                }
+
+                .md-chatbot-input {
+                    display: flex;
+                    padding: 8px;
+                    border-top: 1px solid #e1e5ea;
+                    background: #fff;
+                    gap: 6px;
+                }
+
+                .md-chatbot-input input {
+                    flex: 1;
+                    border-radius: 999px;
+                    border: 1px solid #ced4da;
+                    padding: 6px 10px;
+                    font-size: 13px;
+                    outline: none;
+                }
+
+                .md-chatbot-input button {
+                    border-radius: 999px;
+                    border: none;
+                    padding: 6px 14px;
+                    font-size: 13px;
+                    background: #34495e;
+                    color: #fff;
+                    cursor: pointer;
+                }
+            </style>
         </head>
 
         <body>
@@ -581,12 +679,31 @@
                     </div>
             </nav>
 
+            <!-- Chatbot floating widget -->
+            <div class="md-chatbot-toggle" id="mdChatbotToggle" title="Chat với Mộc Đăng">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div class="md-chatbot-panel" id="mdChatbotPanel">
+                <div class="md-chatbot-header">
+                    Trợ lý Mộc Đăng
+                </div>
+                <div class="md-chatbot-messages" id="mdChatbotMessages">
+                    <div class="md-chatbot-msg md-chatbot-msg-bot">
+                        Xin chào! Mình là trợ lý Mộc Đăng. Bạn muốn hỏi về mẫu đèn, giá, còn hàng hay chính sách giao hàng?
+                    </div>
+                </div>
+                <div class="md-chatbot-input">
+                    <input id="mdChatbotInput" type="text" placeholder="Hỏi Mộc Đăng bất cứ điều gì..." />
+                    <button id="mdChatbotSend">Gửi</button>
+                </div>
+            </div>
+
             <!-- Font Awesome for icons -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
             <!-- Bootstrap JS -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-            <!-- Custom JavaScript for navbar toggle -->
+            <!-- Custom JavaScript for navbar + chatbot -->
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
                     // Feature: Transparent Header on Scroll
@@ -666,6 +783,68 @@
                         });
                     }
                 });
+                // --- Chatbot đơn giản gọi tới service Node.js ---
+                (function () {
+                    const BOT_API_URL = 'https://YOUR-CHATBOT-SERVICE.onrender.com/chat'; // TODO: sửa lại sau khi deploy Node
+
+                    const toggle = document.getElementById('mdChatbotToggle');
+                    const panel = document.getElementById('mdChatbotPanel');
+                    const messagesEl = document.getElementById('mdChatbotMessages');
+                    const inputEl = document.getElementById('mdChatbotInput');
+                    const sendBtn = document.getElementById('mdChatbotSend');
+
+                    if (!toggle || !panel || !messagesEl || !inputEl || !sendBtn) return;
+
+                    toggle.addEventListener('click', function () {
+                        if (panel.style.display === 'flex') {
+                            panel.style.display = 'none';
+                        } else {
+                            panel.style.display = 'flex';
+                        }
+                    });
+
+                    function appendMessage(text, isUser) {
+                        const div = document.createElement('div');
+                        div.className = 'md-chatbot-msg ' + (isUser ? 'md-chatbot-msg-user' : 'md-chatbot-msg-bot');
+                        div.textContent = text;
+                        messagesEl.appendChild(div);
+                        messagesEl.scrollTop = messagesEl.scrollHeight;
+                    }
+
+                    async function sendMessage() {
+                        const text = inputEl.value.trim();
+                        if (!text) return;
+                        appendMessage(text, true);
+                        inputEl.value = '';
+
+                        try {
+                            const res = await fetch(BOT_API_URL, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ message: text })
+                            });
+                            if (!res.ok) {
+                                appendMessage('Xin lỗi, chatbot đang gặp lỗi (' + res.status + ').', false);
+                                return;
+                            }
+                            const data = await res.json();
+                            appendMessage(data.answer || 'Mộc Đăng xin lỗi, hiện chưa trả lời được câu này.', false);
+                        } catch (err) {
+                            console.error('Chatbot error', err);
+                            appendMessage('Xin lỗi, không kết nối được tới chatbot.', false);
+                        }
+                    }
+
+                    sendBtn.addEventListener('click', sendMessage);
+                    inputEl.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            sendMessage();
+                        }
+                    });
+                })();
             </script>
         </body>
 
