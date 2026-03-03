@@ -1,17 +1,15 @@
-// Simple AI chatbot service for Mộc Đăng using Node.js + Express.
-// - Reads product data from Azure SQL (same DB as Java app)
-// - Calls Gemini API (Google) to generate natural Vietnamese responses
+// Chatbot đơn giản cho Mộc Đăng dùng Node.js + Express (KHÔNG gọi API AI ngoài).
+// - Đọc dữ liệu sản phẩm từ Azure SQL (giống DB Java app)
+// - Trả lời rule-based bằng tiếng Việt dựa trên dữ liệu đó.
 //
 // ENV cần cấu hình trên Render (service Node riêng):
 // - PORT: cổng Express (Render sẽ set tự động, nhưng ta vẫn fallback 4000)
-// - GEMINI_API_KEY: khóa Gemini của bạn
 // - DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD: giống Java app
 
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import sql from 'mssql';
-import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const app = express();
 app.use(express.json());
@@ -52,10 +50,7 @@ async function getPool() {
   return poolPromise;
 }
 
-// ----- Gemini client -----
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
-
-// Lấy một ít dữ liệu sản phẩm liên quan để làm context cho AI
+// Lấy một ít dữ liệu sản phẩm liên quan để làm context trả lời
 async function getRelatedProducts(question) {
   try {
     const pool = await getPool();
@@ -90,64 +85,45 @@ app.post('/chat', async (req, res) => {
     return res.status(400).json({ error: 'Thiếu câu hỏi (message).' });
   }
 
-  if (!process.env.GEMINI_API_KEY) {
-    return res
-      .status(500)
-      .json({ error: 'Chưa cấu hình GEMINI_API_KEY cho chatbot.' });
-  }
-
   try {
     const products = await getRelatedProducts(message);
 
-    const productsContext =
-      products.length === 0
-        ? 'Không tìm thấy sản phẩm nào trong DB khớp với câu hỏi.'
-        : products
-            .map(
-              (p) =>
-                `- [${p.id}] ${p.title} (danh mục: ${p.category_name || 'N/A'}, giá: ${p.sale_price} VND)\n  Mô tả: ${p.description?.replace(
-                  /\s+/g,
-                  ' ',
-                )}`,
-            )
-            .join('\n');
+    let answer;
 
-    const systemPrompt = `
-Bạn là trợ lý AI của cửa hàng đèn Mộc Đăng (bán đèn giấy dó, đèn tranh vẽ, đèn vải Linen...).
-Bạn trả lời NGẮN GỌN, thân thiện, bằng tiếng Việt, dựa trên dữ liệu mình cung cấp.
-Nếu câu hỏi không liên quan đến đèn, sản phẩm, đơn hàng, thanh toán, vận chuyển, bảo hành
-hoặc thông tin trên website mocdang.com, hãy nói nhẹ nhàng rằng bạn chỉ hỗ trợ câu hỏi về cửa hàng.
+    if (products.length === 0) {
+      answer =
+        'Hiện tại mình không tìm thấy sản phẩm nào trong cửa hàng khớp với câu hỏi này. Bạn có thể thử hỏi lại với tên đèn rõ hơn (ví dụ: "đèn vải Linen", "đèn phô mai giấy dó").';
+    } else {
+      const isAskPrice = /giá|bao nhiêu|tiền/i.test(message);
+      const lines = products.map((p) => {
+        const desc =
+          (p.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+        const shortDesc = desc.length > 120 ? desc.slice(0, 117) + '...' : desc;
+        if (isAskPrice) {
+          return `• ${p.title}: khoảng ${p.sale_price} VND. (${p.category_name || 'Danh mục khác'})`;
+        }
+        return `• ${p.title} (${p.category_name || 'Danh mục khác'}), giá khoảng ${p.sale_price} VND. ${shortDesc}`;
+      });
 
-Nếu có danh sách sản phẩm bên dưới, hãy ưu tiên dùng thông tin đó để tư vấn.
-Không bịa ra sản phẩm hay giá không có trong danh sách.
-`;
-
-    const userPrompt = `
-Câu hỏi của khách:
-${message}
-
-Thông tin sản phẩm liên quan (từ database):
-${productsContext}
-
-userId (nếu có): ${userId || 'không có / chưa đăng nhập'}
-`;
-
-    const model = genAI.getGenerativeModel({
-      // dùng model text ổn định của Gemini
-      model: 'gemini-pro',
-    });
-
-    const geminiPrompt = `${systemPrompt}\n\n---\n\n${userPrompt}`;
-
-    const result = await model.generateContent(geminiPrompt);
-    const answer = (result.response.text() || '').trim();
+      if (isAskPrice) {
+        answer =
+          'Một vài sản phẩm phù hợp và giá tham khảo:\n' +
+          lines.join('\n') +
+          '\n\nGiá thực tế trên website có thể thay đổi theo khuyến mãi.';
+      } else {
+        answer =
+          'Mình tìm thấy một số sản phẩm phù hợp trong cửa hàng:\n' +
+          lines.join('\n') +
+          '\n\nBạn có thể truy cập mục Cửa hàng trên mocdang.com để xem chi tiết từng mẫu.';
+      }
+    }
 
     return res.json({
       answer: answer || 'Xin lỗi, hiện tại mình chưa trả lời được câu hỏi này.',
       products,
     });
   } catch (err) {
-    console.error('[Chatbot] Lỗi khi gọi OpenAI:', err);
+    console.error('[Chatbot] Lỗi khi xử lý câu hỏi:', err);
     return res
       .status(500)
       .json({ error: 'Chatbot gặp lỗi trong khi xử lý. Vui lòng thử lại sau.' });
