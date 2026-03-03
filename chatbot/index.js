@@ -70,8 +70,8 @@ async function getRelatedProducts(question) {
           p.description,
           p.sale_price,
           c.name AS category_name
-      FROM products p
-      LEFT JOIN categories c ON p.category_id = c.id
+      FROM dbo.products p
+      LEFT JOIN dbo.categories c ON p.category_id = c.id
       WHERE p.title LIKE @kw OR c.name LIKE @kw
       ORDER BY p.id
     `);
@@ -133,8 +133,8 @@ userId (nếu có): ${userId || 'không có / chưa đăng nhập'}
 `;
 
     const model = genAI.getGenerativeModel({
-      // dùng phiên bản mới nhất ổn định của Gemini 1.5 Flash
-      model: 'gemini-1.5-flash-latest',
+      // dùng model text ổn định của Gemini
+      model: 'gemini-pro',
     });
 
     const geminiPrompt = `${systemPrompt}\n\n---\n\n${userPrompt}`;
