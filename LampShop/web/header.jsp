@@ -588,11 +588,11 @@
 
 
                             <li class="nav-item">
-                                <a class="nav-link" href="customize.jsp">Customize</a>
+                                <a class="nav-link" href="customize">Đèn Tủy Chỉnh</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="posts">Blogs</a>
+                                <a class="nav-link" href="posts">Bài Viết</a>
                             </li>
 
                         </ul>
