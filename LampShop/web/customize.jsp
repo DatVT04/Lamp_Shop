@@ -634,7 +634,7 @@
                         <p style="color: #999; font-size: 14px; margin-bottom: 5px;">Đèn Thiết Kế Theo Yêu Cầu</p>
                         <h3>ĐÈN GẮN TƯỜNG TÙY CHỈNH</h3>
                         <p>
-                            Một trong những ưu điểm nổi bật của đèn gắn tường là khả năng tạo ra ánh sáng mềm mại và bầu không khí ấm áp cho không gian sống. Ánh sáng phản chiếu lên tường giúp lan tỏa đều đặn, mang lại cảm giác ấm cúng và dễ chịu. Ngoài ra, đèn gắn tường còn có thể dùng để tạo điểm nhấn cho bức tường, tranh treo, hoặc đơn giản là tạo hiệu ứng ánh sáng gợn sóng nhẹ nhàng và tinh tế.
+                            Một trong những ưu điểm nổi bật của đèn gắn tường là khả năng tạo ra ánh sáng mềm mại và bầu không khí ấm áp cho không gian sống. Ánh sáng phản chiếu lên tường giúp lan tỏa đều đặn; mang lại cảm giác ấm cúng và dễ chịu. Ngoài ra, đèn gắn tường còn có thể dùng để tạo điểm nhấn cho bức tường, tranh treo, hoặc đơn giản là tạo hiệu ứng ánh sáng gợn sóng nhẹ nhàng và tinh tế.
                         </p>
                         <div class="lamp-products">
                             <div class="product-item">
