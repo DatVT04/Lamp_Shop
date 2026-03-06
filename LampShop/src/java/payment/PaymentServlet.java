@@ -35,7 +35,7 @@ public class PaymentServlet extends HttpServlet {
     private static final String VNP_VERSION = "2.1.0";
     private static final String VNP_COMMAND = "pay";
     private static final String VNP_TMN_CODE = "ZM178CYJ";
-    private static final String VNP_HASH_SECRET = "Y1ET59NSZQ7XB32Y7MP9KKZIV58738AA";
+    private static final String VNP_HASH_SECRET = "2MOD09SYX95PDSW180AKKU93FZIALKV2";
     private static final String VNP_API_URL = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     private static final String VNP_CURR_CODE = "VND";
     private static final String ORDER_TYPE = "other";

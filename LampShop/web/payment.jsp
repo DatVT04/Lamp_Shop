@@ -3,309 +3,358 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Thanh toán đơn hàng</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        <style>
-            .container {
-                padding-top: 30px;
-                padding-bottom: 30px;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chọn phương thức thanh toán</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .payment-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .payment-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .payment-header h2 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .payment-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .payment-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .payment-body {
+            padding: 40px 20px;
+        }
+
+        .order-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .order-summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            color: #333;
+        }
+
+        .order-summary-item strong {
+            color: #667eea;
+        }
+
+        .payment-methods {
+            display: grid;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .payment-method-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .payment-method-card:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .payment-method-card input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .payment-method-card.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .payment-method-icon {
+            font-size: 32px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .payment-method-qr .payment-method-icon {
+            background: #ffeaa7;
+            color: #fdcb6e;
+        }
+
+        .payment-method-vnpay .payment-method-icon {
+            background: #74b9ff;
+            color: #0984e3;
+        }
+
+        .payment-method-info h5 {
+            margin: 0 0 5px 0;
+            font-weight: 700;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .payment-method-info p {
+            margin: 0;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .payment-method-info .badge {
+            margin-top: 5px;
+            display: inline-block;
+            font-size: 11px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .btn-payment {
+            flex: 1;
+            padding: 14px;
+            font-weight: 600;
+            font-size: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-payment:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-payment:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-cancel {
+            flex: 1;
+            padding: 14px;
+            font-weight: 600;
+            font-size: 16px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            color: #333;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-cancel:hover {
+            background: #e0e0e0;
+        }
+
+        .alert {
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 480px) {
+            .payment-container {
+                border-radius: 0;
             }
 
-            .page-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 30px;
-                padding-bottom: 15px;
-                border-bottom: 1px solid #e9ecef;
-            }
-
-            .page-title {
-                font-weight: 700;
-                margin: 0;
-            }
-
-            .back-button {
-                text-decoration: none;
-            }
-
-            .card {
-                border: none;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0,0,0,0.05);
-                margin-bottom: 20px;
-                overflow: hidden;
-            }
-
-            .card-header {
-                background-color: #f8f9fa;
-                border-bottom: 1px solid #e9ecef;
-                padding: 15px 20px;
-            }
-
-            .card-title {
-                margin: 0;
-                font-weight: 600;
-            }
-
-            .card-body {
-                padding: 20px;
-            }
-
-            .payment-option {
-                padding: 20px;
-                margin-bottom: 15px;
-                border: 2px solid #e9ecef;
-                border-radius: 10px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-
-            .payment-option:hover {
-                background-color: #f8f9fa;
-                border-color: #bbd6fe;
-            }
-
-            .payment-option.selected {
-                border-color: #0d6efd;
-                background-color: #f0f7ff;
-            }
-
-            .payment-option .payment-logo {
-                height: 40px;
-                object-fit: contain;
-                margin-right: 10px;
-            }
-
-            .order-summary {
-                background-color: #f8f9fa;
+            .payment-header {
                 padding: 15px;
-                border-radius: 5px;
             }
 
-            .summary-row {
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 10px;
+            .payment-header h2 {
+                font-size: 20px;
             }
 
-            .summary-row:last-child {
-                margin-bottom: 0;
-                padding-top: 10px;
-                border-top: 1px solid #e9ecef;
-                font-weight: 700;
+            .payment-main {
+                padding: 20px 10px;
             }
 
-            .btn-payment {
-                width: 100%;
-                margin-top: 20px;
-                padding: 12px 0;
-                font-weight: 600;
+            .payment-body {
+                padding: 20px 15px;
             }
+
+            .payment-methods {
+                gap: 10px;
+            }
+
+            .payment-method-card {
+                padding: 15px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
         </style>
-    </head>
-    <body>
-        <div><jsp:include page="/header.jsp" /></div>
+</head>
+<body>
+    <div class="payment-wrapper">
+        <!-- Header -->
+        <div class="payment-header">
+            <h2><i class="fas fa-credit-card me-2"></i>Chọn Phương Thức Thanh Toán</h2>
+        </div>
 
-        <div class="container">
-            <div class="page-header">
-                <h2 class="page-title">Thanh toán đơn hàng</h2>
-                <a href="cartcontact" class="back-button">
-                    <i class="fas fa-arrow-left"></i> Quay lại
-                </a>
-            </div>
-
-            <!-- Thông báo lỗi nếu có -->
-            <c:if test="${not empty errorMessage}">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    ${errorMessage}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            </c:if>
-
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">Chọn phương thức thanh toán</h5>
+        <!-- Main Content -->
+        <div class="payment-main">
+            <div class="payment-container">
+                <div class="payment-body">
+                    <!-- Error Message -->
+                    <c:if test="${not empty errorMessage}">
+                        <div class="alert alert-danger" role="alert">
+                            <i class="fas fa-exclamation-circle me-2"></i>${errorMessage}
                         </div>
-                        <div class="card-body">
-                            <form action="payment" method="post" id="paymentForm">
-                                <div class="payment-option selected" onclick="selectPayment('vnpay')">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="payment_method" id="vnpay" value="vnpay" checked>
-                                        <label class="form-check-label d-flex align-items-center" for="vnpay">
-                                            <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-VNPAY-QR-1.png" alt="VNPay" class="payment-logo">
-                                            <div>
-                                                <strong>VNPay</strong>
-                                                <p class="text-muted mb-0">Thanh toán qua cổng VNPay bằng QR Code hoặc thẻ ATM/Credit Card</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
+                    </c:if>
 
-                                <div class="payment-option" onclick="selectPayment('momo')">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="payment_method" id="momo" value="momo">
-                                        <label class="form-check-label d-flex align-items-center" for="momo">
-                                            <img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png" alt="MoMo" class="payment-logo">
-                                            <div>
-                                                <strong>Ví MoMo</strong>
-                                                <p class="text-muted mb-0">Thanh toán qua ví điện tử MoMo</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="payment-option" onclick="selectPayment('zalopay')">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="payment_method" id="zalopay" value="zalopay">
-                                        <label class="form-check-label d-flex align-items-center" for="zalopay">
-                                            <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-ZaloPay.png" alt="ZaloPay" class="payment-logo">
-                                            <div>
-                                                <strong>ZaloPay</strong>
-                                                <p class="text-muted mb-0">Thanh toán qua ví điện tử ZaloPay</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary btn-payment">
-                                    Tiếp tục thanh toán
-                                </button>
-                            </form>
+                    <!-- Order Summary -->
+                    <div class="order-summary">
+                        <div class="order-summary-item">
+                            <span>Mã đơn hàng:</span>
+                            <strong>${order.orderCode}</strong>
+                        </div>
+                        <div class="order-summary-item">
+                            <span>Số tiền thanh toán:</span>
+                            <strong><fmt:formatNumber value="${order.total}" type="currency" currencySymbol="₫" maxFractionDigits="0"/></strong>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">Thông tin đơn hàng</h5>
+                    <!-- Payment Methods -->
+                    <form id="paymentForm" method="POST" action="">
+                        <div class="payment-methods">
+                            <!-- QR Code Payment -->
+                            <label class="payment-method-card payment-method-qr" id="qrOption">
+                                <input type="radio" name="payment_method" value="qr_code" onchange="selectPaymentMethod('qr_code')">
+                                <div class="payment-method-icon">
+                                    <i class="fas fa-qrcode"></i>
+                                </div>
+                                <div class="payment-method-info">
+                                    <h5>QR Code Chuyển Khoản</h5>
+                                    <p>Quét mã QR để chuyển khoản qua MB Bank</p>
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="fas fa-clock me-1"></i>5 phút
+                                    </span>
+                                </div>
+                            </label>
+
+                            <!-- VNPay Payment -->
+                            <label class="payment-method-card payment-method-vnpay" id="vnpayOption">
+                                <input type="radio" name="payment_method" value="vnpay" onchange="selectPaymentMethod('vnpay')">
+                                <div class="payment-method-icon">
+                                    <i class="fas fa-university"></i>
+                                </div>
+                                <div class="payment-method-info">
+                                    <h5>VNPay (Test)</h5>
+                                    <p>Thanh toán qua cổng VNPay (môi trường test)</p>
+                                    <span class="badge bg-info">
+                                        <i class="fas fa-flask me-1"></i>Test
+                                    </span>
+                                </div>
+                            </label>
                         </div>
-                        <div class="card-body">
-                            <!-- Debug: Kiểm tra pending_order -->
-                            <c:if test="${empty pending_order}">
-                                <div class="text-danger">Debug: pending_order is null</div>
-                            </c:if>
-                            <c:if test="${not empty pending_order}">
-                                <div class="mb-4">
-                                    <div class="fw-bold mb-2">Thông tin giao hàng:</div>
-                                    <div>${order.recipientName}</div>
-                                    <div>${order.phone}</div>
-                                    <div>${order.address}</div>
-                                </div>
 
-                                <div class="mb-4">
-                                    <div class="fw-bold mb-2">Sản phẩm:</div>
-                                    <c:if test="${empty order.items}">
-                                        <div class="text-danger">Debug: order.items is empty</div>
-                                    </c:if>
-                                    <c:forEach items="${order.items}" var="item" varStatus="loop">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <div>
-                                                <span class="fw-bold">${item.quantity}x</span> ${item.productTitle}
-                                                <div class="small text-muted">Size: ${item.size}, Màu: ${item.color}</div>
-                                            </div>
-                                            <div>
-                                                <fmt:formatNumber value="${item.productPrice * item.quantity}" type="currency" currencySymbol="₫" maxFractionDigits="0"/>
-                                            </div>
-                                        </div>
-                                        <c:if test="${!loop.last}">
-                                            <hr class="my-2">
-                                        </c:if>
-                                    </c:forEach>
-                                </div>
-
-                                <div class="order-summary">
-                                    <div class="summary-row">
-                                        <span>Tổng tiền hàng:</span>
-                                        <span>
-                                            <c:set var="subtotal" value="0" />
-                                            <c:forEach items="${order.items}" var="item">
-                                                <c:set var="subtotal" value="${subtotal + (item.productPrice * item.quantity)}" />
-                                            </c:forEach>
-                                            <c:if test="${empty order.items}">
-                                                <span class="text-danger">Không có sản phẩm nào</span>
-                                            </c:if>
-                                            <c:if test="${not empty order.items}">
-                                                <fmt:formatNumber value="${subtotal}" type="currency" currencySymbol="₫" maxFractionDigits="0"/>
-                                            </c:if>
-                                        </span>
-                                    </div>
-
-                                    <!-- Hiển thị giảm giá -->
-                                    <div class="summary-row text-success">
-                                        <span>Giảm giá:</span>
-                                        <span>
-                                            <c:choose>
-                                                <c:when test="${not empty order.discountAmount && order.discountAmount > 0}">
-                                                    -<fmt:formatNumber value="${order.discountAmount}" type="currency" currencySymbol="₫" maxFractionDigits="0"/>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    0₫
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </span>
-                                    </div>
-
-                                    <!-- Phí vận chuyển -->
-                                    <div class="summary-row">
-                                        <span>Phí vận chuyển:</span>
-                                        <span>
-                                            <c:set var="shipping" value="${order.shippingMethod eq 'express' ? 45000 : 30000}" />
-                                            <fmt:formatNumber value="${shipping}" type="currency" currencySymbol="₫" maxFractionDigits="0"/>
-                                        </span>
-                                    </div>
-
-                                    <div class="summary-row">
-                                        <span>Tổng thanh toán:</span>
-                                        <span><fmt:formatNumber value="${order.total}" type="currency" currencySymbol="₫" maxFractionDigits="0"/></span>
-                                    </div>
-                                </div>
-                            </c:if>
+                        <!-- Buttons -->
+                        <div class="button-group">
+                            <button type="submit" class="btn-payment" id="paymentBtn" disabled>
+                                <i class="fas fa-arrow-right me-2"></i>Tiếp Tục
+                            </button>
+                            <button type="button" class="btn-cancel" onclick="backToCart()">
+                                <i class="fas fa-arrow-left me-2"></i>Quay Lại
+                            </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div><jsp:include page="/footer.jsp" /></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let selectedMethod = null;
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-                                    function selectPayment(method) {
-                                        // Remove selected class from all payment options
-                                        document.querySelectorAll('.payment-option').forEach(option => {
-                                            option.classList.remove('selected');
-                                        });
+        function selectPaymentMethod(method) {
+            selectedMethod = method;
+            
+            // Update UI
+            document.getElementById('qrOption').classList.toggle('selected', method === 'qr_code');
+            document.getElementById('vnpayOption').classList.toggle('selected', method === 'vnpay');
+            
+            // Enable button
+            document.getElementById('paymentBtn').disabled = false;
+        }
 
-                                        // Add selected class to clicked option
-                                        document.getElementById(method).closest('.payment-option').classList.add('selected');
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!selectedMethod) {
+                alert('Vui lòng chọn phương thức thanh toán');
+                return;
+            }
+            
+            if (selectedMethod === 'qr_code') {
+                // Redirect to QR payment page
+                window.location.href = 'qrpayment';
+            } else if (selectedMethod === 'vnpay') {
+                // Submit form để xử lý VNPay
+                this.submit();
+            }
+        });
 
-                                        // Check the radio button
-                                        document.getElementById(method).checked = true;
-                                    }
-
-                                    // Form validation before submission
-                                    document.getElementById('paymentForm').addEventListener('submit', function (e) {
-                                        // Check if a payment method is selected
-                                        let paymentMethod = document.querySelector('input[name="payment_method"]:checked');
-
-                                        if (!paymentMethod) {
-                                            e.preventDefault();
-                                            alert('Vui lòng chọn phương thức thanh toán');
-                                            return false;
-                                        }
-
-                                        // You can add additional validations if needed
-
-                                        return true;
-                                    });
-        </script>
-    </body>
+        function backToCart() {
+            if (confirm('Bạn có chắc muốn quay lại?')) {
+                window.location.href = 'cartdetail';
+            }
+        }
+    </script>
+</body>
 </html>

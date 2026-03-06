@@ -1,5 +1,31 @@
 ﻿USE [lamp_shop]
 GO
+
+-- ============================================
+-- PAYMENT SYSTEM - ADD COLUMNS FIRST
+-- ============================================
+
+-- Thêm cột status vào bảng orders (nếu chưa có)
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='orders' AND COLUMN_NAME='status')
+BEGIN
+    ALTER TABLE [dbo].[orders] ADD status VARCHAR(50) DEFAULT 'pending';
+END
+GO
+
+-- Thêm cột payment_method vào bảng orders (nếu chưa có)
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='orders' AND COLUMN_NAME='payment_method')
+BEGIN
+    ALTER TABLE [dbo].[orders] ADD payment_method VARCHAR(50) DEFAULT 'qr_code';
+END
+GO
+
+-- Thêm cột transaction_id vào bảng orders (nếu chưa có)
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='orders' AND COLUMN_NAME='transaction_id')
+BEGIN
+    ALTER TABLE [dbo].[orders] ADD transaction_id VARCHAR(100);
+END
+GO
+
 SET IDENTITY_INSERT [dbo].[users] ON 
 GO
 INSERT [dbo].[users] ([id], [username], [email], [password_hash], [full_name], [gender], [mobile], [avatar], [role], [status], [created_at], [updated_at]) VALUES (1, N'admin123', N'tphong610198@gmail.com', N'$2a$12$CuXL88lRV.caI3o.5ZB/wOM3mUPxEeVp7PnUYC9Tu6iefOfhTlfxO', N'Admin', N'male', N'0123456789', N'uploads/avatars/bb5cb37c-fb96-4a04-a5d6-7bd5732bf5b0.jpg', N'admin', N'active', CAST(N'2025-02-09T16:58:16.1666667' AS DateTime2), CAST(N'2025-02-09T17:12:48.3000000' AS DateTime2))
@@ -877,4 +903,102 @@ INSERT INTO sliders (id, title, image_url, link, status, display_order, notes) V
 'https://i.postimg.cc/26yVMdNK/dentetslider.jpg',
 'http://localhost:9999/lampshop/productdetail?id=3', 'active', 3, N'Mang may mắn về nhà trong dịp năm mới');
 SET IDENTITY_INSERT [dbo].[sliders] OFF;
+GO
+
+-- ============================================
+-- PAYMENT SYSTEM MIGRATION
+-- ============================================
+
+-- Tạo bảng payments để lưu trữ thông tin giao dịch
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME='payments')
+BEGIN
+    CREATE TABLE [dbo].[payments] (
+        [id] INT PRIMARY KEY IDENTITY(1,1),
+        [order_id] INT NOT NULL,
+        [payment_method] VARCHAR(50) NOT NULL,
+        [transaction_id] VARCHAR(100),
+        [amount] BIGINT NOT NULL,
+        [status] VARCHAR(50) DEFAULT 'pending',
+        [created_at] DATETIME DEFAULT GETDATE(),
+        [completed_at] DATETIME NULL,
+        CONSTRAINT fk_payments_orders FOREIGN KEY ([order_id]) REFERENCES [dbo].[orders]([id])
+    );
+END
+ELSE
+BEGIN
+    -- Nếu bảng đã tồn tại, kiểm tra và thêm cột nếu cần
+    IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='payments' AND COLUMN_NAME='status')
+        ALTER TABLE [dbo].[payments] ADD status VARCHAR(50) DEFAULT 'pending';
+    
+    IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='payments' AND COLUMN_NAME='completed_at')
+        ALTER TABLE [dbo].[payments] ADD completed_at DATETIME NULL;
+END
+GO
+
+-- Tạo index để tối ưu query
+IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name = 'idx_payments_order_id' AND object_id = OBJECT_ID('payments'))
+BEGIN
+    CREATE INDEX idx_payments_order_id ON [dbo].[payments]([order_id]);
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name = 'idx_payments_status' AND object_id = OBJECT_ID('payments'))
+BEGIN
+    CREATE INDEX idx_payments_status ON [dbo].[payments]([status]);
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name = 'idx_payments_created_at' AND object_id = OBJECT_ID('payments'))
+BEGIN
+    CREATE INDEX idx_payments_created_at ON [dbo].[payments]([created_at]);
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name = 'idx_orders_payment_method' AND object_id = OBJECT_ID('orders'))
+BEGIN
+    CREATE INDEX idx_orders_payment_method ON [dbo].[orders]([payment_method]);
+END
+GO
+
+-- Tạo Stored Procedure để update payment status atomically
+IF EXISTS (SELECT * FROM sys.objects WHERE name = 'sp_update_payment_status' AND type = 'P')
+BEGIN
+    DROP PROCEDURE [dbo].[sp_update_payment_status];
+END
+GO
+
+CREATE PROCEDURE [dbo].[sp_update_payment_status]
+    @orderId INT,
+    @paymentStatus VARCHAR(50),
+    @transactionId VARCHAR(100)
+AS
+BEGIN
+    BEGIN TRANSACTION;
+    BEGIN TRY
+        -- Update orders table
+        UPDATE [dbo].[orders]
+        SET status = @paymentStatus,
+            transaction_id = @transactionId,
+            updated_at = GETDATE()
+        WHERE id = @orderId;
+        
+        -- Update payments table (nếu table tồn tại)
+        IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME='payments')
+        BEGIN
+            UPDATE [dbo].[payments]
+            SET status = @paymentStatus,
+                completed_at = CASE WHEN @paymentStatus = 'completed' THEN GETDATE() ELSE NULL END
+            WHERE order_id = @orderId;
+        END
+        
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END
+GO
+
+PRINT N'Payment system migration completed successfully!';
 GO
