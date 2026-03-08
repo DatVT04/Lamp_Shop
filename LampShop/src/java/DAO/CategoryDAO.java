@@ -73,7 +73,7 @@ public class CategoryDAO extends DBContext {
 
     public List<Category> getThirdLevelCategories() {
         List<Category> thirdLevelCats = new ArrayList<>();
-        String sql = "SELECT * FROM categories WHERE level = 3 AND status='active'";
+        String sql = "SELECT * FROM categories WHERE level = 2 AND status='active'";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
