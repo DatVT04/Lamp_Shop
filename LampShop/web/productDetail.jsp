@@ -406,6 +406,9 @@
                             color: var(--text-secondary);
                             line-height: 1.9;
                             font-size: 1rem;
+                            overflow-x: hidden;
+                            word-break: break-word;
+                            overflow-wrap: break-word;
                         }
 
                         .product-description-content p {
