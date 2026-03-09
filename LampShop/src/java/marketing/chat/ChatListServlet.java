@@ -7,8 +7,8 @@ package marketing.chat;
 
 import DAO.MessageDAO;
 import entity.Message;
+import entity.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -25,19 +25,18 @@ public class ChatListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer userId = (Integer) request.getSession().getAttribute("userID");
-        if (userId == null) {
+        User acc = (User) request.getSession().getAttribute("acc");
+        if (acc == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
-
-        MessageDAO messageDAO = new MessageDAO();
-        int marketingId = messageDAO.getMarketingId();
-        if (marketingId == -1) {
-            request.setAttribute("error", "Không tìm thấy nhân viên marketing.");
-            request.getRequestDispatcher("/marketing/chat/chatList.jsp").forward(request, response);
+        if (!"marketing".equals(acc.getRole()) && !"admin".equals(acc.getRole())) {
+            response.sendRedirect(request.getContextPath() + "/home");
             return;
         }
+
+        int marketingId = acc.getId();
+        MessageDAO messageDAO = new MessageDAO();
 
         String searchUsername = request.getParameter("searchUsername");
         String pageStr = request.getParameter("page");

@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customize Lamp</title>
+    <title>Đèn Tùy Chỉnh</title>
+    <link rel="icon" href="${pageContext.request.contextPath}/assests/images/favicon.png" type="image/png">
     <style>
         * {
             margin: 0;
@@ -442,6 +443,40 @@
                     20px 0 0 #e8d4c1;
             }
         }
+
+        /* ===== SPEED DIAL FAB ===== */
+        .ai-chat-button, .md-chatbot-toggle { display: none !important; }
+        .ai-chat-widget, .md-chatbot-panel { bottom: 80px !important; right: 20px !important; }
+
+        .speed-dial {
+            position: fixed; bottom: 20px; right: 20px; z-index: 1200;
+            display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+        }
+        .speed-dial-main {
+            width: 54px; height: 54px; border-radius: 50%;
+            background: #2c3e50; color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, background 0.3s ease; font-size: 20px;
+        }
+        .speed-dial-main:hover { background: #1a252f; }
+        .speed-dial-main.open { transform: rotate(45deg); }
+        .speed-dial-items {
+            display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+            opacity: 0; visibility: hidden; transform: translateY(10px);
+            transition: all 0.25s ease;
+        }
+        .speed-dial-items.open { opacity: 1; visibility: visible; transform: translateY(0); }
+        .speed-dial-item {
+            display: flex; align-items: center; gap: 8px;
+            height: 40px; padding: 0 16px; border-radius: 999px; color: #fff;
+            cursor: pointer; font-size: 13px; font-weight: 600; white-space: nowrap;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.2); transition: transform 0.2s ease;
+        }
+        .speed-dial-item:hover { transform: scale(1.06); }
+        #sdScrollTop { background: #8e44ad; }
+        #sdSupport   { background: #27ae60; }
+        #sdAIBot     { background: #34495e; }
     </style>
 </head>
 <body>
@@ -452,8 +487,8 @@
         <div class="hero-slide active"></div>
         <div class="hero-slide"></div>
         <div class="hero-content">
-            <h1>CUSTOM DESIGN LAMP</h1>
-            <p>Chúng tôi là một nhà sản xuất đèn với nhiều năm kinh nghiệm về đèn trang trí. Bạn chỉ cần cung cấp cho chúng tôi những bản phát thảo, những ký sự của chúng tôi sẽ giúp bạn biến những phát thảo đó thành những tác phẩm tuyệt vời.</p>
+            <h1>Đèn Thiết Kế Theo Yêu Cầu</h1>
+            <p>Chúng tôi là một nhà sản xuất đèn với nhiều năm kinh nghiệm về đèn trang trí. Bạn chỉ cần cung cấp cho chúng tôi những bản phác thảo, những ký sự của chúng tôi sẽ giúp bạn biến những phác thảo đó thành những tác phẩm tuyệt vời.</p>
             <div class="hero-dots">
                 <span class="dot active" data-slide="0"></span>
                 <span class="dot" data-slide="1"></span>
@@ -464,18 +499,18 @@
     <!-- Room Categories Section -->
     <section class="room-categories">
         <div class="container">
-            <h2 class="section-title">DESIGN YOUR ROOM</h2>
+            <h2 class="section-title">THIẾT KẾ ĐÈN PHÒNG CỦA BẠN</h2>
             <p class="section-subtitle">
-                Ánh sáng và vật liệu trong thiết kế nội thất rất quan trọng, hãy để hợp chúng thật thông minh để làm không gian của bạn trở nên nổi bật hơn
+                Ánh sáng và vật liệu trong thiết kế nội thất rất quan trọng, hãy biến chúng thật thông minh để làm không gian của bạn trở nên nổi bật hơn 🌟
             </p>
             
             <div class="categories-grid">
                 <div class="category-card" onclick="location.href='customize.jsp?room=bedroom'">
                     <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600" alt="Bed room" class="category-image">
                     <div class="category-overlay">
-                        <h3 class="category-title">Bed room</h3>
+                        <h3 class="category-title">Phòng Ngủ</h3>
                         <p class="category-description">
-                            Bể mật gỗ ghế có khả năng phản ánh sáng tốt, giúp làm mờ và phân tán các điểm sáng và bóng đổ trên bề mặt. Điều này có thể làm cho không gian trở nên ấm áp và thoải mái hơn...
+                            Bề mặt gỗ có khả năng phản ánh sáng tốt, giúp làm mờ và phân tán các điểm sáng và bóng đổ trên bề mặt. Điều này có thể làm cho không gian trở nên ấm áp và thoải mái hơn.
                         </p>
                     </div>
                 </div>
@@ -483,9 +518,11 @@
                 <div class="category-card" onclick="location.href='customize.jsp?room=living'">
                     <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=600" alt="Living room" class="category-image">
                     <div class="category-overlay">
-                        <h3 class="category-title">Living room</h3>
+                        <h3 class="category-title">Phòng Khách</h3>
                         <p class="category-description">
-                            Tranh đặt các vật trang trí lên gần của số của nhà, và nó sẽ chiến chiếu ánh sáng từ nhiên vào trong vào bạn ngày. Ngoài việc sử dụng đèn chiếu sáng nhân tạo...
+                        <p class="category-description">
+                            Ngoài việc sử dụng đèn chiếu sáng nhân tạo, đèn trang trí còn mang lại vẻ đẹp tinh tế và điểm nhấn độc đáo cho không gian phòng khách của bạn.
+                        </p>
                         </p>
                     </div>
                 </div>
@@ -493,9 +530,9 @@
                 <div class="category-card" onclick="location.href='customize.jsp?room=kitchen'">
                     <img src="https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=600" alt="Kitchen room" class="category-image">
                     <div class="category-overlay">
-                        <h3 class="category-title">Kitchen room</h3>
+                        <h3 class="category-title">Phòng Bếp</h3>
                         <p class="category-description">
-                            Sử dụng đèn trang trí có ánh sáng màu trắng có thể làm cho màu ấm mắt làm cho không gian tập ấm hơn và thu hút hơn. Điều này có thể làm cho môi trường nhà bếp...
+                            Đèn trang trí ánh vàng ấm giúp không gian bếp trở nên ấm cúng và thu hút hơn, tạo cảm giác ngon miệng và thư giãn khi nấu nướng.
                         </p>
                     </div>
                 </div>
@@ -510,10 +547,10 @@
             <div class="lamp-type-section">
                 <div class="lamp-type-content">
                     <div class="lamp-info">
-                        <p style="color: #999; font-size: 14px; margin-bottom: 5px;">Custom design lamp</p>
+                        <p style="color: #999; font-size: 14px; margin-bottom: 5px;">Đèn Thiết Kế Theo Yêu Cầu</p>
                         <h3>ĐÈN BÀN TÙY CHỈNH</h3>
                         <p>
-                            Đèn bàn là vật trang trí và chiếu sáng không thể thiếu cho các phòng của bạn. Đèn bàn không chỉ dùng với mục đích trang trí, nó còn mang đến cho chúng ta một thú ánh sáng huyền ảo, làm cho mặt bàn đẹ càng thêng, khi được sử dụng làm đèn bàn, hiệu suất ánh sáng phải phù hợp để đọc và chiếu sáng mày thìn đề bàn. Đèn bàn cũng có thể được sử dụng như một đèn trang trí thuần túy, lay trung phòng khách đễ tạo hiệu ứng ánh sáng chào đón.
+                            Đèn bàn là vật trang trí và chiếu sáng không thể thiếu trong không gian sống của bạn. Không chỉ phục vụ mục đích chiếu sáng, đèn bàn còn mang đến một thứ ánh sáng huyền ảo và tinh tế; với cường độ sáng vừa phải, chúng rất phù hợp để đọc sách hay làm việc. Đèn bàn cũng có thể được dùng như một vật trang trí thuần túy, đặt tại góc phòng khách để tạo hiệu ứng ánh sáng ấm áp và chào đón.
                         </p>
                         <div class="lamp-products">
                             <div class="product-item">
@@ -538,10 +575,10 @@
             <div class="lamp-type-section">
                 <div class="lamp-type-content reverse">
                     <div class="lamp-info">
-                        <p style="color: #999; font-size: 14px; margin-bottom: 5px;">Custom design lamp</p>
+                        <p style="color: #999; font-size: 14px; margin-bottom: 5px;">Đèn Thiết Kế Theo Yêu Cầu</p>
                         <h3>ĐÈN ĐỂ SÀN TÙY CHỈNH</h3>
                         <p>
-                            Đèn sàn dùng làm nội bật ánh sáng của các phòng nội thất được đèn trần không thể đáp ứng như các căn phòng của bạn. Trong các trường hợp khác, đèn sàn dùng là một vật trang trí hoàn thiện phòng cách trang trí nội thất và tạo ra một bầu không khí ấm cúng. Chúng có thể sử dụng để tạo điểm nhấn cho tường ánh, trang treo, hoặc thành chỉ tạo hiệu ứng ánh sáng gọn sông trên tường.
+                            Đèn sàn giúp bổ sung ánh sáng cho những góc khuất trong phòng mà đèn trần không thể chiếu tới. Ngoài chức năng chiếu sáng, đèn sàn còn là vật trang trí tinh tế giúp hoàn thiện không gian nội thất và tạo ra bầu không khí ấm cúng. Chúng có thể được sử dụng để tạo điểm nhấn cho bức tường, tranh treo, hoặc đơn giản là tạo hiệu ứng ánh sáng gợn sóng nhẹ nhàng trên tường.
                         </p>
                         <div class="lamp-products">
                             <div class="product-item">
@@ -566,10 +603,10 @@
             <div class="lamp-type-section">
                 <div class="lamp-type-content">
                     <div class="lamp-info">
-                        <p style="color: #999; font-size: 14px; margin-bottom: 5px;">Custom design lamp</p>
+                        <p style="color: #999; font-size: 14px; margin-bottom: 5px;">Đèn Thiết Kế Theo Yêu Cầu</p>
                         <h3>ĐÈN THẢ TRẦN TÙY CHỈNH</h3>
                         <p>
-                            Đèn thả trần không chỉ có tác dụng cung cấp ánh sáng chức năng cho một không gian, mà còn tạo nên ánh sáng đẹp và không gian ấm áp và kích thích. Chúng có thể tạo ra một không gian sinh hoạt và thoải mái cho cả gia đình thưởng thức. Trong các trường hợp khác, chúng có thể sử dụng để làm cho không gian sinh hoạt tập trung vào một khu vực.
+                            Đèn thả trần không chỉ cung cấp ánh sáng chức năng mà còn tạo nên vẻ đẹp tinh tế và bầu không khí ấm áp, dễ chịu cho không gian sống. Chúng góp phần tạo ra môi trường sinh hoạt thoải mái và thư giãn cho cả gia đình. Ngoài ra, đèn thả trần còn có thể được dùng như điểm nhấn để định hình và làm nổi bật một khu vực cụ thể trong căn phòng.
                         </p>
                         <div class="lamp-products">
                             <div class="product-item">
@@ -594,10 +631,10 @@
             <div class="lamp-type-section">
                 <div class="lamp-type-content reverse">
                     <div class="lamp-info">
-                        <p style="color: #999; font-size: 14px; margin-bottom: 5px;">Custom design lamp</p>
-                        <h3>ĐÈN ÁP TƯỜNG VÀ TRẦN TÙY CHỈNH</h3>
+                        <p style="color: #999; font-size: 14px; margin-bottom: 5px;">Đèn Thiết Kế Theo Yêu Cầu</p>
+                        <h3>ĐÈN GẮN TƯỜNG TÙY CHỈNH</h3>
                         <p>
-                            Một trong những ưu điểm nổi bật của đèn gắn tường là khả năng tạo ánh sáng mềm mại và không gian ấm áp. Đèn gắn tường thường được trang bị ánh sáng mờ, phản ánh tường, làm cho ánh sáng lan toả đều đặn và tạo ra một bầu không khí ấm cúng. Chúng cũng có thể sử dụng để tạo điểm nhận cho tường ánh, trang treo, hoặc thành chỉ tạo hiệu ứng ánh sáng gợn sóng trên tường.
+                            Một trong những ưu điểm nổi bật của đèn gắn tường là khả năng tạo ra ánh sáng mềm mại và bầu không khí ấm áp cho không gian sống. Ánh sáng phản chiếu lên tường giúp lan tỏa đều đặn; mang lại cảm giác ấm cúng và dễ chịu. Ngoài ra, đèn gắn tường còn có thể dùng để tạo điểm nhấn cho bức tường, tranh treo, hoặc đơn giản là tạo hiệu ứng ánh sáng gợn sóng nhẹ nhàng và tinh tế.
                         </p>
                         <div class="lamp-products">
                             <div class="product-item">
@@ -619,6 +656,26 @@
             </div>
         </div>
     </section>
+
+    <jsp:include page="chat.jsp" />
+
+    <!-- Speed Dial FAB -->
+    <div class="speed-dial" id="speedDial">
+        <div class="speed-dial-items" id="speedDialItems">
+            <div class="speed-dial-item" id="sdScrollTop" title="Lên đầu trang">
+                <i class="fas fa-arrow-up"></i><span>Lên đầu</span>
+            </div>
+            <div class="speed-dial-item" id="sdSupport" title="Tư vấn trực tuyến">
+                <i class="fas fa-headset"></i><span>Tư vấn</span>
+            </div>
+            <div class="speed-dial-item" id="sdAIBot" title="AI Bot Mộc Đăng">
+                <i class="fas fa-robot"></i><span>AI Bot</span>
+            </div>
+        </div>
+        <div class="speed-dial-main" id="speedDialMain">
+            <i class="fas fa-plus"></i>
+        </div>
+    </div>
 
     <jsp:include page="footer.jsp" />
 
@@ -701,6 +758,55 @@
             el.style.transition = 'all 0.6s ease-out';
             observer.observe(el);
         });
+    </script>
+    <script>
+        // Speed Dial FAB
+        (function () {
+            const dialMain   = document.getElementById('speedDialMain');
+            const dialItems  = document.getElementById('speedDialItems');
+            const scrollBtn  = document.getElementById('sdScrollTop');
+            const supportBtn = document.getElementById('sdSupport');
+            const aiBotBtn   = document.getElementById('sdAIBot');
+            if (!dialMain) return;
+
+            let open = false;
+            function closeDial() {
+                open = false;
+                dialItems.classList.remove('open');
+                dialMain.classList.remove('open');
+            }
+
+            if (scrollBtn) scrollBtn.style.display = 'none';
+            window.addEventListener('scroll', function () {
+                if (scrollBtn) scrollBtn.style.display = window.pageYOffset > 300 ? 'flex' : 'none';
+            });
+
+            dialMain.addEventListener('click', function (e) {
+                e.stopPropagation();
+                open = !open;
+                dialItems.classList.toggle('open', open);
+                dialMain.classList.toggle('open', open);
+            });
+
+            document.addEventListener('click', function (e) {
+                const dial = document.getElementById('speedDial');
+                if (dial && !dial.contains(e.target)) closeDial();
+            });
+
+            if (scrollBtn) scrollBtn.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                closeDial();
+            });
+            if (supportBtn) supportBtn.addEventListener('click', function () {
+                if (typeof toggleChatWidget === 'function') toggleChatWidget();
+                closeDial();
+            });
+            if (aiBotBtn) aiBotBtn.addEventListener('click', function () {
+                const panel = document.getElementById('mdChatbotPanel');
+                if (panel) panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+                closeDial();
+            });
+        })();
     </script>
 </body>
 </html>

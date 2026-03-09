@@ -548,6 +548,40 @@
                 background: var(--wood-light);
                 color: var(--wood-dark);
             }
+
+            /* ===== SPEED DIAL FAB ===== */
+            .ai-chat-button, .md-chatbot-toggle { display: none !important; }
+            .ai-chat-widget, .md-chatbot-panel { bottom: 80px !important; right: 20px !important; }
+
+            .speed-dial {
+                position: fixed; bottom: 20px; right: 20px; z-index: 1200;
+                display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+            }
+            .speed-dial-main {
+                width: 54px; height: 54px; border-radius: 50%;
+                background: #2c3e50; color: #fff;
+                display: flex; align-items: center; justify-content: center;
+                cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+                transition: transform 0.3s ease, background 0.3s ease; font-size: 20px;
+            }
+            .speed-dial-main:hover { background: #1a252f; }
+            .speed-dial-main.open { transform: rotate(45deg); }
+            .speed-dial-items {
+                display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+                opacity: 0; visibility: hidden; transform: translateY(10px);
+                transition: all 0.25s ease;
+            }
+            .speed-dial-items.open { opacity: 1; visibility: visible; transform: translateY(0); }
+            .speed-dial-item {
+                display: flex; align-items: center; gap: 8px;
+                height: 40px; padding: 0 16px; border-radius: 999px; color: #fff;
+                cursor: pointer; font-size: 13px; font-weight: 600; white-space: nowrap;
+                box-shadow: 0 4px 14px rgba(0,0,0,0.2); transition: transform 0.2s ease;
+            }
+            .speed-dial-item:hover { transform: scale(1.06); }
+            #sdScrollTop { background: #8e44ad; }
+            #sdSupport   { background: #27ae60; }
+            #sdAIBot     { background: #34495e; }
         </style>
     </head>
     <body>
@@ -702,7 +736,26 @@
             </div>
         </div>
         
-        <jsp:include page="chat.jsp" />                        
+        <jsp:include page="chat.jsp" />
+
+        <!-- Speed Dial FAB -->
+        <div class="speed-dial" id="speedDial">
+            <div class="speed-dial-items" id="speedDialItems">
+                <div class="speed-dial-item" id="sdScrollTop" title="Lên đầu trang">
+                    <i class="fas fa-arrow-up"></i><span>Lên đầu</span>
+                </div>
+                <div class="speed-dial-item" id="sdSupport" title="Tư vấn trực tuyến">
+                    <i class="fas fa-headset"></i><span>Tư vấn</span>
+                </div>
+                <div class="speed-dial-item" id="sdAIBot" title="AI Bot Mộc Đăng">
+                    <i class="fas fa-robot"></i><span>AI Bot</span>
+                </div>
+            </div>
+            <div class="speed-dial-main" id="speedDialMain">
+                <i class="fas fa-plus"></i>
+            </div>
+        </div>
+
         <jsp:include page="footer.jsp" />
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -771,6 +824,55 @@
                     }
                 });
             });
+        </script>
+        <script>
+            // Speed Dial FAB
+            (function () {
+                const dialMain   = document.getElementById('speedDialMain');
+                const dialItems  = document.getElementById('speedDialItems');
+                const scrollBtn  = document.getElementById('sdScrollTop');
+                const supportBtn = document.getElementById('sdSupport');
+                const aiBotBtn   = document.getElementById('sdAIBot');
+                if (!dialMain) return;
+
+                let open = false;
+                function closeDial() {
+                    open = false;
+                    dialItems.classList.remove('open');
+                    dialMain.classList.remove('open');
+                }
+
+                if (scrollBtn) scrollBtn.style.display = 'none';
+                window.addEventListener('scroll', function () {
+                    if (scrollBtn) scrollBtn.style.display = window.pageYOffset > 300 ? 'flex' : 'none';
+                });
+
+                dialMain.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    open = !open;
+                    dialItems.classList.toggle('open', open);
+                    dialMain.classList.toggle('open', open);
+                });
+
+                document.addEventListener('click', function (e) {
+                    const dial = document.getElementById('speedDial');
+                    if (dial && !dial.contains(e.target)) closeDial();
+                });
+
+                if (scrollBtn) scrollBtn.addEventListener('click', function () {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    closeDial();
+                });
+                if (supportBtn) supportBtn.addEventListener('click', function () {
+                    if (typeof toggleChatWidget === 'function') toggleChatWidget();
+                    closeDial();
+                });
+                if (aiBotBtn) aiBotBtn.addEventListener('click', function () {
+                    const panel = document.getElementById('mdChatbotPanel');
+                    if (panel) panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+                    closeDial();
+                });
+            })();
         </script>
     </body>
 </html>

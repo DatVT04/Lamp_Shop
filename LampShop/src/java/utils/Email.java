@@ -19,11 +19,11 @@ import java.io.UnsupportedEncodingException;
 
 public class Email {
 
-    private static final String HOST = System.getenv().getOrDefault("SMTP_HOST", "smtp.gmail.com");
-    private static final String PORT = System.getenv().getOrDefault("SMTP_PORT", "587");
-    private static final String USERNAME = System.getenv().getOrDefault("SMTP_USER", "");
-    private static final String PASSWORD = System.getenv().getOrDefault("SMTP_PASS", "");
-    private static final boolean SMTP_DEBUG = "true".equalsIgnoreCase(System.getenv().getOrDefault("SMTP_DEBUG", "false"));
+    private static final String HOST = "smtp.gmail.com";
+    private static final String PORT = "587";
+    private static final String USERNAME = "datvt271204@gmail.com";
+    private static final String PASSWORD = "qgtb sjcx ldog avfo";
+    private static final boolean SMTP_DEBUG = false;
 
     private final int LIMIT_MINUS = 30;
 

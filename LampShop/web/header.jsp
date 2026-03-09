@@ -409,23 +409,33 @@
                     position: fixed;
                     right: 20px;
                     bottom: 20px;
-                    width: 56px;
-                    height: 56px;
-                    border-radius: 50%;
+                    height: 44px;
+                    padding: 0 18px;
+                    border-radius: 999px;
                     background: #34495e;
                     color: #fff;
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    gap: 8px;
                     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
                     cursor: pointer;
                     z-index: 1100;
+                    font-size: 14px;
+                    font-weight: 600;
+                    white-space: nowrap;
+                }
+
+                .md-chatbot-toggle:hover {
+                    background: #2c3e50;
+                    transform: scale(1.05);
+                    transition: all 0.2s ease;
                 }
 
                 .md-chatbot-panel {
                     position: fixed;
                     right: 20px;
-                    bottom: 90px;
+                    bottom: 130px;
                     width: 320px;
                     max-height: 420px;
                     background: #ffffff;
@@ -578,11 +588,11 @@
 
 
                             <li class="nav-item">
-                                <a class="nav-link" href="customize.jsp">Customize</a>
+                                <a class="nav-link" href="customize">Đèn Tủy Chỉnh</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="posts">Blogs</a>
+                                <a class="nav-link" href="posts">Bài Viết</a>
                             </li>
 
                         </ul>
@@ -680,8 +690,9 @@
             </nav>
 
             <!-- Chatbot floating widget -->
-            <div class="md-chatbot-toggle" id="mdChatbotToggle" title="Chat với Mộc Đăng">
-                <i class="fas fa-comments"></i>
+            <div class="md-chatbot-toggle" id="mdChatbotToggle" title="Chat AI Mộc Đăng">
+                <i class="fas fa-robot"></i>
+                <span>AI Bot</span>
             </div>
             <div class="md-chatbot-panel" id="mdChatbotPanel">
                 <div class="md-chatbot-header">

@@ -14,29 +14,35 @@
     <style>
         .ai-chat-button {
             position: fixed;
-            bottom: 20px;
+            bottom: 74px;
             right: 20px;
             z-index: 1000;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #3498db;
+            height: 44px;
+            padding: 0 18px;
+            border-radius: 999px;
+            background-color: #27ae60;
             border: none;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
         }
 
         .ai-chat-button:hover {
-            transform: scale(1.1);
+            background-color: #219a52;
+            transform: scale(1.05);
         }
 
         .ai-chat-widget {
             position: fixed;
-            bottom: 80px;
+            bottom: 130px;
             right: 20px;
             width: 350px;
             height: 450px;
@@ -208,7 +214,8 @@
     <c:if test="${sessionScope.acc.role == 'customer' || sessionScope.acc.role == null}">
         <!-- Chat Button -->
         <div class="ai-chat-button" onclick="toggleChatWidget()">
-            <img src="https://cdn-icons-png.flaticon.com/512/5962/5962463.png" alt="Chat AI" width="35" height="35">
+            <i class="fas fa-headset"></i>
+            <span>Tư vấn</span>
         </div>
 
         <!-- Chat Widget -->

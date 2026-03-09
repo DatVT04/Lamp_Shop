@@ -56,6 +56,22 @@ public class CartCompletion extends HttpServlet {
         HttpSession session = request.getSession();
     User user = (User) session.getAttribute("acc");
 
+    // Kiểm tra order_id từ URL (dành cho QR payment)
+    String orderIdParam = request.getParameter("order_id");
+    if (orderIdParam != null && !orderIdParam.isEmpty()) {
+        try {
+            int orderId = Integer.parseInt(orderIdParam);
+            Order orderFromDb = orderDAO.getOrderById(orderId);
+            if (orderFromDb != null) {
+                prepareOrderAttributes(request, orderFromDb);
+                request.getRequestDispatcher("cartcompletion.jsp").forward(request, response);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            // bỏ qua, tiếp tục xử lý bình thường
+        }
+    }
+
     // Kiểm tra đơn hàng đã hoàn tất từ PaymentServlet
     Order completedOrder = (Order) session.getAttribute("completed_order");
     if (completedOrder != null) {
