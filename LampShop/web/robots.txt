@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mocdang.com/sitemap.xml
+
