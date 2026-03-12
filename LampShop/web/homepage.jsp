@@ -300,10 +300,10 @@
                             .section-subtitle {
                                 text-align: center;
                                 font-size: 1.1rem;
-                                color: var(--text-light);
+                                color: #444;
                                 max-width: 700px;
                                 margin: 0 auto 60px;
-                                font-weight: 300;
+                                font-weight: 400;
                             }
 
                             .section-title::after {
@@ -596,11 +596,11 @@
                             }
 
                             .process-content p {
-                                color: var(--text-light);
+                                color: #333;
                                 line-height: 2;
                                 margin-bottom: 40px;
                                 font-size: 1.05rem;
-                                font-weight: 300;
+                                font-weight: 400;
                             }
 
                             .process-content .btn-read-more {
@@ -639,9 +639,9 @@
                             }
 
                             .section-description {
-                                color: var(--text-light);
+                                color: #444;
                                 font-size: 1.15rem;
-                                font-weight: 300;
+                                font-weight: 400;
                                 max-width: 850px;
                                 margin: 0 auto 50px;
                                 text-align: center;
@@ -847,12 +847,12 @@
                             }
 
                             .post-summary {
-                                color: var(--text-light);
+                                color: #444;
                                 font-size: 1rem;
                                 line-height: 1.9;
                                 margin-bottom: 30px;
                                 flex-grow: 1;
-                                font-weight: 300;
+                                font-weight: 400;
                             }
 
                             .post-card .btn-read-more {
