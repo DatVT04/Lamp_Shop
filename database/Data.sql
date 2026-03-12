@@ -895,13 +895,13 @@ GO
 INSERT INTO sliders (id, title, image_url, link, status, display_order, notes) VALUES
 (1, N'Bộ sưu tập đèn giấy dó thủ công',
 'https://i.postimg.cc/zGw5jy6r/nghethuatlamden.jpg',
-'http://localhost:9999/lampshop/post?id=1', 'active', 1, N'Khám phá nghệ thuật làm đèn truyền thống Việt Nam'),
+'https://mocdang.com/post?id=1', 'active', 1, N'Khám phá nghệ thuật làm đèn truyền thống Việt Nam'),
 (2, N'Đèn vải Linen tự nhiên',
 'https://i.postimg.cc/W1VmKyWq/denvaislider2.jpg',
-'http://localhost:9999/lampshop/productdetail?id=6', 'active', 2, N'Tối giản, thanh lịch và hiện đại'),
+'https://mocdang.com/productdetail?id=6', 'active', 2, N'Tối giản, thanh lịch và hiện đại'),
 (3, N'Đèn Tết - Khung tre tự nhiên',
 'https://i.postimg.cc/26yVMdNK/dentetslider.jpg',
-'http://localhost:9999/lampshop/productdetail?id=3', 'active', 3, N'Mang may mắn về nhà trong dịp năm mới');
+'https://mocdang.com/productdetail?id=3', 'active', 3, N'Mang may mắn về nhà trong dịp năm mới');
 SET IDENTITY_INSERT [dbo].[sliders] OFF;
 GO
 
