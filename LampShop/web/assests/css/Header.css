@@ -44,7 +44,7 @@ body {
 }
 
 .navbar-brand img {
-    height: 70px;
+    height: 90px;
     width: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
@@ -353,7 +353,7 @@ body {
 
 .cart-count {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     color: #000;
     display: inline;
     margin-left: 2px;

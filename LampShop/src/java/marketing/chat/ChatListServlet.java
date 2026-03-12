@@ -35,7 +35,6 @@ public class ChatListServlet extends HttpServlet {
             return;
         }
 
-        int marketingId = acc.getId();
         MessageDAO messageDAO = new MessageDAO();
 
         String searchUsername = request.getParameter("searchUsername");
@@ -43,8 +42,20 @@ public class ChatListServlet extends HttpServlet {
         int page = (pageStr == null || pageStr.isEmpty()) ? 1 : Integer.parseInt(pageStr);
         int recordsPerPage = 10;
 
-        List<Message> chatList = messageDAO.getChatList(marketingId, searchUsername, page, recordsPerPage);
-        int totalUsers = messageDAO.getTotalChatUsers(marketingId, searchUsername);
+        List<Message> chatList;
+        int totalUsers;
+        int marketingId;
+
+        if ("admin".equals(acc.getRole())) {
+            chatList = messageDAO.getAllChatList(searchUsername, page, recordsPerPage);
+            totalUsers = messageDAO.getTotalAllChatUsers(searchUsername);
+            marketingId = 0; // admin không thuộc cuộc trò chuyện nào
+        } else {
+            marketingId = acc.getId();
+            chatList = messageDAO.getChatList(marketingId, searchUsername, page, recordsPerPage);
+            totalUsers = messageDAO.getTotalChatUsers(marketingId, searchUsername);
+        }
+
         int totalPages = (int) Math.ceil((double) totalUsers / recordsPerPage);
 
         request.setAttribute("chatList", chatList);
@@ -52,7 +63,7 @@ public class ChatListServlet extends HttpServlet {
         request.setAttribute("currentPage", page);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("totalUsers", totalUsers);
-        request.setAttribute("marketingId", marketingId); 
+        request.setAttribute("marketingId", marketingId);
 
         request.getRequestDispatcher("/marketing/chat/chatList.jsp").forward(request, response);
     }

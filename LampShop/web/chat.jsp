@@ -55,6 +55,31 @@
             z-index: 999;
         }
 
+        .ai-chat-close-top {
+            position: fixed;
+            bottom: 582px;
+            right: 20px;
+            z-index: 1000;
+            width: 28px;
+            height: 28px;
+            background: #e74c3c;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: background 0.2s;
+        }
+
+        .ai-chat-close-top:hover {
+            background: #c0392b;
+        }
+
         .ai-chat-header {
             background: #2c3e50;
             color: white;
@@ -218,6 +243,9 @@
             <span>Tư vấn</span>
         </div>
 
+        <!-- Close button above widget -->
+        <button class="ai-chat-close-top" id="aiChatCloseTop" onclick="toggleChatWidget()" title="Đóng">&#10005;</button>
+
         <!-- Chat Widget -->
         <div class="ai-chat-widget" id="aiChatWidget">
             <div class="ai-chat-header">
@@ -299,12 +327,15 @@
 
         function toggleChatWidget() {
             var widget = document.getElementById("aiChatWidget");
+            var closeTop = document.getElementById("aiChatCloseTop");
             if (widget.style.display === "none" || widget.style.display === "") {
                 widget.style.display = "flex";
+                closeTop.style.display = "flex";
                 var chatMessages = document.getElementById("aiChatMessages");
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             } else {
                 widget.style.display = "none";
+                closeTop.style.display = "none";
             }
         }
 

@@ -119,7 +119,7 @@
             </a>
         </li>
         
-        <c:if test="${sessionScope.acc.role == 'marketing'}">
+        <c:if test="${sessionScope.acc.role == 'marketing' || sessionScope.acc.role == 'admin'}">
         <li class="menu-item p-2">
             <a href="${pageContext.request.contextPath}/marketing/chatlist" class="text-decoration-none text-light d-flex align-items-center">
                 <i class="fas fa-user-cog me-2"></i>

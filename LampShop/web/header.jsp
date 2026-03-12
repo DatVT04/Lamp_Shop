@@ -126,8 +126,8 @@
                 }
 
                 .search-form input {
-                    width: 0;
-                    padding: 10px 40px 10px 35px;
+                    width: 200px;
+                    padding: 10px 40px 10px 15px;
                     border: none;
                     border-radius: 25px;
                     font-size: 0.9rem;
@@ -137,7 +137,7 @@
 
                 .search-form input:focus,
                 .search-form input:not(:placeholder-shown) {
-                    width: 250px;
+                    width: 280px;
                 }
 
                 .search-form button {
@@ -243,15 +243,15 @@
 
                 /* Cart Count Badge */
                 .navbar-transparent .cart-count {
-                    background: #ff4444;
+                    background: transparent;
                     color: #ffffff;
-                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+                    font-weight: 700;
                 }
 
                 .navbar-scrolled .cart-count {
-                    background: #ff4444;
-                    color: #ffffff;
-                    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+                    background: transparent;
+                    color: #2c3e50;
+                    font-weight: 700;
                 }
 
                 /* Dropdown Menu */
@@ -453,6 +453,9 @@
                     color: #fff;
                     font-size: 14px;
                     font-weight: 600;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
                 }
 
                 .md-chatbot-messages {
@@ -697,6 +700,7 @@
             <div class="md-chatbot-panel" id="mdChatbotPanel">
                 <div class="md-chatbot-header">
                     Trợ lý Mộc Đăng
+                    <button onclick="document.getElementById('mdChatbotPanel').style.display='none'" style="background:transparent;border:none;color:white;font-size:18px;cursor:pointer;line-height:1;padding:0;" title="Đóng">&times;</button>
                 </div>
                 <div class="md-chatbot-messages" id="mdChatbotMessages">
                     <div class="md-chatbot-msg md-chatbot-msg-bot">

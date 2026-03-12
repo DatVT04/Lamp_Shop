@@ -49,7 +49,94 @@ public class MessageDAO extends DBContext {
         }
     }
 
-    // Lấy danh sách user mà marketing đang chat 
+    // Lấy toàn bộ danh sách chat của tất cả nhân viên marketing (dành cho admin)
+    public List<Message> getAllChatList(String searchUsername, int page, int recordsPerPage) {
+        List<Message> list = new ArrayList<>();
+        StringBuilder sql = new StringBuilder(
+            "WITH MarketingUsers AS ( " +
+            "    SELECT id FROM users WHERE role = 'marketing' " +
+            "), " +
+            "TaggedMessages AS ( " +
+            "    SELECT m.sender_id, m.receiver_id, m.content, m.created_at, m.image_url, " +
+            "           CASE WHEN m.sender_id IN (SELECT id FROM MarketingUsers) THEN m.receiver_id ELSE m.sender_id END as customer_id " +
+            "    FROM messages m " +
+            "    WHERE m.sender_id IN (SELECT id FROM MarketingUsers) OR m.receiver_id IN (SELECT id FROM MarketingUsers) " +
+            "), " +
+            "LatestMessages AS ( " +
+            "    SELECT *, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY created_at DESC) as rn " +
+            "    FROM TaggedMessages " +
+            ") " +
+            "SELECT u.id, u.username, m.content, m.created_at, m.sender_id, m.image_url, 1 as is_read " +
+            "FROM LatestMessages m " +
+            "JOIN users u ON u.id = m.customer_id " +
+            "WHERE m.rn = 1"
+        );
+
+        if (searchUsername != null && !searchUsername.isEmpty()) {
+            sql.append(" AND u.username LIKE ?");
+        }
+        sql.append(" ORDER BY m.created_at DESC");
+        sql.append(" OFFSET ? ROWS FETCH NEXT ? ROWS ONLY");
+
+        try (PreparedStatement ps = connection.prepareStatement(sql.toString())) {
+            int paramIndex = 1;
+            if (searchUsername != null && !searchUsername.isEmpty()) {
+                ps.setString(paramIndex++, "%" + searchUsername + "%");
+            }
+            ps.setInt(paramIndex++, (page - 1) * recordsPerPage);
+            ps.setInt(paramIndex++, recordsPerPage);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Message msg = new Message();
+                msg.setSenderId(rs.getInt("id"));
+                msg.setSenderUsername(rs.getString("username"));
+                msg.setContent(rs.getString("content"));
+                msg.setCreatedAt(rs.getTimestamp("created_at"));
+                msg.setRead(rs.getBoolean("is_read"));
+                msg.setLastSenderId(rs.getInt("sender_id"));
+                msg.setImageUrl(rs.getString("image_url"));
+                list.add(msg);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    // Đếm tổng số khách hàng đang chat với bất kỳ nhân viên marketing nào (dành cho admin)
+    public int getTotalAllChatUsers(String searchUsername) {
+        StringBuilder sql = new StringBuilder(
+            "SELECT COUNT(DISTINCT " +
+            "    CASE WHEN m.sender_id IN (SELECT id FROM users WHERE role = 'marketing') " +
+            "         THEN m.receiver_id ELSE m.sender_id END) " +
+            "FROM messages m " +
+            "JOIN users u ON u.id = CASE WHEN m.sender_id IN (SELECT id FROM users WHERE role = 'marketing') " +
+            "                             THEN m.receiver_id ELSE m.sender_id END " +
+            "WHERE m.sender_id IN (SELECT id FROM users WHERE role = 'marketing') " +
+            "   OR m.receiver_id IN (SELECT id FROM users WHERE role = 'marketing')"
+        );
+
+        if (searchUsername != null && !searchUsername.isEmpty()) {
+            sql.append(" AND u.username LIKE ?");
+        }
+
+        try (PreparedStatement ps = connection.prepareStatement(sql.toString())) {
+            int paramIndex = 1;
+            if (searchUsername != null && !searchUsername.isEmpty()) {
+                ps.setString(paramIndex++, "%" + searchUsername + "%");
+            }
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    // Lấy danh sách user mà marketing đang chat
     public List<Message> getChatList(int marketingId, String searchUsername, int page, int recordsPerPage) {
     List<Message> list = new ArrayList<>();
     StringBuilder sql = new StringBuilder(
