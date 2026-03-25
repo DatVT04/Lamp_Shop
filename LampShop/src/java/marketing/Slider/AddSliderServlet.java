@@ -167,10 +167,10 @@ public class AddSliderServlet extends HttpServlet {
             if (link == null || link.trim().isEmpty()) {
                 if (selectedPost > 0) {
 
-                    link = "http://localhost:9999/lampshop/post?id=" + selectedPost;
+                    link = "https://mocdang.com/post?id=" + selectedPost;
                 } else if (selectedProduct > 0) {
 
-                    link = "http://localhost:9999/lampshop/productdetail?id=" + selectedProduct;
+                    link = "https://mocdang.com/productdetail?id=" + selectedProduct;
                 }
             }
 

@@ -171,7 +171,7 @@
     <script>
     var marketingId = "${marketingId}";
     var userId = "${userId}";
-    var wsUrl = (window.location.protocol === 'https:' ? 'wss://' : 'ws://') + "localhost:9999/lampshop/chat/" + marketingId + "/" + userId;
+    var wsUrl = (window.location.protocol === 'https:' ? 'wss://' : 'ws://') + "mocdang.com/chat/" + marketingId + "/" + userId;
     var ws = null;
     var selectedImageUrl = null;
     const EMOJI_API_KEY = "4aa33f4f82f97c1a3d6fa6a3349c6d2a9b175fc7";

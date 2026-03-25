@@ -241,7 +241,7 @@ public class Email {
             for (CartItem item : order.getItems()) {
                 String imageUrl = item.getProductThumbnail();
                 if (!imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {
-                    imageUrl = "http://localhost:9999/lampshop" + imageUrl; // Thêm domain nếu là đường dẫn tương đối
+                    imageUrl = "https://mocdang.com" + imageUrl; // Thêm domain nếu là đường dẫn tương đối
                 }
                 htmlContent.append("<tr>")
                         .append("<td><img src='").append(imageUrl).append("' width='50' height='50' alt='").append(item.getProductTitle()).append("'></td>")

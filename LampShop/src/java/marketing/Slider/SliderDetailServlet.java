@@ -128,10 +128,10 @@ public class SliderDetailServlet extends HttpServlet {
 
         if (postId > 0) {
 
-            link = "http://localhost:9999/lampshop/post?id=" + postId;
+            link = "https://mocdang.com/post?id=" + postId;
         } else if (productId > 0) {
 
-            link = "http://localhost:9999/lampshop/productdetail?id=" + productId;
+            link = "https://mocdang.com/productdetail?id=" + productId;
         }
 
         if (postId > 0 && productId > 0) {

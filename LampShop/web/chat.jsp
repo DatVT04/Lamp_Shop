@@ -341,7 +341,7 @@
 
         function initWebSocket() {
             if (!userId || marketingId === "-1") return;
-            var wsUrl = (window.location.protocol === 'https:' ? 'wss://' : 'ws://') + "localhost:9999/lampshop/chat/" + userId + "/" + marketingId;
+            var wsUrl = (window.location.protocol === 'https:' ? 'wss://' : 'ws://') + "mocdang.com/chat/" + userId + "/" + marketingId;
             console.log("Attempting to connect to: " + wsUrl);
             ws = new WebSocket(wsUrl);
 
