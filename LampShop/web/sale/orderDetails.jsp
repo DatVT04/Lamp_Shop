@@ -184,7 +184,7 @@
                             <div class="col-md-6">
                                 <p><strong>ID đơn hàng:</strong> ${order.id}</p>
                                 <p><strong>Ngày đặt hàng:</strong> <fmt:formatDate value="${order.orderDate}" pattern="dd/MM/yyyy HH:mm"/></p>
-                                <p><strong>Tổng chi phí:</strong> <fmt:formatNumber value="${order.total}" type="currency" currencySymbol="₫" maxFractionDigits="0"/></p>
+                                <p><strong>Tổng chi phí:</strong> <fmt:formatNumber value="${order.total}" pattern="#,##0"/>₫</p>
                                 <p><strong>Trạng thái:</strong> 
                                     <span class="status-badge bg-${order.status == 'completed' ? 'success' : order.status == 'cancelled' ? 'danger' : 'warning'}">
                                         <c:choose>
@@ -306,7 +306,7 @@
                                         <td>${item.size}</td>
                                         <td>${item.color}</td>
                                         <td>${item.quantity}</td>
-                                        <td><fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₫" maxFractionDigits="0"/></td>
+                                        <td><fmt:formatNumber value="${item.productPrice}" pattern="#,##0"/>₫</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

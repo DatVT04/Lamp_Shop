@@ -126,7 +126,7 @@
                                 <div>
                                     <div class="text-muted text-uppercase fw-bold small">Tổng Doanh Thu</div>
                                     <div class="h4 mb-0 fw-bold text-dark">
-                                        <fmt:formatNumber value="${salesOverview.totalRevenue}" type="currency" currencySymbol="VNĐ" />
+                                        <fmt:formatNumber value="${salesOverview.totalRevenue}" pattern="#,##0"/>VNĐ
                                     </div>
                                 </div>
                             </div>
@@ -311,7 +311,7 @@
                                             <tr>
                                                 <td>${payment.paymentMethod}</td>
                                                 <td>${payment.orderCount}</td>
-                                                <td><fmt:formatNumber value="${payment.totalAmount}" type="currency" currencySymbol="VNĐ" /></td>
+                                                <td><fmt:formatNumber value="${payment.totalAmount}" pattern="#,##0"/>VNĐ</td>
                                                 <td>
                                                     <div class="progress">
                                                         <div class="progress-bar" role="progressbar" 
@@ -356,7 +356,7 @@
                                             <tr>
                                                 <td>${category.categoryName}</td>
                                                 <td>${category.totalItems}</td>
-                                                <td><fmt:formatNumber value="${category.totalAmount}" type="currency" currencySymbol="VNĐ" /></td>
+                                                <td><fmt:formatNumber value="${category.totalAmount}" pattern="#,##0"/>VNĐ</td>
                                                 <td>
                                                     <div class="progress">
                                                         <div class="progress-bar" role="progressbar" 

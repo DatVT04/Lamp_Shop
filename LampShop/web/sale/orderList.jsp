@@ -529,7 +529,7 @@
                                                     <c:otherwise>Không có sản phẩm</c:otherwise>
                                                 </c:choose>
                                             </td>
-                                            <td><fmt:formatNumber value="${order.total}" type="currency" currencySymbol="₫" maxFractionDigits="0"/></td>
+                                            <td><fmt:formatNumber value="${order.total}" pattern="#,##0"/>₫</td>
                                             <td>
                                                 <span class="status-badge bg-${order.status == 'completed' ? 'success' : order.status == 'cancelled' ? 'danger' : order.status == 'returned' ? 'danger' : order.status == 'pending_pay' ? 'warning' : order.status == 'processing' ? 'info' : order.status == 'shipping' ? 'primary' : 'secondary'}">
                                                     ${order.status == 'pending_pay' ? 'Chờ thanh toán' : 

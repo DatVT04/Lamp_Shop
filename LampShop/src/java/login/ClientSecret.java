@@ -15,7 +15,7 @@ public class ClientSecret {
 
     public static final String GOOGLE_CLIENT_SECRET = "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";
 
-    public static final String GOOGLE_REDIRECT_URI = "http://localhost:9999/lampshop/login";
+    public static final String GOOGLE_REDIRECT_URI = "http://mocdang.com/lampshop/login";
 
     public static final String GOOGLE_GRANT_TYPE = "authorization_code";
 
