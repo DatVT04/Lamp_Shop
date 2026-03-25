@@ -107,21 +107,33 @@ public class RegisterControl extends HttpServlet {
 
             User checkExistUsername = userDao.checkExistUsername(username);
             if (checkExistUsername != null) {
-                request.setAttribute("error", "Tên người dùng đã tồn tại!");
-                request.getRequestDispatcher("register.jsp").forward(request, response);
-                return;
+                if ("pending".equals(checkExistUsername.getStatus())) {
+                    userDao.deleteUser(checkExistUsername.getId());
+                } else {
+                    request.setAttribute("error", "Tên người dùng đã tồn tại!");
+                    request.getRequestDispatcher("register.jsp").forward(request, response);
+                    return;
+                }
             }
             User checkExistEmail = userDao.checkExistEmail(email);
             if (checkExistEmail != null) {
-                request.setAttribute("error", "Email đã được đăng ký!");
-                request.getRequestDispatcher("register.jsp").forward(request, response);
-                return;
+                if ("pending".equals(checkExistEmail.getStatus())) {
+                    userDao.deleteUser(checkExistEmail.getId());
+                } else {
+                    request.setAttribute("error", "Email đã được đăng ký!");
+                    request.getRequestDispatcher("register.jsp").forward(request, response);
+                    return;
+                }
             }
             User checkExistPhone = userDao.checkExistPhone(phone);
             if (checkExistPhone != null) {
-                request.setAttribute("error", "Số điện thoại đã được đăng ký!");
-                request.getRequestDispatcher("register.jsp").forward(request, response);
-                return;
+                if ("pending".equals(checkExistPhone.getStatus())) {
+                    userDao.deleteUser(checkExistPhone.getId());
+                } else {
+                    request.setAttribute("error", "Số điện thoại đã được đăng ký!");
+                    request.getRequestDispatcher("register.jsp").forward(request, response);
+                    return;
+                }
             }
 
             // set đối tượng mới ở trang thái pending
@@ -148,6 +160,7 @@ public class RegisterControl extends HttpServlet {
             boolean emailSent = emailUtil.sendEmail(newUser, token);
 
             if (!emailSent) {
+                userDao.deleteUser(userId); // Fix: Delete pending user and token if email fails
                 request.setAttribute("error", "Không gửi được email xác thực. Vui lòng thử lại.");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
                 return;

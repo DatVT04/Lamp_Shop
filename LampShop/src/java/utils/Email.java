@@ -19,10 +19,21 @@ import java.io.UnsupportedEncodingException;
 
 public class Email {
 
-    private static final String HOST = "smtp.gmail.com";
+    // Cấu hình máy chủ SMTP của SendGrid
+    private static final String HOST = "smtp.sendgrid.net";
     private static final String PORT = "587";
-    private static final String USERNAME = "datvt271204@gmail.com";
-    private static final String PASSWORD = "qgtb sjcx ldog avfo";
+
+    // Lưu ý: Tên truy cập SMTP của SendGrid BẮT BUỘC là "apikey" (không phải email
+    // của bạn)
+    private static final String USERNAME = "apikey";
+    // Mật khẩu chính là mã API Key của SendGrid (thường bắt đầu bằng SG.xxx...)
+    // Thay thế đoạn chữ dưới đây bằng API key thực sự của bạn
+    private static final String PASSWORD = "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";
+
+    // Email người gửi hiển thị đối với khách hàng.
+    // Tuyệt vời! Bạn đã xác thực tên miền mocdang.com thành công trên SendGrid.
+    // Giờ đây bạn có quyền tạo địa chỉ gửi chuyên nghiệp từ tên miền này.
+    private static final String FROM_EMAIL = "no-reply@mocdang.com";
     private static final boolean SMTP_DEBUG = false;
 
     private final int LIMIT_MINUS = 30;
@@ -68,35 +79,34 @@ public class Email {
             });
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(USERNAME, "Mộc Đăng"));
+            message.setFrom(new InternetAddress(FROM_EMAIL, "Mộc Đăng"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user.getEmail()));
             message.setSubject("Xác Minh Tài Khoản Của Bạn");
 
             String verificationLink = "https://mocdang.com/verify?token=" + verificationToken;
             String htmlContent = String.format(
                     "<html>"
-                    + "<head>"
-                    + "<style>"
-                    + "body {font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f2f2f2;}"
-                    + ".container {padding: 20px; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #dddddd; border-radius: 5px;}"
-                    + ".header {background-color: #4CAF50; padding: 10px; text-align: center; color: #ffffff;}"
-                    + ".content {padding: 20px;}"
-                    + "</style>"
-                    + "</head>"
-                    + "<body>"
-                    + "<div class='container'>"
-                    + "<div class='header'><h2>Xác Minh Tài Khoản</h2></div>"
-                    + "<div class='content'><p>Xin chào %s,</p>"
-                    + "<p>Lamp Shop xin thông bảo tài khoản của bạn đã được đăng ký thành công, vui lòng nhấp vào liên kết bên dưới để xác thực email của bạn.</p>"
-                    + "<a href='%s' style='display:block;width:max-content;margin:0 auto;padding:10px;text-align:center;color:#ffffff;background-color:#4CAF50;border-radius:5px;text-decoration:none;'>Verify Account</a>"
-                    + "<p>Liên kết này sẽ hết hạn sau 30 phút.</p>"
-                    + "<p>Trân trọng,<br>Từ Lamp Shop</p></div>"
-                    + "</div>"
-                    + "</body>"
-                    + "</html>",
+                            + "<head>"
+                            + "<style>"
+                            + "body {font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f2f2f2;}"
+                            + ".container {padding: 20px; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #dddddd; border-radius: 5px;}"
+                            + ".header {background-color: #4CAF50; padding: 10px; text-align: center; color: #ffffff;}"
+                            + ".content {padding: 20px;}"
+                            + "</style>"
+                            + "</head>"
+                            + "<body>"
+                            + "<div class='container'>"
+                            + "<div class='header'><h2>Xác Minh Tài Khoản</h2></div>"
+                            + "<div class='content'><p>Xin chào %s,</p>"
+                            + "<p>Lamp Shop xin thông bảo tài khoản của bạn đã được đăng ký thành công, vui lòng nhấp vào liên kết bên dưới để xác thực email của bạn.</p>"
+                            + "<a href='%s' style='display:block;width:max-content;margin:0 auto;padding:10px;text-align:center;color:#ffffff;background-color:#4CAF50;border-radius:5px;text-decoration:none;'>Verify Account</a>"
+                            + "<p>Liên kết này sẽ hết hạn sau 30 phút.</p>"
+                            + "<p>Trân trọng,<br>Từ Lamp Shop</p></div>"
+                            + "</div>"
+                            + "</body>"
+                            + "</html>",
                     user.getFullName(),
-                    verificationLink
-            );
+                    verificationLink);
 
             message.setContent(htmlContent, "text/html; charset=UTF-8");
             Transport.send(message);
@@ -138,44 +148,43 @@ public class Email {
             });
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(USERNAME, "Mộc Đăng"));
+            message.setFrom(new InternetAddress(FROM_EMAIL, "Mộc Đăng"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user.getEmail()));
-//            message.setSubject("Đặt Lại Mật Khẩu");
+            // message.setSubject("Đặt Lại Mật Khẩu");
             message.setSubject(MimeUtility.encodeText("Đặt Lại Mật Khẩu", "UTF-8", "B"));
 
             String resetLink = "https://mocdang.com/resetpassword?token=" + resetToken;
             String htmlContent = String.format(
                     "<html>"
-                    + "<head>"
-                    + "<style>"
-                    + "body {font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f2f2f2;}"
-                    + ".container {padding: 20px; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #dddddd; border-radius: 5px;}"
-                    + ".header {background-color: #007bff; padding: 10px; text-align: center; color: #ffffff; font-size: 20px; font-weight: bold;}"
-                    + ".content {padding: 20px; line-height: 1.5; color: #333;}"
-                    + ".button {display: block; width: max-content; margin: 20px auto; padding: 12px 20px; text-align: center; color: white; background-color: #007bff; border-radius: 5px; text-decoration: none; font-size: 16px;}"
-                    + ".footer {font-size: 12px; color: #777; text-align: center; margin-top: 20px;}"
-                    + "</style>"
-                    + "</head>"
-                    + "<body>"
-                    + "<div class='container'>"
-                    + "<div class='header'>Yêu Cầu Đặt Lại Mật Khẩu</div>"
-                    + "<div class='content'>"
-                    + "<p>Xin chào %s,</p>"
-                    + "<p>Chúng tôi nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn.</p>"
-                    + "<p>Nếu bạn không yêu cầu thay đổi mật khẩu, vui lòng bỏ qua email này.</p>"
-                    + "<p>Nhấp vào nút bên dưới để đặt lại mật khẩu của bạn:</p>"
-                    + "<a href='%s' class='button'>Đặt lại mật khẩu</a>"
-                    + "<p><strong>Lưu ý:</strong> Liên kết này sẽ hết hạn sau 30 phút.</p>"
-                    + "<p>Trân trọng,<br>Đội ngũ hỗ trợ Lamp Shop</p>"
-                    + "</div>"
-                    + "<div class='footer'>Nếu bạn gặp vấn đề với nút trên, hãy sao chép và dán liên kết sau vào trình duyệt của bạn: <br>%s</div>"
-                    + "</div>"
-                    + "</body>"
-                    + "</html>",
+                            + "<head>"
+                            + "<style>"
+                            + "body {font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f2f2f2;}"
+                            + ".container {padding: 20px; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #dddddd; border-radius: 5px;}"
+                            + ".header {background-color: #007bff; padding: 10px; text-align: center; color: #ffffff; font-size: 20px; font-weight: bold;}"
+                            + ".content {padding: 20px; line-height: 1.5; color: #333;}"
+                            + ".button {display: block; width: max-content; margin: 20px auto; padding: 12px 20px; text-align: center; color: white; background-color: #007bff; border-radius: 5px; text-decoration: none; font-size: 16px;}"
+                            + ".footer {font-size: 12px; color: #777; text-align: center; margin-top: 20px;}"
+                            + "</style>"
+                            + "</head>"
+                            + "<body>"
+                            + "<div class='container'>"
+                            + "<div class='header'>Yêu Cầu Đặt Lại Mật Khẩu</div>"
+                            + "<div class='content'>"
+                            + "<p>Xin chào %s,</p>"
+                            + "<p>Chúng tôi nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn.</p>"
+                            + "<p>Nếu bạn không yêu cầu thay đổi mật khẩu, vui lòng bỏ qua email này.</p>"
+                            + "<p>Nhấp vào nút bên dưới để đặt lại mật khẩu của bạn:</p>"
+                            + "<a href='%s' class='button'>Đặt lại mật khẩu</a>"
+                            + "<p><strong>Lưu ý:</strong> Liên kết này sẽ hết hạn sau 30 phút.</p>"
+                            + "<p>Trân trọng,<br>Đội ngũ hỗ trợ Lamp Shop</p>"
+                            + "</div>"
+                            + "<div class='footer'>Nếu bạn gặp vấn đề với nút trên, hãy sao chép và dán liên kết sau vào trình duyệt của bạn: <br>%s</div>"
+                            + "</div>"
+                            + "</body>"
+                            + "</html>",
                     user.getFullName(),
                     resetLink,
-                    resetLink
-            );
+                    resetLink);
 
             message.setContent(htmlContent, "text/html; charset=UTF-8");
             Transport.send(message);
@@ -188,7 +197,8 @@ public class Email {
         }
     }
 
-    public boolean sendOrderStatusEmail(Order order, String statusText, String newStatus) throws UnsupportedEncodingException {
+    public boolean sendOrderStatusEmail(Order order, String statusText, String newStatus)
+            throws UnsupportedEncodingException {
         Properties props = new Properties();
         props.put("mail.smtp.host", HOST);
         props.put("mail.smtp.port", PORT);
@@ -206,9 +216,10 @@ public class Email {
             });
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(USERNAME, "Fasshion Shop"));
+            message.setFrom(new InternetAddress(FROM_EMAIL, "Fasshion Shop"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(order.getRecipientEmail()));
-            message.setSubject(MimeUtility.encodeText("Cập nhật trạng thái đơn hàng #" + order.getOrderCode(), "UTF-8", "B"));
+            message.setSubject(
+                    MimeUtility.encodeText("Cập nhật trạng thái đơn hàng #" + order.getOrderCode(), "UTF-8", "B"));
 
             // Tạo nội dung email
             StringBuilder htmlContent = new StringBuilder();
@@ -225,15 +236,18 @@ public class Email {
                     .append("</style></head><body><div class='container'>")
                     .append("<div class='header'><h2>Cập nhật trạng thái đơn hàng</h2></div>")
                     .append("<div class='content'><p>Xin chào ").append(order.getRecipientName()).append(",</p>")
-                    .append("<p>Chúng tôi xin thông báo rằng đơn hàng <strong>#").append(order.getOrderCode()).append("</strong> của bạn đã được cập nhật sang trạng thái: <strong>").append(statusText).append("</strong>.</p>");
+                    .append("<p>Chúng tôi xin thông báo rằng đơn hàng <strong>#").append(order.getOrderCode())
+                    .append("</strong> của bạn đã được cập nhật sang trạng thái: <strong>").append(statusText)
+                    .append("</strong>.</p>");
 
             // Thêm thông tin vận chuyển nếu trạng thái từ "shipping" trở đi
             if ("shipping".equals(newStatus) || "completed".equals(newStatus) || "returned".equals(newStatus)) {
                 htmlContent.append("<h3>Thông tin vận chuyển:</h3>")
-                        .append("<p><strong>Đơn vị vận chuyển:</strong> ").append(order.getShippingProvider()).append("</p>")
+                        .append("<p><strong>Đơn vị vận chuyển:</strong> ").append(order.getShippingProvider())
+                        .append("</p>")
                         .append("<p><strong>Mã vận đơn:</strong> ").append(order.getTrackingNumber()).append("</p>");
             }
-            
+
             // Thêm chi tiết đơn hàng
             htmlContent.append("<h3>Chi tiết đơn hàng:</h3>")
                     .append("<table class='product-table'><thead><tr>")
@@ -244,7 +258,8 @@ public class Email {
                     imageUrl = "https://mocdang.com" + imageUrl; // Thêm domain nếu là đường dẫn tương đối
                 }
                 htmlContent.append("<tr>")
-                        .append("<td><img src='").append(imageUrl).append("' width='50' height='50' alt='").append(item.getProductTitle()).append("'></td>")
+                        .append("<td><img src='").append(imageUrl).append("' width='50' height='50' alt='")
+                        .append(item.getProductTitle()).append("'></td>")
                         .append("<td>").append(item.getProductTitle()).append("</td>")
                         .append("<td>").append(item.getSize()).append("</td>")
                         .append("<td>").append(item.getColor()).append("</td>")
@@ -274,8 +289,7 @@ public class Email {
         Email email = new Email();
         boolean sent = email.sendEmail(
                 new User("testUser", "huyndhe186775@fpt.edu.vn", "password", "Test User", "Male", "1234567890"),
-                "Token123"
-        );
+                "Token123");
         System.out.println("Email sent: " + sent);
     }
 }
